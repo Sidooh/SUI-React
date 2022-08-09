@@ -20,7 +20,8 @@
     "storybook": "start-storybook -p 6006",
     "build": "rollup -c",
     "build-storybook": "build-storybook",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "version": "npm version patch"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
