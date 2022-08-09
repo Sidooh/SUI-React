@@ -1,5 +1,5 @@
 {
-  "name": "dooh-react",
+  "name": "@sidooh/sui-react",
   "version": "1.0.0",
   "description": "Sidoohs' React component library",
   "packageManager": "yarn@3.2.2",
@@ -66,5 +66,8 @@
     "@tanstack/match-sorter-utils": "^8.1.1",
     "@tanstack/react-table": "^8.5.11",
     "react-bootstrap": "^2.5.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/nabcellent"
   }
 }
