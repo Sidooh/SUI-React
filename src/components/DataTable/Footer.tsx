@@ -3,10 +3,10 @@ import { Button, Form } from 'react-bootstrap';
 import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faAngleLeft,
+    faAngleRight,
     faAnglesLeft,
     faAnglesRight,
-    faArrowLeft,
-    faArrowRight,
     faArrowRightLong
 } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../IconButton/IconButton';
@@ -26,13 +26,7 @@ const Footer = ({
                     <span>Page </span>
                     <strong>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</strong>
                 </p>
-                <p className="mb-0 ms-2">Rows per page:</p>
-                <Form.Select size="sm" className="w-auto mx-2" value={table.getState().pagination.pageSize}
-                             onChange={e => table.setPageSize(Number(e.target.value))}>
-                    {[5, 10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>Show {pageSize}</option>
-                    ))}
-                </Form.Select>
+                <p className="mb-0 ms-2">| &nbsp;</p>
                 {Boolean(selectedRowsCount) && (
                     <div>
                         {selectedRowsCount} of{' '}
@@ -40,7 +34,7 @@ const Footer = ({
                     </div>
                 )}
 
-                <span>Total: {table.getRowModel().rows.length}</span>
+                <span>Total: <b>{table.getRowModel().rows.length}</b></span>
             </Flex>
             <Flex>
                 {
@@ -54,10 +48,16 @@ const Footer = ({
                     <FontAwesomeIcon icon={faAnglesLeft} fontSize={15}/>
                 </IconButton>
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
-                    <FontAwesomeIcon icon={faArrowLeft} fontSize={15}/>
+                    <FontAwesomeIcon icon={faAngleLeft} fontSize={15}/>
                 </IconButton>
+                <Form.Select size="sm" className="w-auto mx-2" value={table.getState().pagination.pageSize}
+                             onChange={e => table.setPageSize(Number(e.target.value))}>
+                    {[5, 10, 20, 30, 40, 50].map(pageSize => (
+                        <option key={pageSize} value={pageSize}>Show {pageSize}</option>
+                    ))}
+                </Form.Select>
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
-                    <FontAwesomeIcon icon={faArrowRight} fontSize={15}/>
+                    <FontAwesomeIcon icon={faAngleRight} fontSize={15}/>
                 </IconButton>
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
