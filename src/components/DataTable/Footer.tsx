@@ -1,4 +1,4 @@
-import { Flex } from '../Flex';
+import Flex from '../Flex/Flex';
 import { Button, Form } from 'react-bootstrap';
 import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

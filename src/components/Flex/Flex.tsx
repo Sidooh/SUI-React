@@ -14,7 +14,7 @@ type FlexType = {
     direction?: string
 };
 
-export const Flex = memo(function Flex({
+const Flex = memo(function Flex({
     justifyContent,
     alignItems,
     alignContent,
@@ -45,3 +45,5 @@ export const Flex = memo(function Flex({
         </Tag>
     );
 });
+
+export default Flex

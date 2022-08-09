@@ -1,11 +1,11 @@
 import { Button, Col, Dropdown, Form, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import pluralize from 'pluralize';
-import { Str } from '../../utils/helpers';
+import { Str } from '../../utils';
 import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableColumns } from '@fortawesome/free-solid-svg-icons';
-import { Flex } from '../Flex';
+import Flex from '../Flex/Flex';
 
 interface Header {
     table: Table<any>;
