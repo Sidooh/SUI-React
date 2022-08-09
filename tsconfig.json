@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "lib": ["DOM", "ESNext"],
+
     "strict": true,
-    "target": "ES2022",
+    "target": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,6 +16,12 @@
     "declarationDir": "types",
     "moduleResolution": "node",
     "emitDeclarationOnly": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["**/dist", "**/node_modules"]
 }
