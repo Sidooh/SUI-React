@@ -2157,54 +2157,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sidooh/sui-react@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@sidooh/sui-react@workspace:."
-  dependencies:
-    "@babel/core": ^7.18.10
-    "@babel/preset-react": ^7.18.6
-    "@faker-js/faker": ^7.3.0
-    "@fortawesome/fontawesome-svg-core": ^6.1.2
-    "@fortawesome/free-solid-svg-icons": ^6.1.2
-    "@fortawesome/react-fontawesome": ^0.2.0
-    "@mdx-js/react": ^1.6.22
-    "@rollup/plugin-babel": ^5.3.1
-    "@rollup/plugin-commonjs": ^22.0.2
-    "@rollup/plugin-node-resolve": ^13.3.0
-    "@rollup/plugin-typescript": ^8.3.4
-    "@storybook/addon-actions": ^6.5.10
-    "@storybook/addon-docs": ^6.5.10
-    "@storybook/addon-essentials": ^6.5.10
-    "@storybook/addon-interactions": ^6.5.10
-    "@storybook/addon-links": ^6.5.10
-    "@storybook/builder-webpack4": ^6.5.10
-    "@storybook/manager-webpack4": ^6.5.10
-    "@storybook/react": ^6.5.10
-    "@storybook/testing-library": ^0.0.13
-    "@tanstack/match-sorter-utils": ^8.1.1
-    "@tanstack/react-table": ^8.5.11
-    "@types/pluralize": ^0.0.29
-    "@types/react": ^18.0.17
-    "@types/rollup-plugin-peer-deps-external": ^2.2.1
-    babel-loader: ^8.2.5
-    esbuild: ^0.14.53
-    pluralize: ^8.0.0
-    react: ^18.2.0
-    react-bootstrap: ^2.5.0
-    react-dom: ^18.2.0
-    react-router-dom: ^6.3.0
-    rollup: ^2.77.2
-    rollup-plugin-dts: ^4.2.2
-    rollup-plugin-esbuild: ^4.9.1
-    rollup-plugin-peer-deps-external: ^2.2.4
-    rollup-plugin-terser: ^7.0.2
-    typescript: ^4.7.4
-  peerDependencies:
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  languageName: unknown
-  linkType: soft
-
 "@storybook/addon-actions@npm:6.5.10, @storybook/addon-actions@npm:^6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-actions@npm:6.5.10"
@@ -13013,6 +12965,54 @@ __metadata:
   checksum: 4d7084015207f2a606dfc10c29cb5ba569f2fe8005551df7396110dd694d6ff650f2debafa95bd5d147dfb4ca50f57868e2a7f91bf5d11ef734fe7ccbd7abf59
   languageName: node
   linkType: hard
+
+"sui-react@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "sui-react@workspace:."
+  dependencies:
+    "@babel/core": ^7.18.10
+    "@babel/preset-react": ^7.18.6
+    "@faker-js/faker": ^7.3.0
+    "@fortawesome/fontawesome-svg-core": ^6.1.2
+    "@fortawesome/free-solid-svg-icons": ^6.1.2
+    "@fortawesome/react-fontawesome": ^0.2.0
+    "@mdx-js/react": ^1.6.22
+    "@rollup/plugin-babel": ^5.3.1
+    "@rollup/plugin-commonjs": ^22.0.2
+    "@rollup/plugin-node-resolve": ^13.3.0
+    "@rollup/plugin-typescript": ^8.3.4
+    "@storybook/addon-actions": ^6.5.10
+    "@storybook/addon-docs": ^6.5.10
+    "@storybook/addon-essentials": ^6.5.10
+    "@storybook/addon-interactions": ^6.5.10
+    "@storybook/addon-links": ^6.5.10
+    "@storybook/builder-webpack4": ^6.5.10
+    "@storybook/manager-webpack4": ^6.5.10
+    "@storybook/react": ^6.5.10
+    "@storybook/testing-library": ^0.0.13
+    "@tanstack/match-sorter-utils": ^8.1.1
+    "@tanstack/react-table": ^8.5.11
+    "@types/pluralize": ^0.0.29
+    "@types/react": ^18.0.17
+    "@types/rollup-plugin-peer-deps-external": ^2.2.1
+    babel-loader: ^8.2.5
+    esbuild: ^0.14.53
+    pluralize: ^8.0.0
+    react: ^18.2.0
+    react-bootstrap: ^2.5.0
+    react-dom: ^18.2.0
+    react-router-dom: ^6.3.0
+    rollup: ^2.77.2
+    rollup-plugin-dts: ^4.2.2
+    rollup-plugin-esbuild: ^4.9.1
+    rollup-plugin-peer-deps-external: ^2.2.4
+    rollup-plugin-terser: ^7.0.2
+    typescript: ^4.7.4
+  peerDependencies:
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
 
 "supports-color@npm:^5.3.0":
   version: 5.5.0
