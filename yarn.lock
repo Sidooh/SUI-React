@@ -490,7 +490,6 @@ __metadata:
     "@types/node": ^18.6.5
     "@types/pluralize": ^0.0.29
     "@types/react": ^18.0.17
-    "@types/react-dom": ^18.0.6
     "@types/rollup-plugin-peer-deps-external": ^2.2.1
     babel-loader: ^8.2.5
     esbuild: ^0.14.53
@@ -761,15 +760,6 @@ __metadata:
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
   checksum: 5b43b8b15415e1f298243165f1d44390403bb2bd42e662bca3b5b5633fdd39c938e91b7fce3a9483699db0f7a715d08cef220c121f723a634972fdf596aec980
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:^18.0.6":
-  version: 18.0.6
-  resolution: "@types/react-dom@npm:18.0.6"
-  dependencies:
-    "@types/react": "*"
-  checksum: db571047af1a567631758700b9f7d143e566df939cfe5fbf7535347cc0c726a1cdbb5e3f8566d076e54cf708b6c1166689de194a9ba09ee35efc9e1d45911685
   languageName: node
   linkType: hard
 
