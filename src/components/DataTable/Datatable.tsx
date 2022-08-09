@@ -44,7 +44,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
     return itemRank.passed;
 };
 
-export const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTable) => {
+const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTable) => {
     const [columnVisibility, setColumnVisibility] = useState({});
     const [rowSelection, setRowSelection] = useState({});
     const [globalFilter, setGlobalFilter] = useState('');
@@ -165,3 +165,5 @@ export const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTa
         </>
     );
 };
+
+export default DataTable;

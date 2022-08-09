@@ -1,4 +1,4 @@
-import { DataTable } from '../components/DataTable';
+import { DataTable } from '../components';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import './css/theme.min.css';
