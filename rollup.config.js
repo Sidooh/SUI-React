@@ -1,9 +1,10 @@
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+// import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from "rollup-plugin-postcss";
 
 const packageJson = require('./package.json');
 
@@ -18,12 +19,14 @@ export default [
             resolve(),
             commonjs(),
             typescript({ tsconfig: './tsconfig.json', }),
-            peerDepsExternal(),
-            terser()
+            // peerDepsExternal(),
+            // terser()
+            postcss(),
         ]
     }, {
         input: 'dist/esm/index.d.ts',
         output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-        plugins: [dts()]
+        plugins: [dts()],
+        external: [/\.(css|less|scss)$/],
     }
 ];

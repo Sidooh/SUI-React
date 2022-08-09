@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "ESNext",
+    "target": "ES2022",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
 
     "jsx": "react",
     "module": "ESNext",
+    "outDir": "dist",
+    "sourceMap": true,
     "declaration": true,
     "declarationDir": "types",
-    "sourceMap": true,
-    "outDir": "dist",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
     "emitDeclarationOnly": true,
+    "allowSyntheticDefaultImports": true
   }
 }
