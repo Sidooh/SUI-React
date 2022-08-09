@@ -29,7 +29,7 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
     };
 
     return (
-        <Row className="justify-content-between">
+        <Row className="justify-content-between data-tbl-header">
             <Col>
                 <h5 className="fs-0 mb-0 text-nowrap py-2 py-xl-0">
                     {selectedRowsCount ? `You have selected ${selectedRowsCount} ${tableTitle}` : title}
@@ -59,7 +59,7 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                         </OverlayTrigger>
                         <OverlayTrigger overlay={<Tooltip>Show Columns</Tooltip>}>
                             <Dropdown className={'ms-2'} autoClose={'outside'}>
-                                <Dropdown.Toggle size={'sm'}>
+                                <Dropdown.Toggle size={'sm'} as={'a'} className={'cursor-pointer'}>
                                     <FontAwesomeIcon icon={faTableColumns} size={'sm'}/>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>

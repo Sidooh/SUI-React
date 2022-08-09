@@ -50,7 +50,7 @@ const Footer = ({
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
                     <FontAwesomeIcon icon={faAngleLeft} fontSize={15}/>
                 </IconButton>
-                <Form.Select size="sm" className="w-auto mx-2" value={table.getState().pagination.pageSize}
+                <Form.Select size="sm" className="w-auto mx-2 border-0" value={table.getState().pagination.pageSize}
                              onChange={e => table.setPageSize(Number(e.target.value))}>
                     {[5, 10, 20, 30, 40, 50].map(pageSize => (
                         <option key={pageSize} value={pageSize}>Show {pageSize}</option>
