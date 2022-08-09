@@ -5,6 +5,7 @@ import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from "rollup-plugin-postcss";
+import babel from '@rollup/plugin-babel';
 
 const packageJson = require('./package.json');
 
@@ -16,6 +17,10 @@ export default [
             { file: packageJson.module, format: 'esm', sourcemap: true },
         ],
         plugins: [
+            babel({
+                babelHelpers: 'bundled',
+                presets: ['@babel/preset-react']
+            }),
             resolve(),
             commonjs(),
             typescript({ tsconfig: './tsconfig.json', }),
