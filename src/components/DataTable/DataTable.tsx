@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -23,9 +23,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
 
-interface DataTable {
+export interface DataTableProps {
     title: string;
     data: any[];
     columns: ColumnDef<any>[];
@@ -44,7 +43,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
     return itemRank.passed;
 };
 
-const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTable) => {
+const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTableProps) => {
     const [columnVisibility, setColumnVisibility] = useState({});
     const [rowSelection, setRowSelection] = useState({});
     const [globalFilter, setGlobalFilter] = useState('');

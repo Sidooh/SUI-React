@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "strict": true,
+    "target": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
 
     "jsx": "react",
     "module": "ESNext",
-    "target": "ESNext",
     "declaration": true,
     "declarationDir": "types",
     "sourceMap": true,
@@ -15,35 +15,5 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "emitDeclarationOnly": true,
-
-    //    "allowJs": false,
-//    "target": "esnext",
-//    "lib": [
-//      "DOM",
-//      "DOM.Iterable",
-//      "ESNext"
-//    ],
-//    "rootDir": "src",
-//    "baseUrl": "src",
-//    "forceConsistentCasingInFileNames": true,
-//    "noImplicitReturns": true,
-//    "noImplicitThis": true,
-//    "noImplicitAny": true,
-//    "strictNullChecks": true,
-//    "suppressImplicitAnyIndexErrors": true,
-//    "noUnusedLocals": true,
-//    "experimentalDecorators": true,
-//    "emitDecoratorMetadata": true,
-//    "noEmitOnError": true,
-//    "esModuleInterop": true,
-//    "noEmit": true
-  },
-  "include": [
-    "src/**/*",
-    "rollup.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/dist"
-  ]
+  }
 }
