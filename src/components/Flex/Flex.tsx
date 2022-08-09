@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 
 type FlexType = {
@@ -14,7 +14,7 @@ type FlexType = {
     direction?: string
 };
 
-const Flex = memo(function Flex({
+const Flex = ({
     justifyContent,
     alignItems,
     alignContent,
@@ -26,7 +26,7 @@ const Flex = memo(function Flex({
     breakpoint,
     direction,
     ...rest
-}: FlexType) {
+}: FlexType) => {
     return (
         // @ts-ignore
         <Tag className={classNames(
@@ -44,6 +44,6 @@ const Flex = memo(function Flex({
             {children}
         </Tag>
     );
-});
+};
 
-export default Flex
+export default Flex;

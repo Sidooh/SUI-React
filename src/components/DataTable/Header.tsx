@@ -5,7 +5,7 @@ import { Str } from '../../utils';
 import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableColumns } from '@fortawesome/free-solid-svg-icons';
-import Flex from '../Flex/Flex';
+import Flex from '../Flex';
 
 interface Header {
     table: Table<any>;
