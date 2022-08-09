@@ -8,7 +8,7 @@ import { Card } from 'react-bootstrap';
 
 const stories = storiesOf('DataTable', module);
 
-stories.add('App', () => {
+stories.add('Full Table', () => {
     const data = Array.from({length: 25}, (a) => ({name: faker.name.firstName(), age: faker.datatype.number(70)}));
     data.push({name: 'Tasha', age: 21});
 
