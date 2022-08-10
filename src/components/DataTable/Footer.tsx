@@ -18,11 +18,17 @@ const FormSelect = styled(Form.Select)`
   padding-right: .75rem;
 `;
 
+export interface FooterProps {
+    table: Table<any>,
+    rowSelection: {},
+    onViewAll?: React.MouseEventHandler<HTMLButtonElement>
+}
+
 const Footer = ({
     table,
     rowSelection,
     onViewAll
-}: { table: Table<any>, rowSelection: {}, onViewAll?: React.MouseEventHandler<HTMLButtonElement> }) => {
+}: FooterProps) => {
     const selectedRowsCount = Object.keys(rowSelection).length;
 
     return (
