@@ -83,24 +83,6 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                                                         : Str.headline(column.id)} className={'m-0'}/>
                                     ))}
                                 </Dropdown.Menu>
-                                {/*<Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(undefined)}
-                                  anchorOrigin={{vertical: 'top', horizontal: 'left',}}
-                                  transformOrigin={{vertical: 'top', horizontal: 'left',}}>
-                                <MenuItem>
-                                    <Checkbox checked={table.getIsAllColumnsVisible()}
-                                              onChange={table.getToggleAllColumnsVisibilityHandler()}/>
-                                    <ListItemText primary={'Toggle All'}/>
-                                </MenuItem>
-                                {table.getAllLeafColumns().map(column => (
-                                    <MenuItem key={column.id}>
-                                        <Checkbox checked={column.getIsVisible()}
-                                                  onChange={column.getToggleVisibilityHandler()}/>
-                                        <ListItemText primary={typeof column.columnDef.header === 'string'
-                                            ? column.columnDef.header
-                                            : Str.headline(column.id)}/>
-                                    </MenuItem>
-                                ))}
-                            </Menu>*/}
                             </Dropdown>
                         </OverlayTrigger>
                     </Flex>
