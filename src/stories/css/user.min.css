@@ -262,7 +262,3 @@ table td.actions .btn {
 .nine-dots-dropdown {
     height: 18rem;
 }
-
-.data-tbl-header .dropdown-toggle:after {
-    display: none;
-}

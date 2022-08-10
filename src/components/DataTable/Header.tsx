@@ -6,6 +6,7 @@ import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableColumns } from '@fortawesome/free-solid-svg-icons';
 import Flex from '../Flex/Flex';
+import styled from 'styled-components';
 
 interface Header {
     table: Table<any>;
@@ -15,6 +16,12 @@ interface Header {
     setFiltering: Dispatch<SetStateAction<boolean>>;
     onCreateRow?: () => void;
 }
+
+const DataTableHeader = styled(Row)`
+  .dropdown-toggle:after {
+    display: none;
+  }
+`;
 
 const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRow}: Header) => {
     const [action, setAction] = useState<string | undefined>(undefined);
@@ -29,7 +36,7 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
     };
 
     return (
-        <Row className="justify-content-between data-tbl-header">
+        <DataTableHeader className="justify-content-between data-tbl-header">
             <Col>
                 <h5 className="fs-0 mb-0 text-nowrap py-2 py-xl-0">
                     {selectedRowsCount ? `You have selected ${selectedRowsCount} ${tableTitle}` : title}
@@ -100,7 +107,7 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                     </Flex>
                 )}
             </Col>
-        </Row>
+        </DataTableHeader>
     );
 };
 

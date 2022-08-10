@@ -10,7 +10,13 @@ import {
     faArrowRightLong
 } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../IconButton/IconButton';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import styled from 'styled-components';
+
+const FormSelect = styled(Form.Select)`
+  background-image: none;
+  padding-right: .75rem;
+`;
 
 const Footer = ({
     table,
@@ -47,16 +53,18 @@ const Footer = ({
                 <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
                     <FontAwesomeIcon icon={faAnglesLeft} fontSize={15}/>
                 </IconButton>
-                <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
+                <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanPreviousPage()}
+                            onClick={() => table.previousPage()}>
                     <FontAwesomeIcon icon={faAngleLeft} fontSize={15}/>
                 </IconButton>
-                <Form.Select size="sm" className="w-auto mx-2 border-0" value={table.getState().pagination.pageSize}
-                             onChange={e => table.setPageSize(Number(e.target.value))}>
+                <FormSelect size="sm" className="w-auto mx-2 border-0" value={table.getState().pagination.pageSize}
+                            onChange={(e: ChangeEvent<HTMLSelectElement>) => table.setPageSize(Number(e.target.value))}>
                     {[5, 10, 20, 30, 40, 50].map(pageSize => (
                         <option key={pageSize} value={pageSize}>Show {pageSize}</option>
                     ))}
-                </Form.Select>
-                <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
+                </FormSelect>
+                <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
+                            onClick={() => table.nextPage()}>
                     <FontAwesomeIcon icon={faAngleRight} fontSize={15}/>
                 </IconButton>
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
