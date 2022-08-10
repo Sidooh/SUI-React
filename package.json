@@ -67,6 +67,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "simplebar-react": "^2.4.1",
     "styled-components": "^5.3.5",
+    "sweetalert2": "^11.4.26",
+    "sweetalert2-react-content": "^5.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
