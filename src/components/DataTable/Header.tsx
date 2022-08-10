@@ -69,19 +69,18 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                                 <Dropdown.Toggle size={'sm'} as={'a'} className={'cursor-pointer'}>
                                     <FontAwesomeIcon icon={faTableColumns} size={'sm'}/>
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item>
-                                        <Form.Check label={`Toggle All`} checked={table.getIsAllColumnsVisible()}
-                                                    onChange={table.getToggleAllColumnsVisibilityHandler()}/>
-                                    </Dropdown.Item>
+                                <Dropdown.Menu className={'px-3'} color={'#5e6e82'}>
+                                    <Form.Check label={`Show All`} id={'toggle-all'}
+                                                checked={table.getIsAllColumnsVisible()}
+                                                onChange={table.getToggleAllColumnsVisibilityHandler()}
+                                                className={'m-0'}/>
+                                    <Dropdown.Divider className={'mt-0'}/>
                                     {table.getAllLeafColumns().map(column => (
-                                        <Dropdown.Item key={column.id} as={'button'}>
-                                            <Form.Check checked={column.getIsVisible()}
-                                                        onChange={column.getToggleVisibilityHandler()}
-                                                        label={typeof column.columnDef.header === 'string'
-                                                            ? column.columnDef.header
-                                                            : Str.headline(column.id)}/>
-                                        </Dropdown.Item>
+                                        <Form.Check checked={column.getIsVisible()} id={column.id}
+                                                    onChange={column.getToggleVisibilityHandler()}
+                                                    label={typeof column.columnDef.header === 'string'
+                                                        ? column.columnDef.header
+                                                        : Str.headline(column.id)} className={'m-0'}/>
                                     ))}
                                 </Dropdown.Menu>
                                 {/*<Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(undefined)}
