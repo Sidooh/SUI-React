@@ -1,16 +1,17 @@
 export enum Status {
-    COMPLETED = 'COMPLETED',
     ACTIVE = 'ACTIVE',
+    COMPLETED = 'COMPLETED',
+    EXPIRED = 'EXPIRED',
+    FAILED = 'FAILED',
+    INACTIVE = 'INACTIVE',
     PENDING = 'PENDING',
     REFUNDED = 'REFUNDED',
-    FAILED = 'FAILED',
-    EXPIRED = 'EXPIRED',
 }
 
 export enum Telco {
-    SAFARICOM = 'SAFARICOM',
     AIRTEL = 'AIRTEL',
-    TELKOM = 'TELKOM',
     EQUITEL = 'EQUITEL',
     FAIBA = 'FAIBA',
+    SAFARICOM = 'SAFARICOM',
+    TELKOM = 'TELKOM',
 }

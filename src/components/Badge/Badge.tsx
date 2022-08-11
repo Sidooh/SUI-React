@@ -16,7 +16,7 @@ const Badge = ({bg = 'primary', pill, children, icon, soft = false, className, s
     return (
         <span className={classNames(className, `badge ${soft ? 'badge-soft' : 'bg'}-${bg}`, {'rounded-pill': pill})}
               style={style} onClick={onClick}>
-            {icon} <b className={'ms-1'}>{children}</b>
+            {icon} {children}
         </span>
     );
 };

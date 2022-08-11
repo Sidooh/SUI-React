@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import './css/theme.min.css';
-import './css/user.min.css';
+import '../assets/css/theme.min.css';
+import '../assets/css/user.min.css';
 import { Footer } from '../components';
 import { Card } from 'react-bootstrap';
 

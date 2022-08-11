@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import classNames from 'classnames';
 
 type LogoType = {
-    src?: string,
+    src: string,
     at?: 'navbar-vertical' | 'navbar-top' | 'auth',
     width?: number
     className?: string,

@@ -9,11 +9,7 @@ stories.add('Logo', () => {
     return (
         <Card>
             <Card.Body>
-                <Logo width={50}/>
-                <Logo/>
-                <Logo width={110}/>
-                <Logo width={150}/>
-                <Logo width={200}/>
+                {[50, 78, 110, 150, 200].map(w => <Logo src={require('../assets/images/logos/sidooh.png')} width={w}/>)}
             </Card.Body>
         </Card>
     );

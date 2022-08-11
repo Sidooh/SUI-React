@@ -17,15 +17,16 @@ const statusProps = (status: Status) => {
         color = 'success';
         icon = <FontAwesomeIcon icon={faCheck}/>;
     } else if (status === Status.PENDING) {
-        color = 'warning';
+        color = 'info';
         icon = <FontAwesomeIcon icon={faHourglassStart}/>;
     } else if (status === Status.REFUNDED) {
-        color = 'info';
+        color = 'secondary';
         icon = <FontAwesomeIcon icon={faCircleInfo}/>;
     } else if ([Status.FAILED].includes(status)) {
         color = 'danger';
         icon = <FontAwesomeIcon icon={faCircleExclamation}/>;
-    } else if ([Status.EXPIRED].includes(status)) {
+    } else if ([Status.EXPIRED, Status.INACTIVE].includes(status)) {
+        color = 'warning';
         icon = <FontAwesomeIcon icon={faCalendarXmark}/>;
     }
 
@@ -44,8 +45,8 @@ const StatusChip = ({status, className, soft = true}: StatusChipType) => {
 
     const {color, icon} = statusProps(status);
 
-    return <Badge soft={soft} bg={color} className={`fw-bold fs-8 ${className}`}
-                      children={<span>{status}</span>} icon={icon} pill/>;
+    return <Badge soft={soft} bg={color} className={`fs-8 ${className}`} children={<span>{status}</span>} icon={icon}
+                  pill/>;
 };
 
 export default StatusChip;

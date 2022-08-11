@@ -61,7 +61,8 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                                 <span className="d-none d-sm-inline-block ms-1">New</span>
                             </Button>
                         )}
-                        <OverlayTrigger overlay={<Tooltip>{filtering ? 'Disable' : 'Enable'} Filtering</Tooltip>}>
+                        <OverlayTrigger
+                            overlay={<Tooltip>{filtering ? 'Disable' : 'Enable'} Column Filtering</Tooltip>}>
                             <Form.Check type="switch" checked={filtering} onChange={() => setFiltering(!filtering)}/>
                         </OverlayTrigger>
                         <OverlayTrigger overlay={<Tooltip>Show Columns</Tooltip>}>
@@ -69,7 +70,7 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                                 <Dropdown.Toggle size={'sm'} as={'a'} className={'cursor-pointer'}>
                                     <FontAwesomeIcon icon={faTableColumns} size={'sm'}/>
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu className={'px-3'} color={'#5e6e82'}>
+                                <Dropdown.Menu className={'px-3'} style={{color: '#5e6e82'}}>
                                     <Form.Check label={`Show All`} id={'toggle-all'}
                                                 checked={table.getIsAllColumnsVisible()}
                                                 onChange={table.getToggleAllColumnsVisibilityHandler()}

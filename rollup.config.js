@@ -20,7 +20,8 @@ export default [
         plugins: [
             babel({
                 babelHelpers: 'bundled',
-                presets: ['@babel/preset-react']
+                presets: ['@babel/preset-react'],
+                exclude: 'node_modules/**',
             }),
             resolve(),
             commonjs(),
