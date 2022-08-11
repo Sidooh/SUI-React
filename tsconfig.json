@@ -22,6 +22,6 @@
     "noImplicitAny": true,
     "noUnusedLocals": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": ["**/dist", "**/node_modules"]
 }
