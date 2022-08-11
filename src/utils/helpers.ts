@@ -64,7 +64,7 @@ export const JWT = {
 
 export const capitalize = (str: string) => (str.charAt(0).toUpperCase() + str.slice(1)).replace(/-/g, ' ');
 
-const Sweet = withReactContent(Swal);
+export const Sweet = withReactContent(Swal);
 
 export const toast = async (data: SweetAlertOptions) => {
     const options = {
