@@ -12,3 +12,4 @@ export { default as Waffle } from './Waffle';
 
 export { PhoneChip, StatusChip } from './Chips';
 export { ErrorBoundary, ErrorFallback, SectionError } from './Error';
+export { ComponentLoader, SectionLoader, PageLoader } from './Loaders';
