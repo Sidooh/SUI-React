@@ -8,6 +8,7 @@ export { default as IconButton } from './IconButton';
 export { default as Logo } from './Logo';
 export { default as PrettyJSON } from './PrettyJSON';
 export { default as TableDate } from './TableDate';
+export { default as TextField } from './TextField';
 export { default as Waffle } from './Waffle';
 
 export { PhoneChip, StatusChip } from './Chips';
