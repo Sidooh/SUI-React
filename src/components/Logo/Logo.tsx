@@ -1,15 +1,15 @@
 import React, { memo } from 'react';
 import classNames from 'classnames';
-import { IMAGES } from '../../constants';
 
 type LogoType = {
+    src?: string,
     at?: 'navbar-vertical' | 'navbar-top' | 'auth',
     width?: number
     className?: string,
     textClass?: string
 }
 
-const Logo = ({at = 'auth', width = 78, className, textClass, ...rest}: LogoType) => {
+const Logo = ({src, at = 'auth', width = 78, className, textClass, ...rest}: LogoType) => {
     return (
         <a href="/" className={classNames(
             'text-decoration-none',
@@ -24,7 +24,7 @@ const Logo = ({at = 'auth', width = 78, className, textClass, ...rest}: LogoType
                 },
                 className
             )}>
-                <img className="me-2" src={IMAGES.logos.sidooh} alt="Logo" width={width}/>
+                <img className="me-2" src={src} alt="Logo" width={width}/>
             </div>
         </a>
     );
