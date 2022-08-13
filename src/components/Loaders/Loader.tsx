@@ -31,7 +31,7 @@ const ComponentLoader = () => {
     return (
         <ComponentLoaderWrapper>
             <div style={{position: 'relative'}}>
-                <Spinner animation="border" variant="dark"/>
+                <Spinner animation="border" variant="primary"/>
             </div>
         </ComponentLoaderWrapper>
     );
@@ -40,7 +40,7 @@ const ComponentLoader = () => {
 // ==============================|| LOADER ||============================== //
 const PageLoader = () => (
     <PageLoaderWrapper>
-        <Spinner animation="border" variant="dark" style={{width:'7rem', height:'7rem'}}/>
+        <Spinner animation="border" variant="primary" style={{width:'7rem', height:'7rem'}}/>
     </PageLoaderWrapper>
 );
 
@@ -48,7 +48,7 @@ const SectionLoader = () => {
     return (
         <SectionLoaderWrapper>
             <div style={{width:'5rem', height:'5rem'}}>
-                <Spinner animation="border" variant="dark" style={{width:'5rem', height:'5rem'}}/>
+                <Spinner animation="border" variant="primary" style={{width:'5rem', height:'5rem'}}/>
             </div>
         </SectionLoaderWrapper>
     );

@@ -2,30 +2,32 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import Badge from '../components/Badge';
+import { Color } from 'react-bootstrap/types';
 
 const stories = storiesOf('Badge', module);
 
-stories.add('Soft', () => {
-    return (
-        <Card>
-            <Card.Body>
-                <Badge soft className={'me-1'}>Hello Sidooh</Badge>
-                <Badge soft bg={'success'} className={'me-1'}>Hello Sidooh</Badge>
-                <Badge soft bg={'warning'} className={'me-1'}>Hello Sidooh</Badge>
-                <Badge soft bg={'dark'} className={'me-1'}>Hello Sidooh</Badge>
-            </Card.Body>
-        </Card>
-    );
-});
+const colors = ['primary', 'success', 'danger', 'warning', 'info', 'secondary'] as Color[];
 
 stories.add('Normal', () => {
     return (
         <Card>
             <Card.Body>
-                <Badge className={'me-1'}>Hello Sidooh</Badge>
-                <Badge bg={'success'} className={'me-1'}>Hello Sidooh</Badge>
-                <Badge bg={'warning'} className={'me-1'}>Hello Sidooh</Badge>
-                <Badge bg={'dark'} className={'me-1'}>Hello Sidooh</Badge>
+                {colors.map(color => <Badge key={color} bg={color} className={'me-2'}>Hello Sidooh</Badge>)}
+                <h5>Pills</h5>
+                {colors.map(color => <Badge key={color} bg={color} className={'me-2'}>Hello Sidooh</Badge>)}
+            </Card.Body>
+        </Card>
+    );
+});
+
+stories.add('Soft', () => {
+    return (
+        <Card>
+            <Card.Body>
+                {colors.map(color => <Badge soft key={color} bg={color} className={'me-2'}>Hello Sidooh</Badge>)}
+
+                <hr/>
+                {colors.map(color => <Badge soft pill key={color} bg={color} className={'me-2'}>Hello Sidooh</Badge>)}
             </Card.Body>
         </Card>
     );

@@ -1,8 +1,9 @@
 import React, { CSSProperties, memo, MouseEventHandler, ReactNode } from 'react';
 import classNames from 'classnames';
+import { Color } from 'react-bootstrap/types';
 
 type SoftBadgeProps = {
-    bg?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark',
+    bg?: Color,
     pill?: boolean,
     children: ReactNode,
     className?: string
