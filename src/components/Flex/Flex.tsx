@@ -5,7 +5,7 @@ type FlexType = {
     children: ReactNode,
     justifyContent?: 'center' | 'between',
     inline?: boolean,
-    alignItems?: 'center',
+    alignItems?: 'start' | 'center' | 'end',
     alignContent?: string,
     wrap?: string,
     className?: string,

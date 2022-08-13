@@ -4,7 +4,7 @@ import pluralize from 'pluralize';
 import { Str } from '../../utils';
 import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTableColumns } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faTableColumns } from '@fortawesome/free-solid-svg-icons';
 import Flex from '../Flex/Flex';
 import styled from 'styled-components';
 
@@ -57,8 +57,8 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                 ) : (
                     <Flex alignItems={'center'}>
                         {onCreateRow && (
-                            <Button size="sm" className="me-2" onClick={onCreateRow} variant={'success'}>
-                                <span className="d-none d-sm-inline-block ms-1">New</span>
+                            <Button size="sm" className="me-2" onClick={onCreateRow}>
+                                <FontAwesomeIcon icon={faAdd}/> New
                             </Button>
                         )}
                         <OverlayTrigger

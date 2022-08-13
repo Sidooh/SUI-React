@@ -52,7 +52,6 @@ const IconButton = ({
     style
 }: IconButtonProps) => {
     let _style: React.CSSProperties = {
-
         ...style
     };
 

@@ -18,7 +18,7 @@ stories.add('Full Table', () => {
                 <DataTable title={'Sidooh DTL'} data={data} columns={[
                     {accessorKey: 'name',},
                     {accessorKey: 'age'}
-                ]}/>
+                ]} onCreateRow={() => console.log('Hello World')}/>
             </Card.Body>
         </Card>
     );

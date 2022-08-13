@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 export interface FooterProps {
-    serviceName: 'Payments' | 'Products' | 'Savings',
+    serviceName: 'Payments' | 'Products' | 'Savings' | 'Notify',
     version: string | number
 }
 
