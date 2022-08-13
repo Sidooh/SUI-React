@@ -1,7 +1,7 @@
 import { Status } from './enums';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-type Model = {
+export type Model = {
     id: number
     created_at: string
     updated_at: string
