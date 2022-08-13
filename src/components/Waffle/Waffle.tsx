@@ -17,10 +17,10 @@ export type WaffleLink = {
 }
 
 export interface WaffleProps {
-    waffleLinks: WaffleLink[];
+    links: WaffleLink[];
 }
 
-const Waffle = ({waffleLinks}: WaffleProps) => {
+const Waffle = ({links}: WaffleProps) => {
     const [show, setShow] = useState<boolean>(false);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const Waffle = ({waffleLinks}: WaffleProps) => {
                     <SimpleBarReact className="nine-dots-dropdown">
                         <Card.Body className={'px-3'}>
                             <Row className="text-center g-0">
-                                {waffleLinks.map((item, index) => (
+                                {links.map((item, index) => (
                                     <WaffleLinkItem key={index} {...item} />
                                 ))}
                                 <Col xs={12}>

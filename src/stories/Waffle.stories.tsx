@@ -9,7 +9,7 @@ stories.add('Waffle', () => {
     return (
         <Card>
             <Card.Body>
-                <Waffle waffleLinks={[
+                <Waffle links={[
                     {
                         avatarText: 'A',
                         title: 'Accounts',
