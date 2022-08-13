@@ -43,7 +43,7 @@ type StatusChipType = {
 const StatusChip = ({status, className, soft = true}: StatusChipType) => {
     if (!status) status = Status.FAILED;
 
-    const {color, icon} = statusProps(status.toUpperCase());
+    const {color, icon} = statusProps(status);
 
     return <Badge soft={soft} bg={color} className={`fs-8 ${className}`} children={<span>{status}</span>} icon={icon}
                   pill/>;

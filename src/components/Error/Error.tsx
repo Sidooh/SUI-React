@@ -18,7 +18,7 @@ export const ErrorFallback = ({error, resetErrorBoundary}: ErrorFallbackType) =>
         <section className="py-0">
             <Row className="flex-center min-vh-100 py-6">
                 <Col sm={11} md={9} lg={7} xl={6} className="col-xxl-5">
-                    <Logo/>
+                    <Logo src={require('../../assets/images/logos/sidooh.png')}/>
                     <div className="card p-3 text-danger fw-bolder">
                         <h3>Oops! An Error Occurred!</h3>
 

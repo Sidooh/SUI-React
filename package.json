@@ -63,6 +63,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "rollup": "^2.77.2",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-esbuild": "^4.9.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",

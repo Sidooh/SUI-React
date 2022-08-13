@@ -1,8 +1,6 @@
 import { PhoneChip, StatusChip } from '../components';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import '../assets/css/theme.min.css';
-import '../assets/css/user.min.css';
 import { Card } from 'react-bootstrap';
 import { Status } from '../utils';
 

@@ -1,8 +1,6 @@
 import { ComponentLoader, PageLoader, SectionLoader } from '../components';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import '../assets/css/theme.min.css';
-import '../assets/css/user.min.css';
 import { Card } from 'react-bootstrap';
 
 const stories = storiesOf('Loaders', module);
