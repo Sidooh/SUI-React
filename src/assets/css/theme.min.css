@@ -8549,8 +8549,8 @@ textarea.form-control-lg {
 }
 
 .spinner-border-sm {
-    --sidooh-spinner-width: 1.35rem;
-    --sidooh-spinner-height: 1.35rem;
+    --sidooh-spinner-width: 1.0rem;
+    --sidooh-spinner-height: 1.0rem;
     --sidooh-spinner-border-width: 0.2em
 }
 
