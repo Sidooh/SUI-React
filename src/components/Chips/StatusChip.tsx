@@ -17,16 +17,16 @@ const statusProps = (status: Status) => {
         color = 'success';
         icon = <FontAwesomeIcon icon={faCheck}/>;
     } else if (status === Status.PENDING) {
-        color = 'info';
+        color = 'warning';
         icon = <FontAwesomeIcon icon={faHourglassStart}/>;
     } else if (status === Status.REFUNDED) {
         color = 'secondary';
         icon = <FontAwesomeIcon icon={faCircleInfo}/>;
-    } else if ([Status.FAILED].includes(status)) {
+    } else if ([Status.FAILED, Status.INACTIVE].includes(status)) {
         color = 'danger';
         icon = <FontAwesomeIcon icon={faCircleExclamation}/>;
-    } else if ([Status.EXPIRED, Status.INACTIVE].includes(status)) {
-        color = 'warning';
+    } else if ([Status.EXPIRED].includes(status)) {
+        color = 'secondary';
         icon = <FontAwesomeIcon icon={faCalendarXmark}/>;
     }
 
