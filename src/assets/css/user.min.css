@@ -275,3 +275,7 @@ table td.actions .btn {
 .right-100 {
     top: 100% !important
 }
+
+.error{ 
+    color: var(--sidooh-danger);
+}
