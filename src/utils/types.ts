@@ -47,3 +47,4 @@ export type RouteType = {
     labelDisable?: boolean
     children: RouteChildType[]
 }
+

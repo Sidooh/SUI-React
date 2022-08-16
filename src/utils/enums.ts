@@ -16,3 +16,8 @@ export enum Telco {
     SAFARICOM = 'SAFARICOM',
     TELKOM = 'TELKOM',
 }
+
+export enum Environment {
+    PRODUCTION = 'production',
+    DEVELOPMENT = 'development'
+}
