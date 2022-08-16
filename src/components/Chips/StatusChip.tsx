@@ -20,7 +20,7 @@ const statusProps = (status: Status) => {
         color = 'warning';
         icon = <FontAwesomeIcon icon={faHourglassStart}/>;
     } else if (status === Status.REFUNDED) {
-        color = 'secondary';
+        color = 'info';
         icon = <FontAwesomeIcon icon={faCircleInfo}/>;
     } else if ([Status.FAILED, Status.INACTIVE].includes(status)) {
         color = 'danger';
