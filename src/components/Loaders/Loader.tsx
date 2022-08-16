@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { Spinner } from 'react-bootstrap';
 
 const PageLoaderWrapper = styled('div')({
-    width: '100vw',
-    height: '100vh',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
 
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     zIndex: 1301,
 });
 
@@ -40,15 +39,15 @@ const ComponentLoader = () => {
 // ==============================|| LOADER ||============================== //
 const PageLoader = () => (
     <PageLoaderWrapper>
-        <Spinner animation="border" variant="primary" style={{width:'7rem', height:'7rem'}}/>
+        <Spinner animation="border" variant="primary" style={{width: '7rem', height: '7rem'}}/>
     </PageLoaderWrapper>
 );
 
 const SectionLoader = () => {
     return (
         <SectionLoaderWrapper>
-            <div style={{width:'5rem', height:'5rem'}}>
-                <Spinner animation="border" variant="primary" style={{width:'5rem', height:'5rem'}}/>
+            <div style={{width: '5rem', height: '5rem'}}>
+                <Spinner animation="border" variant="primary" style={{width: '5rem', height: '5rem'}}/>
             </div>
         </SectionLoaderWrapper>
     );

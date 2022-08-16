@@ -29,6 +29,7 @@ stories.add('Page Loader', () => {
     return (
         <Card>
             <Card.Body>
+                <div style={{height:'20rem'}}>sasa</div>
                 <PageLoader/>
             </Card.Body>
         </Card>
