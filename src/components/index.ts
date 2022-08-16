@@ -1,9 +1,11 @@
 export { default as Avatar } from './Avatar';
 export { default as Badge } from './Badge';
+export { default as Button } from './Button';
 export { default as DataTable } from './DataTable';
 export { default as Flex } from './Flex';
 export { default as Footer } from './Footer';
 export { default as IconButton } from './IconButton';
+export { default as LoadingButton } from './LoadingButton';
 export { default as Logo } from './Logo';
 export { default as PrettyJSON } from './PrettyJSON';
 export { default as TableDate } from './TableDate';
