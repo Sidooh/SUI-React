@@ -13,6 +13,8 @@ stories.add('Button', () => {
         <Card>
             <Card.Body>
                 <Button className={'me-1'}>Loading</Button>
+
+                <hr/>
                 <Button className={'me-1'} endIcon={<FontAwesomeIcon icon={faSave}/>}>Save</Button>
 
                 <hr/>
