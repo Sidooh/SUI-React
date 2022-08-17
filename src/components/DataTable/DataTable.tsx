@@ -119,10 +119,10 @@ const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTableProp
             </Row>
             <Table>
                 <thead>
-                {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
-                        {headerGroup.headers.map(header => (
-                            <th key={header.id} colSpan={header.colSpan}>
+                {table.getHeaderGroups().map((headerGroup, i) => (
+                    <tr key={`thead-tr-${i}`}>
+                        {headerGroup.headers.map((header, j) => (
+                            <th key={`thead-th-${j}`} colSpan={header.colSpan}>
                                 {!header.isPlaceholder && (
                                     <>
                                         <div {...{
@@ -149,10 +149,10 @@ const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTableProp
                 ))}
                 </thead>
                 <tbody>
-                {table.getRowModel().rows.map(row => (
-                    <tr key={row.id}>
-                        {row.getVisibleCells().map(cell => (
-                            <td key={cell.id} className={'py-1'}>
+                {table.getRowModel().rows.map((row, i) => (
+                    <tr key={`tbody-tr-${i}`}>
+                        {row.getVisibleCells().map((cell, j) => (
+                            <td key={`tbody-td-${j}`} className={'py-1'}>
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
                             </td>
                         ))}

@@ -37,7 +37,7 @@ export const ErrorFallback = ({error, resetErrorBoundary}: ErrorFallbackType) =>
 /** ____________________________________________________    SECTION ERROR
  * */
 const Wrapper = styled('div')({
-    height: '80vh'
+    height: '70vh'
 });
 
 const Card = styled('div')({

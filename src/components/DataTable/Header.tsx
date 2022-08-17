@@ -77,7 +77,7 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                                                 className={'m-0'}/>
                                     <Dropdown.Divider className={'mt-0'}/>
                                     {table.getAllLeafColumns().map(column => (
-                                        <Form.Check checked={column.getIsVisible()} id={column.id}
+                                        <Form.Check key={column.id} checked={column.getIsVisible()} id={column.id}
                                                     onChange={column.getToggleVisibilityHandler()}
                                                     label={typeof column.columnDef.header === 'string'
                                                         ? column.columnDef.header
