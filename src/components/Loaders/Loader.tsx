@@ -25,11 +25,11 @@ const rotate = keyframes`
   }
 `;
 
-const PageLoaderText = styled('h4')({
-    fontFamily: '"Pacifico", cursive',
-    animation: `${rotate} 7s linear infinite`,
-    position: 'absolute'
-});
+const PageLoaderText = styled.h4`
+  font-family: 'Pacifico', cursive;
+  animation: ${rotate} 7s linear infinite;
+  position: absolute
+`;
 
 const SectionLoaderWrapper = styled.div({
     position: 'absolute',
