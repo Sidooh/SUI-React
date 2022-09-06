@@ -88,7 +88,6 @@ const TooltipTooltip = styled.span<{ placement: Position }>`
         `;
     }
   }}
-  
   &:hover div, &:hover:after {
     display: block;
   }
