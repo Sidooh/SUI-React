@@ -279,3 +279,7 @@ table td.actions .btn {
 .error{ 
     color: var(--sidooh-danger);
 }
+
+.dropdown-toggle:after {
+    display: none;
+}
