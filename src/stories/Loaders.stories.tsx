@@ -30,7 +30,7 @@ stories.add('Page Loader', () => {
         <Card>
             <Card.Body>
                 <div style={{height:'20rem'}}>sasa</div>
-                <PageLoader/>
+                <PageLoader isDark={false}/>
             </Card.Body>
         </Card>
     );

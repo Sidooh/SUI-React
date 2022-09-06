@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Spinner } from 'react-bootstrap';
 
-const PageLoaderWrapper = styled('div')<{ isDark?: boolean }>((isDark) => ({
+const PageLoaderWrapper = styled('div')<{ isDark?: boolean }>(({ isDark }) => ({
     width: '100vw',
     height: '100vh',
     position: 'fixed',
@@ -13,6 +13,10 @@ const PageLoaderWrapper = styled('div')<{ isDark?: boolean }>((isDark) => ({
     alignItems: 'center',
     backgroundColor: `${isDark ? 'var(--sidooh-dark)' : 'var(--sidooh-body-bg)'}`,
     zIndex: 1301,
+
+    '& h4': {
+        color: `${isDark ? 'var(--sidooh-body-bg)' : 'var(--sidooh-heading-color)'}`
+    }
 }));
 
 const rotate = keyframes`
@@ -50,7 +54,7 @@ const ComponentLoader = () => {
     return (
         <ComponentLoaderWrapper>
             <div style={{ position: 'relative' }}>
-                <Spinner animation="border" variant="primary" />
+                <Spinner animation="border" variant="primary"/>
             </div>
         </ComponentLoaderWrapper>
     );
@@ -61,7 +65,8 @@ const PageLoader = ({ isDark }: { isDark?: boolean }) => {
     return (
         <PageLoaderWrapper isDark={isDark}>
             <PageLoaderText>SIDOOH</PageLoaderText>
-            <Spinner animation="border" variant="primary" style={{ width: '10rem', height: '10rem' }} />
+            <Spinner animation="border" variant={isDark ? 'secondary' : "primary"}
+                     style={{ width: '10rem', height: '10rem' }}/>
         </PageLoaderWrapper>
     );
 };
@@ -70,7 +75,7 @@ const SectionLoader = () => {
     return (
         <SectionLoaderWrapper>
             <div style={{ width: '5rem', height: '5rem' }}>
-                <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }} />
+                <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }}/>
             </div>
         </SectionLoaderWrapper>
     );
