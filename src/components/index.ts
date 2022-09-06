@@ -10,6 +10,7 @@ export { default as Logo } from './Logo';
 export { default as PrettyJSON } from './PrettyJSON';
 export { default as TableDate } from './TableDate';
 export { default as TextField } from './TextField';
+export { default as Tooltip } from './Tooltip';
 export { default as Waffle } from './Waffle';
 
 export { PhoneChip, StatusChip } from './Chips';
