@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Spinner } from 'react-bootstrap';
 
-const PageLoaderWrapper = styled('div')({
+const PageLoaderWrapper = styled('div')<{ isDark?: boolean }>((isDark) => ({
     width: '100vw',
     height: '100vh',
     position: 'fixed',
@@ -11,9 +11,9 @@ const PageLoaderWrapper = styled('div')({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'var(--sidooh-body-bg)',
+    backgroundColor: `${isDark ? 'var(--sidooh-dark)' : 'var(--sidooh-body-bg)'}`,
     zIndex: 1301,
-});
+}));
 
 const rotate = keyframes`
   from {
@@ -49,19 +49,19 @@ const ComponentLoaderWrapper = styled.div({
 const ComponentLoader = () => {
     return (
         <ComponentLoaderWrapper>
-            <div style={{position: 'relative'}}>
-                <Spinner animation="border" variant="primary"/>
+            <div style={{ position: 'relative' }}>
+                <Spinner animation="border" variant="primary" />
             </div>
         </ComponentLoaderWrapper>
     );
 };
 
 // ==============================|| LOADER ||============================== //
-const PageLoader = () => {
+const PageLoader = ({ isDark }: { isDark?: boolean }) => {
     return (
-        <PageLoaderWrapper>
+        <PageLoaderWrapper isDark={isDark}>
             <PageLoaderText>SIDOOH</PageLoaderText>
-            <Spinner animation="border" variant="primary" style={{width: '10rem', height: '10rem'}}/>
+            <Spinner animation="border" variant="primary" style={{ width: '10rem', height: '10rem' }} />
         </PageLoaderWrapper>
     );
 };
@@ -69,8 +69,8 @@ const PageLoader = () => {
 const SectionLoader = () => {
     return (
         <SectionLoaderWrapper>
-            <div style={{width: '5rem', height: '5rem'}}>
-                <Spinner animation="border" variant="primary" style={{width: '5rem', height: '5rem'}}/>
+            <div style={{ width: '5rem', height: '5rem' }}>
+                <Spinner animation="border" variant="primary" style={{ width: '5rem', height: '5rem' }} />
             </div>
         </SectionLoaderWrapper>
     );
