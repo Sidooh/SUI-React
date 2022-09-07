@@ -1,10 +1,7 @@
 /** Log levels */
-
 export type LogLevel = 'log' | 'warn' | 'error';
-
-export type Environment = 'development' | 'production';
-export const APP_ENV: Environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-export const LOG_LEVEL: LogLevel = APP_ENV === 'production' ? 'warn' : 'log';
+// @ts-ignore
+export const LOG_LEVEL: LogLevel = import.meta.env.VITE_LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'warn' : 'log');
 
 /** Signature of a logging function */
 export interface LogFn {
@@ -19,7 +16,8 @@ export interface Logger {
 }
 
 // @ts-ignore
-const NO_OP: LogFn = (message?: any, ...optionalParams: any[]) => {};
+const NO_OP: LogFn = (message?: any, ...optionalParams: any[]) => {
+};
 
 /** Logger which outputs to the browser console */
 export class ConsoleLogger implements Logger {
