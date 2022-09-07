@@ -1,5 +1,6 @@
 /** Log levels */
 export type LogLevel = 'log' | 'warn' | 'error';
+
 // @ts-ignore
 export const LOG_LEVEL: LogLevel = import.meta.env.VITE_LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'warn' : 'log');
 
@@ -16,8 +17,7 @@ export interface Logger {
 }
 
 // @ts-ignore
-const NO_OP: LogFn = (message?: any, ...optionalParams: any[]) => {
-};
+const NO_OP: LogFn = (message?: any, ...optionalParams: any[]) => {};
 
 /** Logger which outputs to the browser console */
 export class ConsoleLogger implements Logger {
