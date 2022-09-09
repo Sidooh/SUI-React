@@ -69,7 +69,7 @@ const CenterContainer = styled.div<{ placement: Position }>`
 
 const TooltipBox = styled.span<{ placement: Position }>`
   position: relative;
-  background-color: rgba(var(--sidooh-dark-rgb), .7);
+  background-color: rgba(var(--sidooh-dark-rgb), .9);
   color: #fff;
   text-align: center;
   border-radius: .3rem;
@@ -84,25 +84,25 @@ const TooltipBox = styled.span<{ placement: Position }>`
     height: 1px;
     border-width: 5px;
     border-style: solid;
-    border-color: rgba(var(--sidooh-dark-rgb), .7) transparent transparent transparent;
+    border-color: rgba(var(--sidooh-dark-rgb), .9) transparent transparent transparent;
 
     ${({ placement }) => {
       switch (placement) {
         case 'bottom':
           return css`
-            border-color: transparent transparent rgba(var(--sidooh-dark-rgb), .7) transparent;
+            border-color: transparent transparent rgba(var(--sidooh-dark-rgb), .9) transparent;
             bottom: 100%;
             left: calc(50% - 5px);
           `;
         case 'left':
           return css`
-            border-color: transparent transparent transparent rgba(var(--sidooh-dark-rgb), .7);
+            border-color: transparent transparent transparent rgba(var(--sidooh-dark-rgb), .9);
             left: 100%;
             top: calc(50% - 5px);
           `;
         case 'right':
           return css`
-            border-color: transparent rgba(var(--sidooh-dark-rgb), .7) transparent transparent;
+            border-color: transparent rgba(var(--sidooh-dark-rgb), .9) transparent transparent;
             right: 100%;
             top: calc(50% - 5px);
           `;
