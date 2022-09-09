@@ -73,7 +73,7 @@ const TooltipBox = styled.span<{ placement: Position }>`
   color: #fff;
   text-align: center;
   border-radius: .3rem;
-  padding: 10px 8px;
+  padding: 5px 7px;
   font-size: 14px;
   box-shadow: var(--sidooh-box-shadow);
 
