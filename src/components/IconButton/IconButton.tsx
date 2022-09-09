@@ -1,27 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Color } from 'react-bootstrap/types';
 
 export interface IconButtonProps {
     type?: "button" | "submit" | "reset";
     className?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
-    children?: React.ReactNode;
-    size?: "sm" | "lg";
-    backgroundColor?: string;
-    color?: string;
+    children: React.ReactNode;
+    size?: "sm" | 'md' | "lg";
+    color?: Color;
     style?: React.CSSProperties;
 }
 
-const Button = styled.button`
+type IconButtonRootProps = {
+    ref: any
+    color: Color
+    size: "sm" | 'md' | "lg"
+}
+
+const IconButtonRoot = styled.button<IconButtonRootProps>`
   background-color: transparent;
-  color: rgba(0, 0, 0, 0.54)!important;
+  color: var(--sidooh-${({ color }) => color}) !important;
   flex: 0 0 auto;
   text-align: center;
-  padding: 5px;
   border-radius: 50%;
   overflow: visible;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border: none;
   outline: none;
   appearance: none;
@@ -33,36 +38,50 @@ const Button = styled.button`
   margin: 0;
   cursor: pointer;
   vertical-align: middle;
-  font-size: 1.125rem;
 
   &:hover {
-    color: #000!important;
+    background-color: rgba(var(--sidooh-${({ color }) => color}-rgb), .2);
   }
+
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return css`
+          padding: 7px;
+          font-size: .9rem;
+        `;
+      case 'lg':
+        return css`
+          padding: 12px;
+          font-size: 1.5rem;
+        `;
+      default:
+        return css`
+          padding: 10px;
+          font-size: 1.125rem;
+        `;
+    }
+  }}
 `;
 
-const IconButton = ({
+const IconButton = React.forwardRef(function IconButton({
     type,
-    size,
+    size = 'md',
     className,
     onClick,
-    disabled,
+    disabled = false,
     children,
-    backgroundColor,
-    color = '#000',
+    color = 'primary',
     style
-}: IconButtonProps) => {
-    let _style: React.CSSProperties = {
-        ...style
-    };
-
-    if (backgroundColor) _style.backgroundColor = backgroundColor;
-    if (color) _style.color = color;
+}: IconButtonProps, ref) {
+    console.log(color);
 
     return (
-        <Button type={type} className={className} onClick={onClick} disabled={disabled} style={_style}>
+        <IconButtonRoot ref={ref} type={type} className={className} onClick={onClick} disabled={disabled}
+                        style={style} color={color} size={size}>
             {children}
-        </Button>
+        </IconButtonRoot>
     );
-};
+});
 
 export default IconButton;
