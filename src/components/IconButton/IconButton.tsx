@@ -74,8 +74,6 @@ const IconButton = React.forwardRef(function IconButton({
     color = 'primary',
     style
 }: IconButtonProps, ref) {
-    console.log(color);
-
     return (
         <IconButtonRoot ref={ref} type={type} className={className} onClick={onClick} disabled={disabled}
                         style={style} color={color} size={size}>
