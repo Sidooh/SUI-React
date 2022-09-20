@@ -59,10 +59,10 @@ const StatusChip = ({status, className, soft = true, statuses = [], onStatusChan
         <Dropdown as={'span'} className={'cursor-pointer'}>
             <Dropdown.Toggle size={'sm'} as={'span'}>{badge}</Dropdown.Toggle>
             <Dropdown.Menu>
-                {statuses.map(s => {
+                {statuses.map((s, i) => {
                     const {color, icon} = statusProps(s);
 
-                    return <Dropdown.Item className={`text-${color}`}
+                    return <Dropdown.Item key={`status-${i}`} className={`text-${color}`}
                                           onClick={() => onStatusChange ? onStatusChange(s) : ""}>{icon} {s}</Dropdown.Item>
                 })}
             </Dropdown.Menu>
