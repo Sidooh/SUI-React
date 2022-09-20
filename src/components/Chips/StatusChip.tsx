@@ -9,6 +9,7 @@ import {
     faCircleInfo,
     faHourglassStart
 } from '@fortawesome/free-solid-svg-icons';
+import { Dropdown } from "react-bootstrap";
 
 const statusProps = (status: Status) => {
     let color: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark' = 'dark', icon;
@@ -38,15 +39,35 @@ type StatusChipType = {
     bg?: boolean
     soft?: boolean
     className?: string
+    statuses?: Status[],
+    onStatusChange?: (status: Status) => void
 }
 
-const StatusChip = ({status, className, soft = true}: StatusChipType) => {
+const StatusChip = ({status, className, soft = true, statuses = [], onStatusChange}: StatusChipType) => {
     if (!status) status = Status.FAILED;
 
     const {color, icon} = statusProps(status);
 
-    return <Badge soft={soft} bg={color} className={`fs-8 ${className}`} children={<span>{status}</span>} icon={icon}
-                  pill/>;
+    const badge = <Badge soft={soft} bg={color} className={`fs-8 ${className}`} children={<span>{status}</span>}
+                         icon={icon} pill/>
+
+    if (!statuses.length) return badge
+
+    statuses = statuses?.filter(s => s !== status)
+
+    return (
+        <Dropdown as={'span'} className={'cursor-pointer'}>
+            <Dropdown.Toggle size={'sm'} as={'span'}>{badge}</Dropdown.Toggle>
+            <Dropdown.Menu>
+                {statuses.map(s => {
+                    const {color, icon} = statusProps(s);
+
+                    return <Dropdown.Item className={`text-${color}`}
+                                          onClick={() => onStatusChange ? onStatusChange(s) : ""}>{icon} {s}</Dropdown.Item>
+                })}
+            </Dropdown.Menu>
+        </Dropdown>
+    );
 };
 
 export default StatusChip;

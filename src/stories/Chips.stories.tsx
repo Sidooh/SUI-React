@@ -13,6 +13,14 @@ stories.add('Status', () => {
         <Card>
             <Card.Body>
                 {Object.values(Status).map(status => <StatusChip key={status} status={status} className={'me-3'}/>)}
+
+                <hr/>
+
+                {Object.values(Status).map(status => (
+                    <StatusChip key={status} status={status} className={'me-3'}
+                                onStatusChange={(s) => console.log(s)}
+                                statuses={[Status.COMPLETED, Status.PENDING, Status.REFUNDED]}/>
+                ))}
             </Card.Body>
         </Card>
     );
