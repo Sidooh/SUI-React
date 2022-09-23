@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Spinner } from 'react-bootstrap';
 
 const PageLoaderWrapper = styled('div')<{ isDark?: boolean }>(({ isDark }) => ({
@@ -19,7 +19,7 @@ const PageLoaderWrapper = styled('div')<{ isDark?: boolean }>(({ isDark }) => ({
     }
 }));
 
-const rotate = keyframes`
+/*const rotate = keyframes`
   from {
     transform: rotate(360deg);
   }
@@ -33,7 +33,7 @@ const PageLoaderText = styled.h4`
   font-family: 'Pacifico', cursive;
   animation: ${rotate} 7s linear infinite;
   position: absolute
-`;
+`;*/
 
 const SectionLoaderWrapper = styled.div({
     position: 'absolute',
@@ -64,7 +64,7 @@ const ComponentLoader = () => {
 const PageLoader = ({ isDark }: { isDark?: boolean }) => {
     return (
         <PageLoaderWrapper isDark={isDark}>
-            <PageLoaderText>SIDOOH</PageLoaderText>
+            {/*<PageLoaderText>SIDOOH</PageLoaderText>*/}
             <Spinner animation="border" variant={isDark ? 'secondary' : "primary"}
                      style={{ width: '10rem', height: '10rem' }}/>
         </PageLoaderWrapper>
