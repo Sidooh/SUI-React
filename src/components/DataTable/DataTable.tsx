@@ -96,8 +96,8 @@ const DataTable = ({title, data, columns, onCreateRow, onViewAll}: DataTableProp
         getFacetedMinMaxValues: getFacetedMinMaxValues(),
         getCoreRowModel: getCoreRowModel(),
 
-        debugTable: true,
-        debugHeaders: true,
+        debugTable: false,
+        debugHeaders: false,
         debugColumns: false,
     });
 
