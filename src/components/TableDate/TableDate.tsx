@@ -19,8 +19,8 @@ const TableDate = ({date, dateOverTime}: { date: string, dateOverTime?: boolean 
 
     return (
         <>
-            <strong>{dateOverTime ? moment(date).format("hh:mm A") : relativeDate}</strong><br/>
-            <small>{dateOverTime ? relativeDate : moment(date).format("hh:mm A")}</small>
+            <strong>{dateOverTime ? relativeDate : moment(date).format("hh:mm A")}</strong><br/>
+            <small>{dateOverTime ? moment(date).format("hh:mm A") : relativeDate}</small>
         </>
     );
 };

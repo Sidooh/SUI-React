@@ -10,7 +10,7 @@ stories.add('Table Date', () => {
     return (
         <Card>
             <Card.Body>
-                <TableDate date={moment().toISOString()}/>
+                <TableDate date={moment().subtract(1, 'M').toISOString()}/>
                 <hr/>
                 <TableDate date={moment().toISOString()} dateOverTime/>
             </Card.Body>
