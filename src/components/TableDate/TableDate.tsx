@@ -5,7 +5,7 @@ const REFERENCE = moment();
 const TODAY = REFERENCE.clone().startOf("day");
 const YESTERDAY = REFERENCE.clone().subtract(1, "days").startOf("day");
 
-const TableDate = ({date}: { date: string }) => {
+const TableDate = ({date, dateOverTime}: { date: string, dateOverTime?: boolean }) => {
     if (!date) return <>N/A</>;
 
     let relativeDate;
@@ -19,8 +19,8 @@ const TableDate = ({date}: { date: string }) => {
 
     return (
         <>
-            <strong>{moment(date).format("hh:mm A")}</strong><br/>
-            <small>{relativeDate}</small>
+            <strong>{dateOverTime ? moment(date).format("hh:mm A") : relativeDate}</strong><br/>
+            <small>{dateOverTime ? relativeDate : moment(date).format("hh:mm A")}</small>
         </>
     );
 };

@@ -9,7 +9,11 @@ const stories = storiesOf('Table Date', module);
 stories.add('Table Date', () => {
     return (
         <Card>
-            <Card.Body><TableDate date={moment().toISOString()}/></Card.Body>
+            <Card.Body>
+                <TableDate date={moment().toISOString()}/>
+                <hr/>
+                <TableDate date={moment().toISOString()} dateOverTime/>
+            </Card.Body>
         </Card>
     );
 });
