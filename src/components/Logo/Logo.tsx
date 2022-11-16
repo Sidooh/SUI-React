@@ -29,6 +29,7 @@ const Logo = ({ src, at = 'auth', width = 78, className, textClass, serviceName,
                 <img className="me-2" src={src} alt="Logo" width={width}/>
                 {serviceName && <h6 style={{
                     fontFamily: "'Avenir Regular', sans-serif",
+                    fontWeight: 'bolder',
                     margin: `-.${width * .4}rem 0 0`,
                     fontSize: `${width * .1}pt`
                 }}>{serviceName}</h6>}
