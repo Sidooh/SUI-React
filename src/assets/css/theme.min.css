@@ -46,10 +46,10 @@
     --sidooh-black-rgb: 0, 0, 0;
     --sidooh-body-color-rgb: 94, 110, 130;
     --sidooh-body-bg-rgb: 237, 242, 249;
-    --sidooh-font-sans-serif: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --sidooh-font-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidooh-font-sans-serif: Avenir, sans-serif;
+    --sidooh-font-monospace: "Proxima Nova Rg Regular", monospace;
     --sidooh-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-    --sidooh-body-font-family: Open Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --sidooh-body-font-family: var(--sidooh-font-sans-serif);
     --sidooh-body-font-size: 1rem;
     --sidooh-body-font-weight: 400;
     --sidooh-body-line-height: 1.5;
@@ -1200,7 +1200,7 @@ hr {
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-top: 0;
     margin-bottom: .5rem;
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--sidooh-font-sans-serif);
     font-weight: 500;
     line-height: 1.2;
     color: var(--sidooh-heading-color)
@@ -21985,7 +21985,7 @@ section {
 }
 
 input, button, select, optgroup, textarea, label, .alert, .badge, .blockquote-footer, .btn, [data-list] .page, .tox .tox-menu__footer .tox-button:last-child, .tox .tox-dialog__footer .tox-button:last-child, .tox .tox-menu__footer .tox-button--secondary, .tox .tox-dialog__footer .tox-button--secondary, .navbar, .pagination, .valid-feedback, .invalid-feedback {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    font-family: var(--sidooh-font-sans-serif)
 }
 
 pre {
@@ -22705,7 +22705,7 @@ code.language-html:first-child {
 
 code[class*=language-], pre[class*=language-] {
     color: #d8e2ef;
-    font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    font-family: var(--sidooh-font-monospace)
 }
 
 pre[class*=language-] {
@@ -22733,12 +22733,12 @@ pre[class*=language-] {
 }
 
 .components-nav {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--sidooh-font-sans-serif);
     font-size: .85rem
 }
 
 .component-example {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    font-family: var(--sidooh-font-sans-serif)
 }
 
 .component-example [class^=border] {
@@ -22945,7 +22945,7 @@ pre[class*=language-] {
 .terms-sidebar .nav-link {
     color: #9da9bb;
     font-weight: 500;
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    font-family: var(--sidooh-font-sans-serif)
 }
 
 .terms-sidebar .nav-link.active {
@@ -22962,7 +22962,7 @@ pre[class*=language-] {
     padding-left: .5rem;
     padding-right: .5rem;
     background-color: var(--sidooh-divider-content-bg);
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--sidooh-font-sans-serif);
     font-size: .8333333333rem;
     color: var(--sidooh-gray-500);
     white-space: nowrap
@@ -23618,7 +23618,7 @@ span.flatpickr-weekday, .flatpickr-weekdaycontainer, .flatpickr-monthDropdown-mo
 }
 
 .choices {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important
+    font-family: var(--sidooh-font-sans-serif) !important
 }
 
 .choices .choices__inner {
@@ -24333,7 +24333,7 @@ html[dir=rtl] .googlemap .gm-style-iw.gm-style-iw-c button[title=Close] {
 }
 
 .fc .fc-popover .fc-popover-title {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    font-family: var(--sidooh-font-sans-serif)
 }
 
 .fc .fc-popover .fc-daygrid-event {
@@ -24948,7 +24948,7 @@ h5, .h5 {
 }
 
 .font-sans-serif {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    font-family: var(--sidooh-font-sans-serif)
 }
 
 .font-base {
@@ -27936,7 +27936,7 @@ html[dir=rtl] .img-dropdown {
     color: var(--sidooh-gray-600) !important;
     font-size: .8333333333rem !important;
     font-weight: 500 !important;
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    font-family: var(--sidooh-font-sans-serif)
 }
 
 .tab-active-caret .nav-link.active {
@@ -28016,7 +28016,7 @@ html[dir=rtl] .rtl-row-reverse {
     -ms-flex-direction: column;
     flex-direction: column;
     text-align: center;
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--sidooh-font-sans-serif);
     border-radius: .375rem
 }
 
