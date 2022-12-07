@@ -1,6 +1,6 @@
 {
   "name": "@nabcellent/sui-react",
-  "version": "2.6.3",
+  "version": "2.7.0",
   "description": "Sidooh's React component library",
   "packageManager": "yarn@3.3.0",
   "license": "MIT",
