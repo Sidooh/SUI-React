@@ -7,27 +7,29 @@ import { ButtonProps } from '../Button/Button';
 type LoadingButtonProps = ButtonProps & {
     children: React.ReactNode;
     disabled?: boolean;
-    loading?: boolean
+    loading?: boolean | string
     fullWidth?: boolean
     loadingIndicator?: React.ReactNode
+    loadingindicator?: React.ReactNode
     loadingPosition?: 'start' | 'center' | 'end',
+    loadingposition?: 'start' | 'center' | 'end',
 }
 
-const LoadingButtonRoot = styled(Button)<LoadingButtonProps>(({loading, loadingPosition}) => ({
+const LoadingButtonRoot = styled(Button)<LoadingButtonProps>(({ loading, loadingposition }) => ({
     display: 'inline-flex',
-    ...(loading && {[`& .start-icon, & .end-icon`]: {opacity: 0,},}),
-    ...(loadingPosition === 'center' && loading && {color: 'transparent!important',}),
-    ...(loadingPosition === 'end' && loading && {
+    ...(loading && { [`& .start-icon, & .end-icon`]: { opacity: 0, }, }),
+    ...(loadingposition === 'center' && loading && { color: 'transparent!important', }),
+    ...(loadingposition === 'end' && loading && {
         color: 'var(--sidooh-secondary)!important',
-        ['& .indicator']: {transition: '.3s',}
+        ['& .indicator']: { transition: '.3s', }
     }),
-    ...(loadingPosition === 'start' && loading && {
+    ...(loadingposition === 'start' && loading && {
         ['& .start-icon, & .end-icon']: {
             opacity: 0,
             marginRight: -8,
         },
     }),
-    ...(loadingPosition === 'end' && loading && {
+    ...(loadingposition === 'end' && loading && {
         [`& .start-icon, & .end-icon`]: {
             opacity: 0,
             marginLeft: -8,
@@ -35,20 +37,20 @@ const LoadingButtonRoot = styled(Button)<LoadingButtonProps>(({loading, loadingP
     }),
 }));
 
-const LoadingButtonIndicator = styled('div')<LoadingButtonProps>(({loadingPosition, fullWidth}) => ({
+const LoadingButtonIndicator = styled('div')<LoadingButtonProps>(({ loadingposition }) => ({
     position: 'absolute',
     visibility: 'visible',
     display: 'flex',
-    ...(loadingPosition === 'center' && {
+    ...(loadingposition === 'center' && {
         left: '50%',
         transform: 'translate(-50%)',
         color: 'var(--sidooh-secondary)',
     }),
-    ...(loadingPosition === 'start' && {
+    ...(loadingposition === 'start' && {
         position: 'relative',
         left: -10,
     }),
-    ...(loadingPosition === 'end' && {
+    ...(loadingposition === 'end' && {
         position: 'relative',
         right: -10,
     }),
@@ -70,9 +72,9 @@ const LoadingButton = ({
     );
 
     const ownerState = {
-        loading,
-        loadingIndicator,
-        loadingPosition,
+        loading: loading ? 'true' : undefined,
+        loadingindicator: loadingIndicator,
+        loadingposition: loadingPosition,
     };
 
     const loadingButtonLoadingIndicator = loading ? (
@@ -83,7 +85,7 @@ const LoadingButton = ({
 
     return (
         <LoadingButtonRoot id={id} type={type} className={`position-relative ${className}`}
-                           disabled={disabled || loading} {...ownerState} {...rest}>
+                           disabled={disabled || Boolean(loading)} {...ownerState} {...rest}>
             {loadingPosition === 'end' ? children : loadingButtonLoadingIndicator}
             {loadingPosition === 'end' ? loadingButtonLoadingIndicator : children}
         </LoadingButtonRoot>

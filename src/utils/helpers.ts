@@ -1,6 +1,7 @@
 import withReactContent from 'sweetalert2-react-content';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { Telco } from './enums';
+import pluralize from 'pluralize';
 
 export const Str = {
     headline: (str: string) => {
@@ -164,3 +165,5 @@ export const is = {
         return match !== null && compareVersion(match[1], range);
     }
 };
+
+export const toPlural = (word: string, count?: number, inclusive?: boolean) => pluralize(word, count, inclusive)
