@@ -24,12 +24,15 @@ export interface FooterProps {
     onViewAll?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Footer = ({
-    table,
-    rowSelection,
-    onViewAll
-}: FooterProps) => {
+const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
     const selectedRowsCount = Object.keys(rowSelection).length;
+
+    const goToPage = (e: ChangeEvent<HTMLInputElement>) => {
+        let page = Number(e.target.value) - 1
+
+        page = table.getPageCount() > page ? page : table.getPageCount() - 1
+        table.setPageIndex(page)
+    }
 
     return (
         <Flex alignItems={'center'} justifyContent={'between'}>
@@ -45,8 +48,17 @@ const Footer = ({
                         {table.getPreFilteredRowModel().rows.length} Total Rows Selected
                     </div>
                 )}
-
                 <span>Total: <b>{table.getRowModel().rows.length}</b></span>
+                <span className="ms-2">| &nbsp;</span>
+                {table.getPageCount() > 3 && (
+                    <>
+                        <span className="flex items-center gap-1">Go to page:</span>
+                        <input type="number" value={table.getState().pagination.pageIndex + 1}
+                               onChange={(e) => goToPage(e)}
+                               step="1" min="1" max={table.getPageCount()}
+                               className="form-control form-control-sm w-auto border-3 ms-2"/>
+                    </>
+                )}
             </Flex>
             <Flex>
                 {

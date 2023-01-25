@@ -1,27 +1,41 @@
 {
   "compilerOptions": {
-    "lib": ["DOM", "ESNext"],
-
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "strict": true,
     "target": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
     "jsx": "react",
     "module": "ESNext",
+    "moduleResolution": "Node",
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "types",
-    "moduleResolution": "node",
+    "declarationDir": "./dist/types",
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
-
-    "noEmit": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "types": [
+      "vite/client"
+    ]
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["**/dist", "**/node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "**/dist",
+    "**/node_modules"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
