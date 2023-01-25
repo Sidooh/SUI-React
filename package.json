@@ -4,7 +4,7 @@
   "description": "Sidooh's React component library",
   "packageManager": "yarn@3.3.1",
   "license": "MIT",
-  "types": "./dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "module": "dist/sui-react.es.js",
   "files": [
     "dist"
