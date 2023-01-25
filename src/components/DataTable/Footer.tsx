@@ -34,8 +34,6 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
         table.setPageIndex(page)
     }
 
-    console.log(table.getPageCount())
-
     return (
         <Flex alignItems={'center'} justifyContent={'between'}>
             <Flex alignItems="center" className="fs--1">
@@ -52,12 +50,15 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
                 )}
                 <span>Total: <b>{table.getRowModel().rows.length}</b></span>
                 <span className="ms-2">| &nbsp;</span>
-                <span className="flex items-center gap-1">
-                    Go to page:
-                </span>
-                <input type="number" value={table.getState().pagination.pageIndex + 1} onChange={(e) => goToPage(e)}
-                       step="1" min="1" max={table.getPageCount()}
-                       className="form-control form-control-sm w-auto border-3 ms-2"/>
+                {table.getPageCount() > 3 && (
+                    <>
+                        <span className="flex items-center gap-1">Go to page:</span>
+                        <input type="number" value={table.getState().pagination.pageIndex + 1}
+                               onChange={(e) => goToPage(e)}
+                               step="1" min="1" max={table.getPageCount()}
+                               className="form-control form-control-sm w-auto border-3 ms-2"/>
+                    </>
+                )}
             </Flex>
             <Flex>
                 {
