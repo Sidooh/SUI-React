@@ -14,8 +14,7 @@ const Logo = ({ src, at = 'auth', width = 78, className, textClass, serviceName,
     return (
         <a href="/" className={classNames(
             'text-decoration-none',
-            { 'navbar-brand text-left': at === 'navbar-vertical' },
-            { 'navbar-brand text-left': at === 'navbar-top' }
+            { 'navbar-brand text-left': ['navbar-vertical', 'navbar-top'].includes(at) }
         )} {...rest}>
             <div className={classNames(
                 'd-flex', {
