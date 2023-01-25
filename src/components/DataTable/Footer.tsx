@@ -49,9 +49,9 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
                     </div>
                 )}
                 <span>Total: <b>{table.getRowModel().rows.length}</b></span>
-                <span className="ms-2">| &nbsp;</span>
                 {table.getPageCount() > 3 && (
                     <>
+                        <span className="ms-2">| &nbsp;</span>
                         <span className="flex items-center gap-1">Go to page:</span>
                         <input type="number" value={table.getState().pagination.pageIndex + 1}
                                onChange={(e) => goToPage(e)}
