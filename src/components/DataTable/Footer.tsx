@@ -48,7 +48,7 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
                         {table.getPreFilteredRowModel().rows.length} Total Rows Selected
                     </div>
                 )}
-                <span>Total: <b>{table.getCoreRowModel().rows.length}</b></span>
+                <span>Total: <b>{table.getCoreRowModel().rows.length.toLocaleString()} Entries</b></span>
                 {table.getPageCount() > 3 && (
                     <>
                         <span className="ms-2">| &nbsp;</span>
