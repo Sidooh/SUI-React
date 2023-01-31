@@ -24,7 +24,8 @@ const TODAY = REFERENCE.clone().startOf("day");
 const YESTERDAY = REFERENCE.clone().subtract(1, "days").startOf("day");
 
 export const getRelativeDateAndTime = (date: string) => {
-    let relativeDate;
+    let relativeDate: string, time = moment(date).format("hh:mm A");
+
     if (moment(date).isSame(TODAY, "d")) {
         relativeDate = "Today";
     } else if (moment(date).isSame(YESTERDAY, "d")) {
@@ -33,7 +34,9 @@ export const getRelativeDateAndTime = (date: string) => {
         relativeDate = moment(date).format("D.M.y");
     }
 
-    return { date: relativeDate, time: moment(date).format("hh:mm A") }
+    const toString = () => `${relativeDate}:time`
+
+    return { date: relativeDate, time, toString }
 }
 
 export const getTelcoFromPhone = (phone: string | number) => {
