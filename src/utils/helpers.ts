@@ -34,7 +34,7 @@ export const getRelativeDateAndTime = (date: string) => {
         relativeDate = moment(date).format("D.M.y");
     }
 
-    const toString = () => `${relativeDate}:time`
+    const toString = () => `${relativeDate} @${time}`
 
     return { date: relativeDate, time, toString }
 }
