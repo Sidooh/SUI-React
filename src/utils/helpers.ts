@@ -2,6 +2,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { Telco } from './enums';
 import pluralize from 'pluralize';
+import moment from "moment/moment";
 
 export const Str = {
     headline: (str: string) => {
@@ -17,6 +18,23 @@ export const Str = {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 };
+
+const REFERENCE = moment();
+const TODAY = REFERENCE.clone().startOf("day");
+const YESTERDAY = REFERENCE.clone().subtract(1, "days").startOf("day");
+
+export const getRelativeDateAndTime = (date: string) => {
+    let relativeDate;
+    if (moment(date).isSame(TODAY, "d")) {
+        relativeDate = "Today";
+    } else if (moment(date).isSame(YESTERDAY, "d")) {
+        relativeDate = "Yesterday";
+    } else {
+        relativeDate = moment(date).format("D.M.y");
+    }
+
+    return { date: relativeDate, time: moment(date).format("hh:mm A") }
+}
 
 export const getTelcoFromPhone = (phone: string | number) => {
     phone = String(phone);
