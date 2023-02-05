@@ -13,6 +13,6 @@ export { default as TextField } from './TextField';
 export { default as Tooltip } from './Tooltip';
 export { default as Waffle } from './Waffle';
 
-export { PhoneChip, StatusChip } from './Chips';
+export { PhoneChip, StatusChip, TransactionTypeChip } from './Chips';
 export { ErrorBoundary, ErrorFallback, SectionError } from './Error';
 export { ComponentLoader, SectionLoader, PageLoader } from './Loaders';

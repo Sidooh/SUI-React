@@ -2,7 +2,7 @@
   "name": "@nabcellent/sui-react",
   "version": "3.2.2",
   "description": "Sidooh's React component library",
-  "packageManager": "yarn@3.3.1",
+  "packageManager": "yarn@3.4.1",
   "license": "MIT",
   "types": "dist/types/index.d.ts",
   "module": "dist/sui-react.es.js",
