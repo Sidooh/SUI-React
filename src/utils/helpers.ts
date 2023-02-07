@@ -73,7 +73,9 @@ export const getItemFromStore = (key: string, defaultValue?: string | boolean, s
 export const setItemToStore = (key: string, payload: string, store = localStorage) => store.setItem(key, payload);
 
 export const JWT = {
-    decode: (token: string) => {
+    decode: (token?: string) => {
+        if(!token) return null;
+
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
