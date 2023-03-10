@@ -23,7 +23,7 @@ const REFERENCE = moment();
 const TODAY = REFERENCE.clone().startOf("day");
 const YESTERDAY = REFERENCE.clone().subtract(1, "days").startOf("day");
 
-export const getRelativeDateAndTime = (date: string) => {
+export const getRelativeDateAndTime = (date: string|Date) => {
     let relativeDate: string, time = moment(date).format("hh:mm A");
 
     if (moment(date).isSame(TODAY, "d")) {

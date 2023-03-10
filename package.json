@@ -12,7 +12,7 @@
   "author": {
     "email": "nabcellent.dev@gmail.com",
     "name": "Nabcellent",
-    "url": "https://nabcellent.herokuapp.com"
+    "url": "https://github.com/nabcellent"
   },
   "exports": {
     ".": {
@@ -36,14 +36,14 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@storybook/addon-actions": "^6.5.14",
-    "@storybook/addon-docs": "^6.5.14",
-    "@storybook/addon-essentials": "^6.5.14",
-    "@storybook/addon-interactions": "^6.5.14",
-    "@storybook/addon-links": "^6.5.14",
-    "@storybook/builder-webpack5": "^6.5.14",
-    "@storybook/manager-webpack5": "^6.5.14",
-    "@storybook/react": "^6.5.14",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-docs": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
     "@tanstack/match-sorter-utils": "^8.7.0",
     "@tanstack/react-table": "^8.7.0",
