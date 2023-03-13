@@ -11,6 +11,13 @@ export class ChartAid {
     }
 
     getDataset = (raw: RawAnalytics[], freqCount?: number) => {
+        if (this.#timeIsUTC) {
+            raw = raw.map(r => ({
+                date: Number(moment(r.date, 'YYYYMMDDHH').add(3, 'h').format('YYYYMMDDHH')),
+                count: r.count
+            }))
+        }
+
         let labels: string[] = [], dataset: number[] = []
 
         if (!freqCount) {
@@ -37,8 +44,6 @@ export class ChartAid {
     private aggregate = (data: RawAnalytics[], date: Moment) => {
         const totalCount = (format: string) => data.filter(x => moment(x.date, 'YYYYMMDDH').format(format) === date.format(format))
             .reduce((a, b) => Number(a) + Number(b.count), 0)
-
-        if (this.#timeIsUTC) date = date.utc()
 
         switch (this.frequency) {
             case Frequency.QUARTERLY:
@@ -99,8 +104,6 @@ export class ChartAid {
     }
 
     private getLabel(date: Moment) {
-        if (this.#timeIsUTC) date = date.utc()
-
         switch (this.frequency) {
             case Frequency.YEARLY:
                 if (date.isCurrentYear()) return 'This Year'
