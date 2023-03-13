@@ -48,3 +48,7 @@ export type RouteType = {
     children: RouteChildType[]
 }
 
+export type RawAnalytics = {
+    date: number
+    count: number
+}
