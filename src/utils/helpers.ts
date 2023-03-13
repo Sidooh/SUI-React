@@ -1,6 +1,6 @@
 import withReactContent from 'sweetalert2-react-content';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
-import { Telco } from './enums';
+import { Frequency, Period, Telco } from './enums';
 import pluralize from 'pluralize';
 import moment from "moment/moment";
 
@@ -23,7 +23,7 @@ const REFERENCE = moment();
 const TODAY = REFERENCE.clone().startOf("day");
 const YESTERDAY = REFERENCE.clone().subtract(1, "days").startOf("day");
 
-export const getRelativeDateAndTime = (date: string|Date) => {
+export const getRelativeDateAndTime = (date: string | Date) => {
     let relativeDate: string, time = moment(date).format("hh:mm A");
 
     if (moment(date).isSame(TODAY, "d")) {
@@ -74,7 +74,7 @@ export const setItemToStore = (key: string, payload: string, store = localStorag
 
 export const JWT = {
     decode: (token?: string) => {
-        if(!token) return null;
+        if (!token) return null;
 
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -190,3 +190,12 @@ export const is = {
 };
 
 export const toPlural = (word: string, count?: number, inclusive?: boolean) => pluralize(word, count, inclusive)
+
+export const chartSelectOptions = {
+    [Period.TODAY]: [Frequency.HOURLY],
+    [Period.LAST_SEVEN_DAYS]: [Frequency.DAILY],
+    [Period.LAST_THIRTY_DAYS]: [Frequency.DAILY, Frequency.WEEKLY],
+    [Period.LAST_THREE_MONTHS]: [Frequency.WEEKLY, Frequency.MONTHLY],
+    [Period.LAST_SIX_MONTHS]: [Frequency.MONTHLY],
+    [Period.YTD]: [Frequency.MONTHLY, Frequency.QUARTERLY]
+}
