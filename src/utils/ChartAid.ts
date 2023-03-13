@@ -99,6 +99,8 @@ export class ChartAid {
     }
 
     private getLabel(date: Moment) {
+        if (this.#timeIsUTC) date = date.utc()
+
         switch (this.frequency) {
             case Frequency.YEARLY:
                 if (date.isCurrentYear()) return 'This Year'
