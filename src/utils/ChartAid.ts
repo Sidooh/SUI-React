@@ -55,9 +55,11 @@ export class ChartAid {
             case Frequency.DAILY:
                 return totalCount('YYYYMMDD')
             default:
-                return data?.find(x => {
+                const total = data?.find(x => {
                     return String(x.date) === date.format('YYYYMMDDHH')
-                })?.count ?? 0
+                })?.count
+
+                return total ? Number(total) : 0
         }
     }
 
