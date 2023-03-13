@@ -4,7 +4,10 @@ import { Frequency, Period } from "./enums";
 import pluralize from "pluralize";
 
 export class ChartAid {
-    constructor(private period: Period, private frequency: Frequency = Frequency.DAILY) {
+    #timeIsUTC: boolean = false;
+
+    constructor(private period: Period, private frequency: Frequency = Frequency.DAILY, timeIsUTC = false) {
+        this.#timeIsUTC = timeIsUTC
     }
 
     getDataset = (raw: RawAnalytics[], freqCount?: number) => {
@@ -35,6 +38,8 @@ export class ChartAid {
         const totalCount = (format: string) => data.filter(x => moment(x.date, 'YYYYMMDDH').format(format) === date.format(format))
             .reduce((a, b) => a + b.count, 0)
 
+        if (this.#timeIsUTC) date = date.utc()
+
         switch (this.frequency) {
             case Frequency.QUARTERLY:
                 return totalCount('YYYYQ')
@@ -45,7 +50,9 @@ export class ChartAid {
             case Frequency.DAILY:
                 return totalCount('YYYYMMDD')
             default:
-                return data?.find(x => String(x.date) === date.format('YYYYMMDDH'))?.count ?? 0
+                return data?.find(x => {
+                    return String(x.date) === date.format('YYYYMMDDHH')
+                })?.count ?? 0
         }
     }
 
@@ -120,5 +127,9 @@ export class ChartAid {
             default:
                 return date.format('HH00')
         }
+    }
+
+    set timeIsUTC(value: boolean) {
+        this.#timeIsUTC = value;
     }
 }
