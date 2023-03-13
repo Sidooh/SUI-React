@@ -36,7 +36,7 @@ export class ChartAid {
 
     private aggregate = (data: RawAnalytics[], date: Moment) => {
         const totalCount = (format: string) => data.filter(x => moment(x.date, 'YYYYMMDDH').format(format) === date.format(format))
-            .reduce((a, b) => a + b.count, 0)
+            .reduce((a, b) => Number(a) + Number(b.count), 0)
 
         if (this.#timeIsUTC) date = date.utc()
 
