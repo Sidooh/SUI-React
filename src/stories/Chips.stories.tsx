@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Status } from '../utils';
-import '../assets/css/theme.min.css';
-import '../assets/css/user.min.css';
+import '../assets/css/sidooh-theme.css';
+import '../assets/css/user.css';
 
 const stories = storiesOf('Chips', module);
 

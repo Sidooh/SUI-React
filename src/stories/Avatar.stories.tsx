@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import '../assets/css/theme.min.css';
-import '../assets/css/user.min.css';
+import '../assets/css/sidooh-theme.css';
+import '../assets/css/user.css';
 import { Avatar } from '../components';
 import { Card } from 'react-bootstrap';
 
