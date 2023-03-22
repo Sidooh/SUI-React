@@ -1,5 +1,5 @@
 import React from 'react';
-import { Status } from '../../utils';
+import { getStatusColor, Status } from '../../utils';
 import Badge from '../Badge/Badge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,22 +12,17 @@ import {
 import { Dropdown } from "react-bootstrap";
 
 const statusProps = (status: Status) => {
-    let color: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark' = 'dark', icon;
+    let color = getStatusColor(status), icon;
 
     if ([Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(status)) {
-        color = 'success';
         icon = <FontAwesomeIcon icon={faCheck}/>;
     } else if (status === Status.PENDING) {
-        color = 'warning';
         icon = <FontAwesomeIcon icon={faHourglassStart}/>;
     } else if (status === Status.REFUNDED) {
-        color = 'info';
         icon = <FontAwesomeIcon icon={faCircleInfo}/>;
     } else if ([Status.FAILED, Status.INACTIVE].includes(status)) {
-        color = 'danger';
         icon = <FontAwesomeIcon icon={faCircleExclamation}/>;
     } else if ([Status.EXPIRED].includes(status)) {
-        color = 'secondary';
         icon = <FontAwesomeIcon icon={faCalendarXmark}/>;
     }
 

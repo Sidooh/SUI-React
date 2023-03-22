@@ -1,6 +1,6 @@
 import withReactContent from 'sweetalert2-react-content';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
-import { Frequency, Period, Telco } from './enums';
+import { Frequency, Period, Status, Telco } from './enums';
 import pluralize from 'pluralize';
 import moment from "moment/moment";
 
@@ -198,4 +198,22 @@ export const chartSelectOptions = {
     [Period.LAST_THREE_MONTHS]: [Frequency.WEEKLY, Frequency.MONTHLY],
     [Period.LAST_SIX_MONTHS]: [Frequency.MONTHLY],
     [Period.YTD]: [Frequency.MONTHLY, Frequency.QUARTERLY]
+}
+
+export const getStatusColor = (status: Status) => {
+    let color: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark' = 'dark';
+
+    if ([Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(status)) {
+        color = 'success';
+    } else if (status === Status.PENDING) {
+        color = 'warning';
+    } else if (status === Status.REFUNDED) {
+        color = 'info';
+    } else if ([Status.FAILED, Status.INACTIVE].includes(status)) {
+        color = 'danger';
+    } else if ([Status.EXPIRED].includes(status)) {
+        color = 'secondary';
+    }
+
+    return color;
 }
