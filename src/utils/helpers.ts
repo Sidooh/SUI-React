@@ -104,11 +104,17 @@ export const toast = async (data: SweetAlertOptions) => {
     await Sweet.fire(options);
 };
 
-export const currencyFormat = (number?: number, currency = 'KES') => typeof number === 'number' && (new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency,
-    maximumFractionDigits: 4
-})).format(number);
+export const currencyFormat = (number?: number, currency = 'KES') => {
+    const n = Number(number)
+
+    if(isNaN(n)) return 0
+
+    return (new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency,
+        maximumFractionDigits: 4
+    })).format(n)
+};
 
 export const colors = [
     '#2c7be5',
