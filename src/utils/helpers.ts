@@ -218,7 +218,7 @@ export const getStatusColor = (status: Status) => {
     return color;
 }
 
-export const groupBy = (array: any[], property: string) => {
+export const groupBy = (array: any[], property: string, asArray = false) => {
     let hash: any = {}, props = property.split('.');
 
     for (let i = 0; i < array.length; i++) {
@@ -228,6 +228,8 @@ export const groupBy = (array: any[], property: string) => {
 
         hash[key].push(array[i]);
     }
+
+    if(asArray) return Object.values(hash);
 
     return hash;
 }
