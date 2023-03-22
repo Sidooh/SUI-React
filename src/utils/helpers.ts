@@ -104,7 +104,7 @@ export const toast = async (data: SweetAlertOptions) => {
     await Sweet.fire(options);
 };
 
-export const currencyFormat = (number?: number, currency = 'KES') => number && (new Intl.NumberFormat('en-GB', {
+export const currencyFormat = (number?: number, currency = 'KES') => typeof number === 'number' && (new Intl.NumberFormat('en-GB', {
     style: 'currency',
     currency,
     maximumFractionDigits: 4
@@ -229,7 +229,7 @@ export const groupBy = (array: any[], property: string, asArray = false) => {
         hash[key].push(array[i]);
     }
 
-    if(asArray) return Object.values(hash);
+    if (asArray) return Object.values(hash);
 
     return hash;
 }
