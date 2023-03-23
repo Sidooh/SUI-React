@@ -13,9 +13,12 @@ type SoftBadgeProps = {
     onClick?: MouseEventHandler<HTMLSpanElement>
 };
 
-const Badge = ({bg = 'primary', pill, children, icon, soft = false, className, style, onClick}: SoftBadgeProps) => {
+const Badge = ({ bg = 'primary', pill, children, icon, soft = false, className, style, onClick }: SoftBadgeProps) => {
     return (
-        <span className={classNames(className, `badge ${soft ? 'badge-soft' : 'bg'}-${bg}`, {'rounded-pill': pill})}
+        <span className={classNames(className, `badge ${soft ? 'badge-soft' : 'bg'}-${bg}`, {
+            'rounded-pill': pill,
+            'text-primary': !soft && bg === 'success'
+        })}
               style={style} onClick={onClick}>
             {icon} {children}
         </span>
