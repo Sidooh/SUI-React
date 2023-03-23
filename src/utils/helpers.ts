@@ -239,3 +239,14 @@ export const groupBy = (array: any[], property: string, asArray = false) => {
 
     return hash;
 }
+
+export const chartGradient = (rgbColor: number[]) => {
+    let rgb = rgbColor.join()
+    let gradient = document.createElement('canvas').getContext('2d')?.createLinearGradient(0, 0, 0, 400);
+
+    gradient?.addColorStop(0, `rgba(${rgb}, 1)`);
+    gradient?.addColorStop(.7, `rgba(${rgb}, .2)`);
+    gradient?.addColorStop(1, `rgba(${rgb}, 0)`);
+
+    return gradient;
+}
