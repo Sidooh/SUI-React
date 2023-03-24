@@ -5,16 +5,18 @@ import pluralize from "pluralize";
 
 export class ChartAid {
     #timeIsUTC: boolean = false;
+    readonly #aggregateProperty: string;
 
-    constructor(private period: Period, private frequency: Frequency = Frequency.DAILY, timeIsUTC = false) {
+    constructor(private period: Period, private frequency: Frequency = Frequency.DAILY, aggregateProperty = 'count', timeIsUTC = false) {
         this.#timeIsUTC = timeIsUTC
+        this.#aggregateProperty = aggregateProperty
     }
 
     getDataset = (raw: RawAnalytics[], freqCount?: number) => {
         if (this.#timeIsUTC) {
             raw = raw.map(r => ({
                 date: Number(moment(r.date, 'YYYYMMDDHH').add(3, 'h').format('YYYYMMDDHH')),
-                count: r.count
+                tally: Number(r[this.#aggregateProperty])
             }))
         }
 
@@ -43,7 +45,7 @@ export class ChartAid {
 
     private aggregate = (data: RawAnalytics[], date: Moment) => {
         const totalCount = (format: string) => data.filter(x => moment(x.date, 'YYYYMMDDH').format(format) === date.format(format))
-            .reduce((a, b) => Number(a) + Number(b.count), 0)
+            .reduce((a, b) => Number(a) + Number(b.tally), 0)
 
         switch (this.frequency) {
             case Frequency.QUARTERLY:
@@ -57,7 +59,7 @@ export class ChartAid {
             default:
                 const total = data?.find(x => {
                     return String(x.date) === date.format('YYYYMMDDHH')
-                })?.count
+                })?.tally
 
                 return total ? Number(total) : 0
         }

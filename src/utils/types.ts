@@ -49,6 +49,6 @@ export type RouteType = {
 }
 
 export type RawAnalytics = {
-    date: number
-    count: number
+    date: string | number
+    [key: string]: string | number
 }
