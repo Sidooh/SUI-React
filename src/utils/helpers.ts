@@ -222,7 +222,7 @@ export const getStatusColor = (status: Status) => {
     return color;
 }
 
-export const getTelcoColor = (telco?: Telco) => {
+export const getTelcoColor = (telco?: Telco, asRGB = false) => {
     let color = '#648381'
     if (telco === Telco.SAFARICOM) {
         color = '#59BC58';
@@ -232,7 +232,7 @@ export const getTelcoColor = (telco?: Telco) => {
         color = '#30AACB';
     }
 
-    return color
+    return asRGB ? hexToRgb(color) : color
 }
 
 export const groupBy = (array: any[], property: string, asArray = false) => {

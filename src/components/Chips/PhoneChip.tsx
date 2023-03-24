@@ -6,15 +6,15 @@ export interface PhoneChipType {
     className?: string;
 }
 
-const PhoneChip = ({phone, className}: PhoneChipType) => {
+const PhoneChip = ({ phone, className }: PhoneChipType) => {
     if (!phone) return <></>;
 
     const telco = getTelcoFromPhone(phone);
-    let color = getTelcoColor(telco),
+    let color = String(getTelcoColor(telco)),
         phoneNumber = phone ?? 'N/A';
 
     return (
-        <span className={`fw-bolder ${className}`} style={{color}}>
+        <span className={`fw-bolder ${className}`} style={{ color }}>
             {String(phoneNumber).replace('+', '')}
         </span>
     );
