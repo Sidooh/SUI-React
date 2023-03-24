@@ -65,7 +65,7 @@ export class ChartAid {
 
     private getFrequencyCount() {
         switch (this.period) {
-            case Period.TODAY:
+            case Period.LAST_24_HOURS:
                 return 24
             case Period.LAST_SEVEN_DAYS:
                 return 7

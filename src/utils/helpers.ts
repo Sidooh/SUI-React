@@ -196,7 +196,7 @@ export const is = {
 export const toPlural = (word: string, count?: number, inclusive?: boolean) => pluralize(word, count, inclusive)
 
 export const chartSelectOptions = {
-    [Period.TODAY]: [Frequency.HOURLY],
+    [Period.LAST_24_HOURS]: [Frequency.HOURLY],
     [Period.LAST_SEVEN_DAYS]: [Frequency.DAILY],
     [Period.LAST_THIRTY_DAYS]: [Frequency.DAILY, Frequency.WEEKLY],
     [Period.LAST_THREE_MONTHS]: [Frequency.WEEKLY, Frequency.MONTHLY],
