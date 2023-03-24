@@ -58,8 +58,6 @@ export const getTelcoFromPhone = (phone: string | number) => {
         return Telco.EQUITEL;
     } else if (phone.match(faibaRegEx)) {
         return Telco.FAIBA;
-    } else {
-        return null;
     }
 };
 
@@ -107,7 +105,7 @@ export const toast = async (data: SweetAlertOptions) => {
 export const currencyFormat = (number?: number, currency = 'KES') => {
     const n = Number(number)
 
-    if(isNaN(n)) return 0
+    if (isNaN(n)) return 0
 
     return (new Intl.NumberFormat('en-GB', {
         style: 'currency',
@@ -222,6 +220,19 @@ export const getStatusColor = (status: Status) => {
     }
 
     return color;
+}
+
+export const getTelcoColor = (telco?: Telco) => {
+    let color = '#648381'
+    if (telco === Telco.SAFARICOM) {
+        color = '#59BC58';
+    } else if (telco === Telco.AIRTEL) {
+        color = '#EE4326';
+    } else if (telco === Telco.TELKOM) {
+        color = '#30AACB';
+    }
+
+    return color
 }
 
 export const groupBy = (array: any[], property: string, asArray = false) => {

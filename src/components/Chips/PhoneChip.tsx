@@ -1,5 +1,5 @@
 import React from 'react';
-import { getTelcoFromPhone, Telco } from '../../utils';
+import { getTelcoColor, getTelcoFromPhone } from '../../utils';
 
 export interface PhoneChipType {
     phone?: string | number;
@@ -10,16 +10,8 @@ const PhoneChip = ({phone, className}: PhoneChipType) => {
     if (!phone) return <></>;
 
     const telco = getTelcoFromPhone(phone);
-    let color = 'secondary',
+    let color = getTelcoColor(telco),
         phoneNumber = phone ?? 'N/A';
-
-    if (telco === Telco.SAFARICOM) {
-        color = '#59BC58';
-    } else if (telco === Telco.AIRTEL) {
-        color = '#EE4326';
-    } else if (telco === Telco.TELKOM) {
-        color = '#30AACB';
-    }
 
     return (
         <span className={`fw-bolder ${className}`} style={{color}}>
