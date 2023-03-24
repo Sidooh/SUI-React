@@ -102,10 +102,10 @@ export const toast = async (data: SweetAlertOptions) => {
     await Sweet.fire(options);
 };
 
-export const currencyFormat = (number?: number, currency = 'KES') => {
+export const currencyFormat = (number?: number, currency = 'KES'): string => {
     const n = Number(number)
 
-    if (isNaN(n)) return 0
+    if (isNaN(n)) return '0'
 
     return (new Intl.NumberFormat('en-GB', {
         style: 'currency',
