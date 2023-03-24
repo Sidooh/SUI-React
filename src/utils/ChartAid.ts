@@ -13,6 +13,7 @@ export class ChartAid {
     }
 
     getDataset = (raw: RawAnalytics[], freqCount?: number) => {
+        console.log(raw, this.#aggregateProperty)
         if (this.#timeIsUTC) {
             raw = raw.map(r => ({
                 date: Number(moment(r.date, 'YYYYMMDDHH').add(3, 'h').format('YYYYMMDDHH')),
