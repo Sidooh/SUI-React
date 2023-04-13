@@ -31,7 +31,7 @@ export interface ApiResponse<T> {
 
 export type RouteChildType = {
     name: string
-    active: boolean
+    active?: boolean
     icon?: IconProp
     to?: string
     exact?: boolean
