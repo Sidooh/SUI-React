@@ -76,7 +76,7 @@ export class ChartAid {
             case Period.LAST_SEVEN_DAYS:
                 return 7
             case Period.LAST_THIRTY_DAYS:
-                return this.frequency === Frequency.WEEKLY ? moment().subtract(30, 'd').weeks() : 30
+                return this.frequency === Frequency.WEEKLY ? 4 : 30
             case Period.LAST_THREE_MONTHS:
                 return this.frequency === Frequency.MONTHLY ? 3 : moment().subtract(30, 'M').weeks()
             case Period.LAST_SIX_MONTHS:
