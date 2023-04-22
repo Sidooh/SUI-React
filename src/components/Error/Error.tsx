@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import PrettyJSON from '../PrettyJSON';
 import styled from 'styled-components';

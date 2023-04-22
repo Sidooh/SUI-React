@@ -1,5 +1,5 @@
 import { Button, Col, Dropdown, Form, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import pluralize from 'pluralize';
 import { Str } from '../../utils';
 import { Table } from '@tanstack/react-table';

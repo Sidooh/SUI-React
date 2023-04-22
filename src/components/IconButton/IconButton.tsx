@@ -1,6 +1,6 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 import { Color } from 'react-bootstrap/types';
+import { forwardRef } from "react";
 
 export interface IconButtonProps {
     type?: "button" | "submit" | "reset";
@@ -64,7 +64,7 @@ const IconButtonRoot = styled.button<IconButtonRootProps>`
   }}
 `;
 
-const IconButton = React.forwardRef(function IconButton({
+const IconButton = forwardRef(function IconButton({
     type,
     size = 'md',
     className,

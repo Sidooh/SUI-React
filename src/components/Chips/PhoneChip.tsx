@@ -1,4 +1,3 @@
-import React from 'react';
 import { getTelcoColor, getTelcoFromPhone } from '../../utils';
 
 export interface PhoneChipType {

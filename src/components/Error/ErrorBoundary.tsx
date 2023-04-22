@@ -1,4 +1,14 @@
-import React from 'react';
+import {
+    Component,
+    ComponentType,
+    ErrorInfo,
+    FunctionComponent,
+    isValidElement,
+    PropsWithChildren,
+    PropsWithRef,
+    ReactElement
+} from "react";
+
 
 const changedArray = (a: Array<unknown> = [], b: Array<unknown> = []) =>
     a.length !== b.length || a.some((item, index) => !Object.is(item, b[index]))
@@ -17,14 +27,14 @@ interface ErrorBoundaryPropsWithComponent {
     onError?: (error: Error, info: { componentStack: string }) => void;
     resetKeys?: Array<unknown>;
     fallback?: never;
-    FallbackComponent: React.ComponentType<FallbackProps>;
+    FallbackComponent: ComponentType<FallbackProps>;
     fallbackRender?: never;
 }
 
 declare function FallbackRender(
     props: FallbackProps,
-): React.ReactElement<unknown,
-    string | React.FunctionComponent | typeof React.Component> | null
+): ReactElement<unknown,
+    string | FunctionComponent | typeof Component> | null
 
 interface ErrorBoundaryPropsWithRender {
     onResetKeysChange?: (
@@ -47,8 +57,8 @@ interface ErrorBoundaryPropsWithFallback {
     onReset?: (...args: Array<unknown>) => void;
     onError?: (error: Error, info: { componentStack: string }) => void;
     resetKeys?: Array<unknown>;
-    fallback: React.ReactElement<unknown,
-        string | React.FunctionComponent | typeof React.Component> | null;
+    fallback: ReactElement<unknown,
+        string | FunctionComponent | typeof Component> | null;
     FallbackComponent?: never;
     fallbackRender?: never;
 }
@@ -62,7 +72,7 @@ type ErrorBoundaryState = { error: Error | null }
 
 const initialState: ErrorBoundaryState = {error: null}
 
-export class ErrorBoundary extends React.Component<React.PropsWithRef<React.PropsWithChildren<ErrorBoundaryProps>>,
+export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<ErrorBoundaryProps>>,
     ErrorBoundaryState> {
     static getDerivedStateFromError(error: Error) {
         return {error};
@@ -78,7 +88,7 @@ export class ErrorBoundary extends React.Component<React.PropsWithRef<React.Prop
         this.setState(initialState);
     }
 
-    componentDidCatch(error: Error, info: React.ErrorInfo) {
+    componentDidCatch(error: Error, info: ErrorInfo) {
         this.props.onError?.(error, info);
     }
 
@@ -116,7 +126,7 @@ export class ErrorBoundary extends React.Component<React.PropsWithRef<React.Prop
                 error,
                 resetErrorBoundary: this.resetErrorBoundary,
             };
-            if (React.isValidElement(fallback)) {
+            if (isValidElement(fallback)) {
                 return fallback;
             } else if (typeof fallbackRender === 'function') {
                 return fallbackRender(props);

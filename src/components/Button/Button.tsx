@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button as BtsButton } from 'react-bootstrap';
 import { ButtonProps as BtsButtonProps } from 'react-bootstrap/Button';
 import styled from 'styled-components';

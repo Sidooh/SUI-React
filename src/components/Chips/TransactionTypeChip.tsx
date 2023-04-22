@@ -1,4 +1,3 @@
-import React from 'react';
 import { TransactionType } from "../../utils";
 
 const TransactionTypeChip = ({ type }: { type?: TransactionType }) => {

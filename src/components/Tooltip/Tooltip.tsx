@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 type Position = 'top' | 'left' | 'bottom' | 'right'

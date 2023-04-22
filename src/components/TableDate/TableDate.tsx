@@ -1,4 +1,3 @@
-import React from 'react';
 import { getRelativeDateAndTime } from "../../utils";
 
 const TableDate = ({ date, dateOverTime }: { date: string, dateOverTime?: boolean }) => {

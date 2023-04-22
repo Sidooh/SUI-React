@@ -1,7 +1,7 @@
 import DebouncedInput from './DebouncedInput';
 import { useMemo } from 'react';
 import { Column, Table } from '@tanstack/react-table';
-import React from 'react';
+
 
 export default function Filter({column, table,}: { column: Column<any, unknown>, table: Table<any> }) {
     const firstValue = table

@@ -1,4 +1,4 @@
-import React, { CSSProperties, memo, MouseEventHandler, ReactNode } from 'react';
+import { CSSProperties, memo, MouseEventHandler, ReactNode } from 'react';
 import classNames from 'classnames';
 import { Color } from 'react-bootstrap/types';
 

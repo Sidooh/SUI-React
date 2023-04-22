@@ -10,7 +10,7 @@ import {
     faArrowRightLong
 } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../IconButton/IconButton';
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 const FormSelect = styled(Form.Select)`

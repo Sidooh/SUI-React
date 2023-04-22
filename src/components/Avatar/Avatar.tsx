@@ -1,4 +1,4 @@
-import React, { memo, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';

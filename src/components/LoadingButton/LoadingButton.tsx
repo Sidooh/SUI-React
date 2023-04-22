@@ -1,95 +1,67 @@
-import React from 'react';
-import { Spinner } from 'react-bootstrap';
-import styled from 'styled-components';
-import Button from '../Button';
-import { ButtonProps } from '../Button/Button';
+import { ButtonHTMLAttributes, ElementType, MouseEvent, ReactNode } from 'react';
+import { Button, Spinner } from 'react-bootstrap';
+import { ButtonVariant } from "react-bootstrap/types";
 
-type LoadingButtonProps = ButtonProps & {
-    children: React.ReactNode;
-    disabled?: boolean;
-    loading?: boolean | string
-    fullWidth?: boolean
-    loadingIndicator?: React.ReactNode
-    loadingindicator?: React.ReactNode
-    loadingPosition?: 'start' | 'center' | 'end',
-    loadingposition?: 'start' | 'center' | 'end',
-}
-
-const LoadingButtonRoot = styled(Button)<LoadingButtonProps>(({ loading, loadingposition }) => ({
-    display: 'inline-flex',
-    ...(loading && { [`& .start-icon, & .end-icon`]: { opacity: 0, }, }),
-    ...(loadingposition === 'center' && loading && { color: 'transparent!important', }),
-    ...(loadingposition === 'end' && loading && {
-        color: 'var(--sidooh-secondary)!important',
-        ['& .indicator']: { transition: '.3s', }
-    }),
-    ...(loadingposition === 'start' && loading && {
-        ['& .start-icon, & .end-icon']: {
-            opacity: 0,
-            marginRight: -8,
-        },
-    }),
-    ...(loadingposition === 'end' && loading && {
-        [`& .start-icon, & .end-icon`]: {
-            opacity: 0,
-            marginLeft: -8,
-        },
-    }),
-}));
-
-const LoadingButtonIndicator = styled('div')<LoadingButtonProps>(({ loadingposition }) => ({
-    position: 'absolute',
-    visibility: 'visible',
-    display: 'flex',
-    ...(loadingposition === 'center' && {
-        left: '50%',
-        transform: 'translate(-50%)',
-        color: 'var(--sidooh-secondary)',
-    }),
-    ...(loadingposition === 'start' && {
-        position: 'relative',
-        left: -10,
-    }),
-    ...(loadingposition === 'end' && {
-        position: 'relative',
-        right: -10,
-    }),
-}));
-
-const LoadingButton = ({
-    id,
-    type,
-    loading = false,
-    disabled = false,
-    children,
-    className,
-    loadingIndicator: loadingIndicatorProp,
-    loadingPosition = 'center',
-    ...rest
-}: LoadingButtonProps) => {
-    const loadingIndicator = loadingIndicatorProp ?? (
-        <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"/>
-    );
-
-    const ownerState = {
-        loading: loading ? 'true' : undefined,
-        loadingindicator: loadingIndicator,
-        loadingposition: loadingPosition,
-    };
-
-    const loadingButtonLoadingIndicator = loading ? (
-        <LoadingButtonIndicator {...ownerState} disabled={disabled} className={'indicator'}>
-            {loadingIndicator}
-        </LoadingButtonIndicator>
-    ) : null;
-
-    return (
-        <LoadingButtonRoot id={id} type={type} className={`position-relative ${className}`}
-                           disabled={disabled || Boolean(loading)} {...ownerState} {...rest}>
-            {loadingPosition === 'end' ? children : loadingButtonLoadingIndicator}
-            {loadingPosition === 'end' ? loadingButtonLoadingIndicator : children}
-        </LoadingButtonRoot>
-    );
+type LoadingButtonProps<T extends ElementType = 'button'> =
+    ButtonHTMLAttributes<T> & {
+    loading?: boolean;
+    loadingPosition?: 'start' | 'end';
+    variant?: ButtonVariant;
+    color?: string;
+    component?: T;
+    disableElevation?: boolean;
+    disableFocusRipple?: boolean;
+    fullWidth?: boolean;
+    startIcon?: ReactNode;
+    endIcon?: ReactNode;
+    size?: 'sm' | 'lg';
 };
 
-export default LoadingButton;
+const LoadingButton = <T extends keyof JSX.IntrinsicElements = 'button'>({
+    loading = false,
+    loadingPosition = 'start',
+    variant = 'primary',
+    color,
+    component = 'button' as T,
+    disableElevation = false,
+    disableFocusRipple = false,
+    fullWidth = false,
+    startIcon,
+    endIcon,
+    size,
+    children,
+    ...props
+}: LoadingButtonProps<T>) => {
+    const buttonColor = color ?? variant;
+
+    const handleClick = (event: MouseEvent<T>) => {
+        if (!loading) {
+            props.onClick?.(event);
+        }
+    }
+
+    const loadingContent = (
+        <Spinner animation="border" size="sm" className={loadingPosition === 'start' ? 'me-2' : 'ms-2'}/>
+    );
+
+    return (
+        <Button
+            variant={variant}
+            as={component}
+            className={`btn-${buttonColor}`}
+            disabled={loading}
+            onClick={handleClick as any}
+            size={size}
+            {...props as any}>
+            {loadingPosition === 'start' && loading ? loadingContent : null}
+            {loading && !loadingPosition && !startIcon ? loadingContent : null}
+            {startIcon && !loading ? <span className="me-2">{startIcon}</span> : null}
+            {children}
+            {endIcon && !loading ? <span className="ms-2">{endIcon}</span> : null}
+            {loadingPosition === 'end' && loading ? loadingContent : null}
+            {loading && !loadingPosition && endIcon ? loadingContent : null}
+        </Button>
+    );
+}
+
+export default LoadingButton

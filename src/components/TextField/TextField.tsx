@@ -1,5 +1,5 @@
 import { Form } from 'react-bootstrap';
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string

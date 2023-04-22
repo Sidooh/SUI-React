@@ -1,4 +1,3 @@
-import React from 'react';
 import { getStatusColor, Status } from '../../utils';
 import Badge from '../Badge/Badge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

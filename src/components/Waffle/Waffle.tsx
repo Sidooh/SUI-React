@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import SimpleBarReact from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
+// import 'simplebar/dist/simplebar.min.css';
 import Avatar from '../Avatar';
 
 export type WaffleLink = {
@@ -20,7 +20,7 @@ export interface WaffleProps {
     links: WaffleLink[];
 }
 
-const Waffle = ({links}: WaffleProps) => {
+const Waffle = ({ links }: WaffleProps) => {
     const [show, setShow] = useState<boolean>(false);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const Waffle = ({links}: WaffleProps) => {
                                     <WaffleLinkItem key={index} {...item} />
                                 ))}
                                 <Col xs={12}>
-                                    <a href="#!" className="btn btn-outline-primary btn-sm mt-4">Show more</a>
+                                    <a href="#" className="btn btn-outline-primary btn-sm mt-4">Show more</a>
                                 </Col>
                             </Row>
                         </Card.Body>
@@ -63,7 +63,7 @@ const Waffle = ({links}: WaffleProps) => {
     );
 };
 
-const WaffleLinkItem = ({avatar, avatarText, img, title, link, hr, enabled = false}: WaffleLink) => {
+const WaffleLinkItem = ({ avatar, avatarText, img, title, link, hr, enabled = false }: WaffleLink) => {
     return (
         <>
             {hr ? (
@@ -71,21 +71,21 @@ const WaffleLinkItem = ({avatar, avatarText, img, title, link, hr, enabled = fal
                     <hr className="my-3 mx-n3 bg-200"/>
                 </Col>
             ) : (
-                <Col xs={4}>
-                    <a href={enabled ? link : undefined} target={'_blank'} rel="noopener noreferrer"
-                       className={`d-block ${!enabled ? 'bg-100 ' : 'hover-bg-200 cursor-pointer rounded-3'} px-2 py-3 text-center text-decoration-none`}>
-                        {avatar && <Avatar src={avatar} size="2xl"/>}
-                        {avatarText && (
-                            <Avatar isExact name={avatarText} size="2xl"
-                                    mediaClass="fs-2 bg-soft-primary text-primary"/>
-                        )}
-                        {img && <img src={img} width={40} height={40} alt={''}/>}
-                        <p className={classNames('mb-0 fw-medium text-800 text-truncate fs--2', {'pt-1': img})}>
-                            {title}
-                        </p>
-                    </a>
-                </Col>
-            )}
+                 <Col xs={4}>
+                     <a href={enabled ? link : undefined} target={'_blank'} rel="noopener noreferrer"
+                        className={`d-block ${!enabled ? 'bg-100 ' : 'hover-bg-200 cursor-pointer rounded-3'} px-2 py-3 text-center text-decoration-none`}>
+                         {avatar && <Avatar src={avatar} size="2xl"/>}
+                         {avatarText && (
+                             <Avatar isExact name={avatarText} size="2xl"
+                                     mediaClass={`fs-2 ${enabled ? 'bg-soft-primary text-800' : 'bg-soft-secondary text-400'}`}/>
+                         )}
+                         {img && <img src={img} width={40} height={40} alt={''}/>}
+                         <p className={classNames(`mb-0 fw-medium text-${enabled ? '800' : '400'} text-truncate fs--2`, { 'pt-1': img })}>
+                             {title}
+                         </p>
+                     </a>
+                 </Col>
+             )}
         </>
     );
 };
