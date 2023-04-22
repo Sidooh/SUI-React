@@ -1,5 +1,6 @@
 import { Status } from './enums';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { IconType } from "react-icons";
 
 export type Model = {
     id: number
@@ -32,7 +33,7 @@ export interface ApiResponse<T> {
 export type RouteChildType = {
     name: string
     active?: boolean
-    icon?: IconProp
+    icon?: IconProp | IconType
     to?: string
     exact?: boolean
     badge?: {
