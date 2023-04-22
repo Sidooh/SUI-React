@@ -1,22 +1,25 @@
 import styled, { css } from 'styled-components';
 import { Color } from 'react-bootstrap/types';
-import { forwardRef } from "react";
+import { CSSProperties, forwardRef, MouseEventHandler, ReactNode } from "react";
+import { Spinner } from "react-bootstrap";
 
 export interface IconButtonProps {
     type?: "button" | "submit" | "reset";
     className?: string;
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
     size?: "sm" | 'md' | "lg";
     color?: Color;
-    style?: React.CSSProperties;
+    style?: CSSProperties;
+    loading?: boolean;
 }
 
 type IconButtonRootProps = {
     ref: any
     color: Color
     size: "sm" | 'md' | "lg"
+    loading?: boolean;
 }
 
 const IconButtonRoot = styled.button<IconButtonRootProps>`
@@ -62,6 +65,17 @@ const IconButtonRoot = styled.button<IconButtonRootProps>`
         `;
     }
   }}
+
+  ${({ loading }) => loading && `
+    position: relative;
+
+    & > span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  `}
 `;
 
 const IconButton = forwardRef(function IconButton({
@@ -72,12 +86,15 @@ const IconButton = forwardRef(function IconButton({
     disabled = false,
     children,
     color = 'primary',
+    loading = false,
     style
 }: IconButtonProps, ref) {
     return (
         <IconButtonRoot ref={ref} type={type} className={className} onClick={onClick} disabled={disabled}
-                        style={style} color={color} size={size}>
-            {children}
+                        style={style} color={color} size={size} loading={loading}>
+            {loading ? (
+                <Spinner animation="border" size="sm" variant={color}/>
+            ) : children}
         </IconButtonRoot>
     );
 });
