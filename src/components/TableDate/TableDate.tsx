@@ -1,6 +1,6 @@
 import { getRelativeDateAndTime } from "../../utils";
 
-const TableDate = ({ date, dateOverTime }: { date: string, dateOverTime?: boolean }) => {
+const TableDate = ({ date, dateOverTime }: { date: string | Date, dateOverTime?: boolean }) => {
     if (!date) return <>N/A</>;
 
     const { date: relativeDate, time } = getRelativeDateAndTime(date)

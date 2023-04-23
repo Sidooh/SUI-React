@@ -63,7 +63,6 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.10.0",
     "simplebar-react": "^3.2.4",
     "storybook": "^7.0.6",
     "styled-components": "^5.3.9",

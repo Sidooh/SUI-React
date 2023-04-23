@@ -60,7 +60,7 @@ const IconButtonRoot = styled.button<IconButtonRootProps>`
         `;
       default:
         return css`
-          padding: 10px;
+          padding: 7px;
           font-size: 1.125rem;
         `;
     }

@@ -1,17 +1,13 @@
 import Flex from '../Flex/Flex';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { Table } from '@tanstack/react-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faAngleLeft,
-    faAngleRight,
-    faAnglesLeft,
-    faAnglesRight,
-    faArrowRightLong
-} from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../IconButton/IconButton';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, MouseEventHandler } from 'react';
 import styled from 'styled-components';
+import { MdReadMore } from "react-icons/all";
+import Tooltip from "../Tooltip";
 
 const FormSelect = styled(Form.Select)`
   background-image: none;
@@ -21,7 +17,7 @@ const FormSelect = styled(Form.Select)`
 export interface FooterProps {
     table: Table<any>,
     rowSelection: {},
-    onViewAll?: React.MouseEventHandler<HTMLButtonElement>
+    onViewAll?: MouseEventHandler<HTMLButtonElement>
 }
 
 const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
@@ -41,11 +37,12 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
                     <span>Page </span>
                     <strong>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</strong>
                 </p>
-                <p className="mb-0 ms-2">| &nbsp;</p>
+                <p className="mb-0 mx-2 border-end"> &nbsp;</p>
                 {Boolean(selectedRowsCount) && (
-                    <div>
-                        {selectedRowsCount} of{' '}
-                        {table.getPreFilteredRowModel().rows.length} Total Rows Selected
+                    <div className={'border-end pe-2 me-2'}>
+                        {selectedRowsCount === table.getPreFilteredRowModel().rows.length
+                         ? 'All rows selected'
+                         : `${selectedRowsCount} of ${table.getPreFilteredRowModel().rows.length} rows selected`}
                     </div>
                 )}
                 <span>Total: <b>{table.getCoreRowModel().rows.length.toLocaleString()}</b></span>
@@ -60,18 +57,17 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
                     </>
                 )}
             </Flex>
-            <Flex>
-                {
-                    onViewAll &&
-                    <Button size="sm" onClick={onViewAll}>
-                        <span className="d-none d-sm-inline-block ms-1">View All</span>
-                        <FontAwesomeIcon icon={faArrowRightLong} fontSize={15}/>
-                    </Button>
-                }
-                <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
+            <Flex alignItems="center">
+                {onViewAll && (
+                    <Tooltip title={'View All'}>
+                        <IconButton onClick={onViewAll}><MdReadMore/></IconButton>
+                    </Tooltip>
+                )}
+                <p className="mb-0 mx-2 border-end"> &nbsp;</p>
+                <IconButton disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
                     <FontAwesomeIcon icon={faAnglesLeft} fontSize={15}/>
                 </IconButton>
-                <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanPreviousPage()}
+                <IconButton className={'ms-1'} disabled={!table.getCanPreviousPage()}
                             onClick={() => table.previousPage()}>
                     <FontAwesomeIcon icon={faAngleLeft} fontSize={15}/>
                 </IconButton>

@@ -1,11 +1,12 @@
-import { Button, Col, Dropdown, Form, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { Button, Col, Dropdown, Form, Row } from 'react-bootstrap';
 import { Dispatch, SetStateAction, useState } from 'react';
 import pluralize from 'pluralize';
 import { Str } from '../../utils';
 import { Table } from '@tanstack/react-table';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd, faTableColumns } from '@fortawesome/free-solid-svg-icons';
 import Flex from '../Flex/Flex';
+import Tooltip from "../Tooltip";
+import { HiOutlineViewColumns, MdAddCircle, MdFilterAlt, MdFilterAltOff, TbRefresh } from "react-icons/all";
+import IconButton from "../IconButton";
 
 interface Header {
     table: Table<any>;
@@ -14,9 +15,20 @@ interface Header {
     filtering: boolean;
     setFiltering: Dispatch<SetStateAction<boolean>>;
     onCreateRow?: () => void;
+    reFetching?: boolean;
+    onRefetch?: () => void;
 }
 
-const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRow}: Header) => {
+const Header = ({
+    table,
+    rowSelection,
+    filtering,
+    setFiltering,
+    title,
+    onCreateRow,
+    reFetching = false,
+    onRefetch
+}: Header) => {
     const [action, setAction] = useState<string | undefined>(undefined);
 
     const selectedRowsCount = Object.keys(rowSelection).length;
@@ -48,39 +60,50 @@ const Header = ({table, rowSelection, filtering, setFiltering, title, onCreateRo
                         </Button>
                     </Flex>
                 ) : (
-                    <Flex alignItems={'center'}>
-                        {onCreateRow && (
-                            <Button size="sm" className="me-2" onClick={onCreateRow}>
-                                <FontAwesomeIcon icon={faAdd}/> New
-                            </Button>
-                        )}
-                        <OverlayTrigger
-                            overlay={<Tooltip>{filtering ? 'Disable' : 'Enable'} Column Filtering</Tooltip>}>
-                            <Form.Check type="switch" checked={filtering} onChange={() => setFiltering(!filtering)}/>
-                        </OverlayTrigger>
-                        <OverlayTrigger overlay={<Tooltip>Show Columns</Tooltip>}>
-                            <Dropdown className={'ms-2'} autoClose={'outside'}>
-                                <Dropdown.Toggle size={'sm'} as={'a'} className={'cursor-pointer'}>
-                                    <FontAwesomeIcon icon={faTableColumns} size={'sm'}/>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className={'px-3'} style={{color: '#5e6e82'}}>
-                                    <Form.Check label={`Show All`} id={'toggle-all'}
-                                                checked={table.getIsAllColumnsVisible()}
-                                                onChange={table.getToggleAllColumnsVisibilityHandler()}
-                                                className={'m-0'}/>
-                                    <Dropdown.Divider className={'mt-0'}/>
-                                    {table.getAllLeafColumns().map(column => (
-                                        <Form.Check key={column.id} checked={column.getIsVisible()} id={column.id}
-                                                    onChange={column.getToggleVisibilityHandler()}
-                                                    label={typeof column.columnDef.header === 'string'
-                                                        ? column.columnDef.header
-                                                        : Str.headline(column.id)} className={'m-0'}/>
-                                    ))}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </OverlayTrigger>
-                    </Flex>
-                )}
+                     <Flex alignItems={'center'}>
+                         {onCreateRow && (
+                             <Tooltip title={'Create new record'}>
+                                 <IconButton size="sm" className={'me-2'} onClick={onCreateRow} color={'success'}>
+                                     <MdAddCircle/>
+                                 </IconButton>
+                             </Tooltip>
+                         )}
+                         {onRefetch && (
+                             <Tooltip title={'Refresh'}>
+                                 <IconButton size="sm" className={'me-2'} onClick={onRefetch} color={'danger'}
+                                             loading={reFetching}>
+                                     <TbRefresh/>
+                                 </IconButton>
+                             </Tooltip>
+                         )}
+                         <Tooltip title={`${filtering ? 'Disable' : 'Enable'} column filtering`}>
+                             <IconButton size={'sm'} className={'me-2'} onClick={() => setFiltering(!filtering)}
+                                         color={'warning'}>
+                                 {filtering ? <MdFilterAlt/> : <MdFilterAltOff/>}
+                             </IconButton>
+                         </Tooltip>
+                         <Tooltip title={'Filter columns'}>
+                             <Dropdown autoClose={'outside'}>
+                                 <Dropdown.Toggle size={'sm'} as={'a'} className={'cursor-pointer'}>
+                                     <IconButton size={'sm'} color={'secondary'}><HiOutlineViewColumns/></IconButton>
+                                 </Dropdown.Toggle>
+                                 <Dropdown.Menu className={'px-3'} style={{ color: '#5e6e82' }}>
+                                     <Form.Check label={`Show All`} id={'toggle-all'} className={'m-0'}
+                                                 checked={table.getIsAllColumnsVisible()}
+                                                 onChange={table.getToggleAllColumnsVisibilityHandler()}/>
+                                     <Dropdown.Divider className={'mt-0'}/>
+                                     {table.getAllLeafColumns().map(column => (
+                                         <Form.Check key={column.id} checked={column.getIsVisible()} id={column.id}
+                                                     onChange={column.getToggleVisibilityHandler()}
+                                                     label={typeof column.columnDef.header === 'string'
+                                                            ? column.columnDef.header
+                                                            : Str.headline(column.id)} className={'m-0'}/>
+                                     ))}
+                                 </Dropdown.Menu>
+                             </Dropdown>
+                         </Tooltip>
+                     </Flex>
+                 )}
             </Col>
         </Row>
     );
