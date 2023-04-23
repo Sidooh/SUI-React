@@ -129,7 +129,12 @@ const DataTable = ({
                 </Col>
             </Row>
             <div className={'position-relative'}>
-                <div style={{ backdropFilter: 'blur(10px)', opacity: 0,  }}
+                <div style={{
+                    backdropFilter: 'blur(10px)',
+                    opacity: reFetching ? 1 : 0,
+                    visibility: reFetching ? 'visible' : 'hidden',
+                    transition: 'opacity 1s visibility 1s'
+                }}
                      className={'position-absolute start-0 top-0 end-0 bottom-0 d-flex justify-content-center align-items-center'}>
                     <div className={'text-center fs-2'} style={{ fontFamily: 'Pacifico, cursive' }}>
                         <p className={'fs-3 mb-0'}>Un Momento!</p>
