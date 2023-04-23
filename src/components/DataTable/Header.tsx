@@ -79,7 +79,7 @@ const Header = ({
                          <Tooltip title={`${filtering ? 'Disable' : 'Enable'} column filtering`}>
                              <IconButton size={'sm'} className={'me-2'} onClick={() => setFiltering(!filtering)}
                                          color={'warning'}>
-                                 {filtering ? <MdFilterAlt/> : <MdFilterAltOff/>}
+                                 {filtering ? <MdFilterAltOff/> : <MdFilterAlt/>}
                              </IconButton>
                          </Tooltip>
                          <Tooltip title={'Filter columns'}>
