@@ -263,3 +263,20 @@ export const chartGradient = (rgbColor: number[]) => {
 
     return gradient;
 }
+
+export const partition = <T>(array: T[], callback: (value: T, index: number, array: T[]) => boolean): [T[], T[]] => {
+    const matched: T[] = [];
+    const unmatched: T[] = [];
+    let i = 0;
+
+    for (; i < array.length; i++) {
+        const item = array[i];
+        if (callback(item, i, array)) {
+            matched.push(item);
+        } else {
+            unmatched.push(item);
+        }
+    }
+
+    return [matched, unmatched];
+}
