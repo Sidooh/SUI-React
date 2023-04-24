@@ -271,6 +271,7 @@ export const partition = <T>(array: T[], callback: (value: T, index: number, arr
 
     for (; i < array.length; i++) {
         const item = array[i];
+
         if (callback(item, i, array)) {
             matched.push(item);
         } else {
