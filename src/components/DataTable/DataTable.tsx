@@ -134,7 +134,7 @@ const DataTable = ({
                     backdropFilter: 'blur(10px)',
                     opacity: reFetching ? 1 : 0,
                     visibility: reFetching ? 'visible' : 'hidden',
-                    transition: 'opacity 1s visibility 1s'
+                    transition: 'opacity 1s, visibility 1s'
                 }}
                      className={'position-absolute start-0 top-0 end-0 bottom-0 d-flex justify-content-center align-items-center'}>
                     <div className={'text-center fs-2'} style={{ fontFamily: 'Pacifico, cursive' }}>
