@@ -130,6 +130,7 @@ const DataTable = ({
             </Row>
             <div className={'position-relative'}>
                 <div style={{
+                    zIndex: 2,
                     backdropFilter: 'blur(10px)',
                     opacity: reFetching ? 1 : 0,
                     visibility: reFetching ? 'visible' : 'hidden',

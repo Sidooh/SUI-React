@@ -5,6 +5,9 @@ import { faker } from "@faker-js/faker";
 import { CellContext } from "@tanstack/react-table";
 import moment from "moment";
 import { getRelativeDateAndTime } from "../utils";
+import Tooltip from "../components/Tooltip";
+import IconButton from "../components/IconButton";
+import { FaRegEye } from "react-icons/all";
 
 const meta: Meta<typeof DataTable> = {
     component: DataTable
@@ -12,7 +15,8 @@ const meta: Meta<typeof DataTable> = {
 
 export default meta
 
-const data = Array.from({ length: 25 }, (a) => ({
+const data = Array.from({ length: 25 }, (a, i) => ({
+    id: i + 1,
     name: faker.name.firstName(),
     age: faker.datatype.number(70),
     phone: faker.phone.number('2547########'),
@@ -20,6 +24,7 @@ const data = Array.from({ length: 25 }, (a) => ({
     updated_at: faker.date.past(1)
 }));
 data.push({
+    id: 1,
     name: 'Tasha',
     age: 21,
     phone: '254727474615',
@@ -61,9 +66,17 @@ export const Default: Story = {
                 header: 'Created',
                 cell: ({ row }: CellContext<{ created_at: Date }, any>) => <TableDate date={row.original.created_at}/>
             },
+            {
+                id: 'actions',
+                cell: ({ row }: CellContext<{ id: number }, any>) => (
+                    <a href={`/${row.original.id}`}>
+                        <Tooltip title={'View'}><IconButton size={'sm'}><FaRegEye/></IconButton></Tooltip>
+                    </a>
+                )
+            }
         ],
         data,
-        reFetching: false,
+        reFetching: true,
         onRefetch: () => {
             console.log('Hello')
         }
