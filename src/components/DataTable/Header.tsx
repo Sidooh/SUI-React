@@ -43,14 +43,16 @@ const Header = ({
     return (
         <Row className="justify-content-between data-tbl-header">
             <Col>
-                {Boolean(selectedRowsCount) && (
-                    <h5 className="fs-0 mb-0 text-nowrap py-2 py-xl-0">
-                        {selectedRowsCount === table.getPreFilteredRowModel().rows.length
-                         ? `All ${tableTitle} selected`
-                         : `${selectedRowsCount} of ${table.getPreFilteredRowModel().rows.length} ${tableTitle} selected`}
-                        {/*{selectedRowsCount ? `You have selected ${selectedRowsCount} of ${table.getPreFilteredRowModel().rows.length} ${tableTitle}` : title}*/}
-                    </h5>
-                )}
+                <h5 className="fs-0 mb-0 text-nowrap py-2 py-xl-0">
+                    {Boolean(selectedRowsCount) ? (
+                        <>
+                            {selectedRowsCount === table.getPreFilteredRowModel().rows.length
+                             ? `All ${tableTitle} selected`
+                             : `${selectedRowsCount} of ${table.getPreFilteredRowModel().rows.length} ${tableTitle} selected`}
+                            {/*{selectedRowsCount ? `You have selected ${selectedRowsCount} of ${table.getPreFilteredRowModel().rows.length} ${tableTitle}` : title}*/}
+                        </>
+                    ) : title}
+                </h5>
             </Col>
             <Col sm="auto" className={'text-end'}>
                 {selectedRowsCount ? (
