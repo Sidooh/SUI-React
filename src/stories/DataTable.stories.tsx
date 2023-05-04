@@ -80,6 +80,8 @@ export const Default: Story = {
         onRefetch: () => {
             console.log('Hello')
         },
+        serverPageCount: 5,
+        currentServerPage: 1,
         onPreviousServerPage: () => {
         },
         onNextServerPage: () => {

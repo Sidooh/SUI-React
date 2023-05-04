@@ -24,11 +24,21 @@ export interface FooterProps {
     table: Table<any>,
     rowSelection: {},
     onViewAll?: MouseEventHandler<HTMLButtonElement>,
+    serverPageCount?: number,
+    currentServerPage?: number,
     onPreviousServerPage?: () => void,
     onNextServerPage?: () => void,
 }
 
-const Footer = ({ table, rowSelection, onViewAll, onPreviousServerPage, onNextServerPage }: FooterProps) => {
+const Footer = ({
+    table,
+    rowSelection,
+    onViewAll,
+    serverPageCount,
+    currentServerPage,
+    onPreviousServerPage,
+    onNextServerPage
+}: FooterProps) => {
     const selectedRowsCount = Object.keys(rowSelection).length;
 
     const goToPage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -72,11 +82,11 @@ const Footer = ({ table, rowSelection, onViewAll, onPreviousServerPage, onNextSe
                     </Tooltip>
                 )}
                 <p className="mb-0 mx-2 border-end"> &nbsp;</p>
-                {onPreviousServerPage && (
-                    <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={onPreviousServerPage}>
+                {serverPageCount && currentServerPage && onPreviousServerPage ? (
+                    <IconButton size={'sm'} disabled={currentServerPage < 2} onClick={onPreviousServerPage}>
                         <TbArrowBigLeftLinesFilled/>
                     </IconButton>
-                )}
+                ) : ''}
                 <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
                     <FaAngleDoubleLeft/>
                 </IconButton>
@@ -98,12 +108,12 @@ const Footer = ({ table, rowSelection, onViewAll, onPreviousServerPage, onNextSe
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
                     <FaAngleDoubleRight/>
                 </IconButton>
-                {onNextServerPage && (
-                    <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
+                {serverPageCount && currentServerPage && onNextServerPage ? (
+                    <IconButton size={'sm'} className={'ms-1'} disabled={currentServerPage >= serverPageCount}
                                 onClick={onNextServerPage}>
                         <TbArrowBigRightLinesFilled/>
                     </IconButton>
-                )}
+                ) : ''}
             </Flex>
         </Flex>
     );

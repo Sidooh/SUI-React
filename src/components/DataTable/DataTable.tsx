@@ -33,6 +33,8 @@ export interface DataTableProps {
     onCreateRow?: () => void;
     onRefetch?: () => void;
     onViewAll?: MouseEventHandler<HTMLButtonElement>;
+    serverPageCount?: number,
+    currentServerPage?: number,
     onPreviousServerPage?: () => void,
     onNextServerPage?: () => void,
 }
@@ -56,6 +58,8 @@ const DataTable = ({
     onCreateRow,
     onViewAll,
     onRefetch,
+    serverPageCount,
+    currentServerPage,
     onPreviousServerPage,
     onNextServerPage
 }: DataTableProps) => {
@@ -137,10 +141,10 @@ const DataTable = ({
                     transition: 'opacity 1s, visibility 1s'
                 }}
                      className={'position-absolute start-0 top-0 end-0 bottom-0 d-flex justify-content-center align-items-center'}>
-                    <div className={'text-center fs-2'} style={{ fontFamily: 'Pacifico, cursive' }}>
-                        <p className={'fs-3 mb-0'}>Un Momento!</p>
+                    <div className={'text-center text-200'} style={{ fontFamily: 'Pacifico, cursive' }}>
+                        <p className={'fs-9 mb-0'}>One moment!</p>
                         <ThreeDots fill={'#0F1B4C'}/>
-                        <p className={'fs-1'}>Por favor😁</p>
+                        <p className={'fs-7'}>Please</p>
                     </div>
                 </div>
                 <Table>
@@ -187,8 +191,13 @@ const DataTable = ({
                     </tbody>
                 </Table>
             </div>
-            <Footer table={table} rowSelection={rowSelection} onViewAll={onViewAll}
-                    onPreviousServerPage={onPreviousServerPage} onNextServerPage={onNextServerPage}/>
+            <Footer table={table}
+                    rowSelection={rowSelection}
+                    onViewAll={onViewAll}
+                    serverPageCount={serverPageCount}
+                    currentServerPage={currentServerPage}
+                    onPreviousServerPage={onPreviousServerPage}
+                    onNextServerPage={onNextServerPage}/>
         </>
     );
 };
