@@ -93,12 +93,14 @@ const Footer = ({
                             <>
                                 <span className="mx-1 border-end">&nbsp;</span>
                                 <span className="flex items-center gap-1">Go to pg:</span>
-                                <input type="number" value={serverPage} step="1" min="1" max={serverPageCount}
+                                <input type="number" value={serverPage} step="1" min="3" max={serverPageCount}
                                        onChange={e => {
-                                           const page = Number(e.target.value)
+                                           let page = Number(e.target.value)
+
+                                           page = serverPageCount > page ? page : serverPageCount - 1
                                            setServerPage(page)
 
-                                           if (!isNaN(page)) onGoToServerPage(page)
+                                           if (page > 0) onGoToServerPage(page)
                                        }}
                                        className="form-control form-control-sm w-auto border-3 ms-2"/>
                             </>
