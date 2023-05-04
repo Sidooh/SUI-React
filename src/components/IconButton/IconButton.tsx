@@ -20,7 +20,7 @@ type IconButtonRootProps = {
     ref: any
     color: Color
     size: "sm" | 'md' | "lg"
-    loading?: boolean;
+    loading?: string;
 }
 
 const IconButtonRoot = styled.button<IconButtonRootProps>`
@@ -67,7 +67,7 @@ const IconButtonRoot = styled.button<IconButtonRootProps>`
     }
   }}
 
-  ${({ loading }) => loading && `
+  ${({ loading }) => loading === 'true' && `
     position: relative;
 
     & > span {
@@ -93,7 +93,8 @@ const IconButton = forwardRef(function IconButton({
 }: IconButtonProps, ref) {
     return (
         <IconButtonRoot ref={ref} type={type} className={`btn ${className}`}
-                        onClick={onClick} disabled={disabled} style={style} color={color} size={size} loading={loading}>
+                        onClick={onClick} disabled={disabled} style={style} color={color} size={size}
+                        loading={loading.toString()}>
             {loading ? (
                 <Spinner animation="border" size="sm" variant={color}/>
             ) : children}
