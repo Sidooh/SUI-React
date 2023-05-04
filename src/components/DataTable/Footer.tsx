@@ -95,9 +95,10 @@ const Footer = ({
                                 <span className="flex items-center gap-1">Go to pg:</span>
                                 <input type="number" value={serverPage} step="1" min="1" max={serverPageCount}
                                        onChange={e => {
-                                           setServerPage(e.target.value as unknown as number)
+                                           const page = Number(e.target.value)
+                                           setServerPage(page)
 
-                                           if (!isNaN(Number(e.target.value))) onGoToServerPage(Number(e.target.value))
+                                           if (!isNaN(page) || page < 1 || page > serverPageCount) onGoToServerPage(Number(e.target.value))
                                        }}
                                        className="form-control form-control-sm w-auto border-3 ms-2"/>
                             </>
