@@ -200,7 +200,6 @@ const DataTable = ({
                 </Table>
             </div>
             <Footer table={table}
-                    rowSelection={rowSelection}
                     onViewAll={onViewAll}
                     serverTotal={serverTotal}
                     serverPageSize={serverPageSize}
