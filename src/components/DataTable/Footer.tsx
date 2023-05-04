@@ -58,8 +58,8 @@ const Footer = ({
     }
 
     return (
-        <SimpleBarReact className={'text-nowrap'}>
-            <Row className={'align-items-center justify-content-center'}>
+        <SimpleBarReact className={'text-nowrap px-3'}>
+            <Row className={'align-items-center justify-content-center g-0'}>
                 <Col className={"d-flex align-items-center fs--1"}>
                     {serverTotal && serverPageCount && currentServerPage && onPreviousServerPage ? (
                         <>
@@ -113,7 +113,7 @@ const Footer = ({
                         </>
                     ) : ''}
                 </Col>
-                <Col className={'d-flex align-items-center justify-content-xl-end fs--1'}>
+                <Col className={'d-flex align-items-center justify-content-md-end fs--1'}>
                     {Boolean(selectedRowsCount) && (
                         <div className={'border-end pe-2 me-2'}>
                             {selectedRowsCount === table.getPreFilteredRowModel().rows.length
