@@ -1,12 +1,18 @@
 import Flex from '../Flex/Flex';
 import { Form } from 'react-bootstrap';
 import { Table } from '@tanstack/react-table';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight, faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../IconButton/IconButton';
 import { ChangeEvent, MouseEventHandler } from 'react';
 import styled from 'styled-components';
-import { MdReadMore } from "react-icons/all";
+import {
+    FaAngleDoubleLeft,
+    FaAngleDoubleRight,
+    FaAngleLeft,
+    FaAngleRight,
+    MdReadMore,
+    TbArrowBigLeftLinesFilled,
+    TbArrowBigRightLinesFilled
+} from "react-icons/all";
 import Tooltip from "../Tooltip";
 
 const FormSelect = styled(Form.Select)`
@@ -17,10 +23,12 @@ const FormSelect = styled(Form.Select)`
 export interface FooterProps {
     table: Table<any>,
     rowSelection: {},
-    onViewAll?: MouseEventHandler<HTMLButtonElement>
+    onViewAll?: MouseEventHandler<HTMLButtonElement>,
+    onPreviousServerPage?: () => void,
+    onNextServerPage?: () => void,
 }
 
-const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
+const Footer = ({ table, rowSelection, onViewAll, onPreviousServerPage, onNextServerPage }: FooterProps) => {
     const selectedRowsCount = Object.keys(rowSelection).length;
 
     const goToPage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,27 +72,38 @@ const Footer = ({ table, rowSelection, onViewAll }: FooterProps) => {
                     </Tooltip>
                 )}
                 <p className="mb-0 mx-2 border-end"> &nbsp;</p>
-                <IconButton disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
-                    <FontAwesomeIcon icon={faAnglesLeft} fontSize={15}/>
+                {onPreviousServerPage && (
+                    <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={onPreviousServerPage}>
+                        <TbArrowBigLeftLinesFilled/>
+                    </IconButton>
+                )}
+                <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
+                    <FaAngleDoubleLeft/>
                 </IconButton>
-                <IconButton className={'ms-1'} disabled={!table.getCanPreviousPage()}
+                <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanPreviousPage()}
                             onClick={() => table.previousPage()}>
-                    <FontAwesomeIcon icon={faAngleLeft} fontSize={15}/>
+                    <FaAngleLeft/>
                 </IconButton>
                 <FormSelect size="sm" className="w-auto mx-2 border-0" value={table.getState().pagination.pageSize}
                             onChange={(e: ChangeEvent<HTMLSelectElement>) => table.setPageSize(Number(e.target.value))}>
-                    {[5, 10, 20, 30, 40, 50].map(pageSize => (
+                    {[5, 10, 20, 50, 100].map(pageSize => (
                         <option key={pageSize} value={pageSize}>Show {pageSize}</option>
                     ))}
                 </FormSelect>
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
                             onClick={() => table.nextPage()}>
-                    <FontAwesomeIcon icon={faAngleRight} fontSize={15}/>
+                    <FaAngleRight/>
                 </IconButton>
                 <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
-                    <FontAwesomeIcon icon={faAnglesRight} fontSize={15}/>
+                    <FaAngleDoubleRight/>
                 </IconButton>
+                {onNextServerPage && (
+                    <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
+                                onClick={onNextServerPage}>
+                        <TbArrowBigRightLinesFilled/>
+                    </IconButton>
+                )}
             </Flex>
         </Flex>
     );

@@ -13,6 +13,7 @@ export interface IconButtonProps {
     color?: Color;
     style?: CSSProperties;
     loading?: boolean;
+    shadow?: 'none' | 'sm' | 'lg'
 }
 
 type IconButtonRootProps = {
@@ -87,11 +88,12 @@ const IconButton = forwardRef(function IconButton({
     children,
     color = 'primary',
     loading = false,
-    style
+    style,
+    shadow = 'none'
 }: IconButtonProps, ref) {
     return (
-        <IconButtonRoot ref={ref} type={type} className={className} onClick={onClick} disabled={disabled}
-                        style={style} color={color} size={size} loading={loading}>
+        <IconButtonRoot ref={ref} type={type} className={`btn ${className}`}
+                        onClick={onClick} disabled={disabled} style={style} color={color} size={size} loading={loading}>
             {loading ? (
                 <Spinner animation="border" size="sm" variant={color}/>
             ) : children}

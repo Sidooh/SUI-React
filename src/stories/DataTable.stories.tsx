@@ -34,7 +34,7 @@ data.push({
 
 type Story = StoryObj<typeof DataTable>
 export const Default: Story = {
-    render: (args) => (
+    render: args => (
         <Card>
             <Card.Body>
                 <DataTable {...args}/>
@@ -76,9 +76,13 @@ export const Default: Story = {
             }
         ],
         data,
-        reFetching: true,
+        reFetching: false,
         onRefetch: () => {
             console.log('Hello')
+        },
+        onPreviousServerPage: () => {
+        },
+        onNextServerPage: () => {
         }
     },
 }

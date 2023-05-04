@@ -33,6 +33,8 @@ export interface DataTableProps {
     onCreateRow?: () => void;
     onRefetch?: () => void;
     onViewAll?: MouseEventHandler<HTMLButtonElement>;
+    onPreviousServerPage?: () => void,
+    onNextServerPage?: () => void,
 }
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
@@ -53,7 +55,9 @@ const DataTable = ({
     reFetching = false,
     onCreateRow,
     onViewAll,
-    onRefetch
+    onRefetch,
+    onPreviousServerPage,
+    onNextServerPage
 }: DataTableProps) => {
     const [columnVisibility, setColumnVisibility] = useState({});
     const [rowSelection, setRowSelection] = useState({});
@@ -106,10 +110,6 @@ const DataTable = ({
         getFacetedUniqueValues: getFacetedUniqueValues(),
         getFacetedMinMaxValues: getFacetedMinMaxValues(),
         getCoreRowModel: getCoreRowModel(),
-
-        debugTable: false,
-        debugHeaders: false,
-        debugColumns: false,
     });
 
     return (
@@ -187,7 +187,8 @@ const DataTable = ({
                     </tbody>
                 </Table>
             </div>
-            <Footer table={table} rowSelection={rowSelection} onViewAll={onViewAll}/>
+            <Footer table={table} rowSelection={rowSelection} onViewAll={onViewAll}
+                    onPreviousServerPage={onPreviousServerPage} onNextServerPage={onNextServerPage}/>
         </>
     );
 };
