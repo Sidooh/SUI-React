@@ -2,7 +2,7 @@ import Flex from '../Flex/Flex';
 import { Form } from 'react-bootstrap';
 import { Table } from '@tanstack/react-table';
 import IconButton from '../IconButton/IconButton';
-import { ChangeEvent, MouseEventHandler } from 'react';
+import { ChangeEvent, MouseEventHandler, useState } from 'react';
 import styled from 'styled-components';
 import {
     FaAngleDoubleLeft,
@@ -24,21 +24,30 @@ export interface FooterProps {
     table: Table<any>,
     rowSelection: {},
     onViewAll?: MouseEventHandler<HTMLButtonElement>,
+    serverTotal?: number,
+    serverPageSize?: number,
     serverPageCount?: number,
     currentServerPage?: number,
     onPreviousServerPage?: () => void,
     onNextServerPage?: () => void,
+    onGoToServerPage?: (page: number) => void
+    onSetServerPageSize?: (page: number) => void
 }
 
 const Footer = ({
     table,
     rowSelection,
     onViewAll,
+    serverTotal,
+    serverPageSize,
     serverPageCount,
     currentServerPage,
     onPreviousServerPage,
-    onNextServerPage
+    onNextServerPage,
+    onGoToServerPage,
+    onSetServerPageSize,
 }: FooterProps) => {
+    const [serverPage, setServerPage] = useState(currentServerPage)
     const selectedRowsCount = Object.keys(rowSelection).length;
 
     const goToPage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,11 +60,57 @@ const Footer = ({
     return (
         <Flex alignItems={'center'} justifyContent={'between'}>
             <Flex alignItems="center" className="fs--1">
-                <p className="mb-0">
-                    <span>Page </span>
-                    <strong>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</strong>
-                </p>
-                <p className="mb-0 mx-2 border-end"> &nbsp;</p>
+                {serverTotal && serverPageCount && currentServerPage && onPreviousServerPage ? (
+                    <>
+                        {serverPageCount && currentServerPage && onPreviousServerPage ? (
+                            <Tooltip title={'Previous Page'}>
+                                <IconButton size={'sm'} disabled={currentServerPage < 2} onClick={onPreviousServerPage}>
+                                    <TbArrowBigLeftLinesFilled/>
+                                </IconButton>
+                            </Tooltip>
+                        ) : ''}
+                        {serverPageCount && currentServerPage && onNextServerPage ? (
+                            <Tooltip title={'Next Page'}>
+                                <IconButton size={'sm'} className={'ms-1'} onClick={onNextServerPage}
+                                            disabled={currentServerPage >= serverPageCount}>
+                                    <TbArrowBigRightLinesFilled/>
+                                </IconButton>
+                            </Tooltip>
+                        ) : ''}
+                        <p className="mb-0">
+                            <span className="mx-2 border-end">&nbsp;</span>
+                            <strong>{currentServerPage} of {serverPageCount}</strong>
+                        </p>
+                        <span className="mx-1 border-end">&nbsp;</span>
+                        <FormSelect size="sm" className="w-auto mx-2 border-0"
+                                    value={serverPageSize}
+                                    onChange={(e: ChangeEvent<HTMLSelectElement>) => onSetServerPageSize && onSetServerPageSize(Number(e.target.value))}>
+                            {[50, 100, 200, 500, 1000].map(pageSize => (
+                                <option key={pageSize} value={pageSize}>{pageSize}</option>
+                            ))}
+                        </FormSelect> / Page
+                        {onGoToServerPage && serverPageCount > 3 && (
+                            <>
+                                <span className="mx-1 border-end">&nbsp;</span>
+                                <span className="flex items-center gap-1">Go to pg:</span>
+                                <input type="number" value={serverPage} step="1" min="1" max={serverPageCount}
+                                       onChange={e => {
+                                           setServerPage(e.target.value as unknown as number)
+                                           onGoToServerPage(Number(e.target.value))
+                                       }}
+                                       className="form-control form-control-sm w-auto border-3 ms-2"/>
+                            </>
+                        )}
+                        {serverTotal && (
+                            <>
+                                <span className="mx-1 border-end">&nbsp;</span>
+                                <span>Total: <b>{serverTotal}</b></span>
+                            </>
+                        )}
+                    </>
+                ) : ''}
+            </Flex>
+            <Flex alignItems="center" className={'fs--1'}>
                 {Boolean(selectedRowsCount) && (
                     <div className={'border-end pe-2 me-2'}>
                         {selectedRowsCount === table.getPreFilteredRowModel().rows.length
@@ -64,29 +119,19 @@ const Footer = ({
                     </div>
                 )}
                 <span>Total: <b>{table.getCoreRowModel().rows.length.toLocaleString()}</b></span>
+                <span className="mx-1 border-end">&nbsp;</span>
                 {table.getPageCount() > 3 && (
                     <>
-                        <span className="ms-2">| &nbsp;</span>
-                        <span className="flex items-center gap-1">Go to page:</span>
+                        <span className="flex items-center gap-1">Go to pg:</span>
                         <input type="number" value={table.getState().pagination.pageIndex + 1}
                                onChange={(e) => goToPage(e)}
                                step="1" min="1" max={table.getPageCount()}
                                className="form-control form-control-sm w-auto border-3 ms-2"/>
+                        <span className="mx-1 border-end"> &nbsp;</span>
                     </>
                 )}
-            </Flex>
-            <Flex alignItems="center">
-                {onViewAll && (
-                    <Tooltip title={'View All'}>
-                        <IconButton onClick={onViewAll}><MdReadMore/></IconButton>
-                    </Tooltip>
-                )}
-                <p className="mb-0 mx-2 border-end"> &nbsp;</p>
-                {serverPageCount && currentServerPage && onPreviousServerPage ? (
-                    <IconButton size={'sm'} disabled={currentServerPage < 2} onClick={onPreviousServerPage}>
-                        <TbArrowBigLeftLinesFilled/>
-                    </IconButton>
-                ) : ''}
+                <strong>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</strong>
+                <span className="mx-1 border-end">&nbsp;</span>
                 <IconButton size={'sm'} disabled={!table.getCanPreviousPage()} onClick={() => table.setPageIndex(0)}>
                     <FaAngleDoubleLeft/>
                 </IconButton>
@@ -108,12 +153,14 @@ const Footer = ({
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
                     <FaAngleDoubleRight/>
                 </IconButton>
-                {serverPageCount && currentServerPage && onNextServerPage ? (
-                    <IconButton size={'sm'} className={'ms-1'} disabled={currentServerPage >= serverPageCount}
-                                onClick={onNextServerPage}>
-                        <TbArrowBigRightLinesFilled/>
-                    </IconButton>
-                ) : ''}
+                {onViewAll && (
+                    <>
+                        <p className="mb-0 mx-1 border-end"> &nbsp;</p>
+                        <Tooltip title={'View All'}>
+                            <IconButton onClick={onViewAll}><MdReadMore/></IconButton>
+                        </Tooltip>
+                    </>
+                )}
             </Flex>
         </Flex>
     );

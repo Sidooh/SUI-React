@@ -33,10 +33,13 @@ export interface DataTableProps {
     onCreateRow?: () => void;
     onRefetch?: () => void;
     onViewAll?: MouseEventHandler<HTMLButtonElement>;
+    serverTotal?: number,
     serverPageCount?: number,
     currentServerPage?: number,
     onPreviousServerPage?: () => void,
     onNextServerPage?: () => void,
+    onGoToServerPage?: (page: number) => void
+    onSetServerPageSize?: (page: number) => void
 }
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
@@ -58,10 +61,13 @@ const DataTable = ({
     onCreateRow,
     onViewAll,
     onRefetch,
+    serverTotal,
     serverPageCount,
     currentServerPage,
     onPreviousServerPage,
-    onNextServerPage
+    onNextServerPage,
+    onGoToServerPage,
+    onSetServerPageSize
 }: DataTableProps) => {
     const [columnVisibility, setColumnVisibility] = useState({});
     const [rowSelection, setRowSelection] = useState({});
@@ -194,10 +200,13 @@ const DataTable = ({
             <Footer table={table}
                     rowSelection={rowSelection}
                     onViewAll={onViewAll}
+                    serverTotal={serverTotal}
                     serverPageCount={serverPageCount}
                     currentServerPage={currentServerPage}
                     onPreviousServerPage={onPreviousServerPage}
-                    onNextServerPage={onNextServerPage}/>
+                    onNextServerPage={onNextServerPage}
+                    onGoToServerPage={onGoToServerPage}
+                    onSetServerPageSize={onSetServerPageSize}/>
         </>
     );
 };

@@ -15,7 +15,7 @@ const meta: Meta<typeof DataTable> = {
 
 export default meta
 
-const data = Array.from({ length: 25 }, (a, i) => ({
+const data = Array.from({ length: 30 }, (a, i) => ({
     id: i + 1,
     name: faker.name.firstName(),
     age: faker.datatype.number(70),
@@ -77,14 +77,13 @@ export const Default: Story = {
         ],
         data,
         reFetching: false,
-        onRefetch: () => {
-            console.log('Hello')
-        },
+        onRefetch: () => console.log('Handle Refetch'),
+        serverTotal: data.length,
         serverPageCount: 5,
         currentServerPage: 1,
-        onPreviousServerPage: () => {
-        },
-        onNextServerPage: () => {
-        }
+        onPreviousServerPage: () => console.log('Handle Go to Previous Server Page'),
+        onNextServerPage: () => console.log('Handle Go to Next Server Page'),
+        onGoToServerPage: p => console.log(`Handle Go to Server Page: ${p}`),
+        onSetServerPageSize: n => console.log(`Handle Set Server Page Size: ${n}`)
     },
 }
