@@ -147,7 +147,7 @@ const Footer = ({
                     <FormSelect size="sm" className="w-auto mx-2 border-0" value={table.getState().pagination.pageSize}
                                 onChange={(e: ChangeEvent<HTMLSelectElement>) => table.setPageSize(Number(e.target.value))}>
                         {[5, 10, 20, 50, 100].map(pageSize => (
-                            <option key={pageSize} value={pageSize}>Show {pageSize}</option>
+                            <option key={pageSize} value={pageSize}>{pageSize}</option>
                         ))}
                     </FormSelect>
                     <IconButton size={'sm'} className={'ms-1'} disabled={!table.getCanNextPage()}
