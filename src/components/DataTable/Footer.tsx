@@ -97,7 +97,7 @@ const Footer = ({
                                        onChange={e => {
                                            setServerPage(e.target.value as unknown as number)
 
-                                           if (!Number.isNaN(e.target.value)) onGoToServerPage(Number(e.target.value))
+                                           if (!isNaN(Number(e.target.value))) onGoToServerPage(Number(e.target.value))
                                        }}
                                        className="form-control form-control-sm w-auto border-3 ms-2"/>
                             </>
