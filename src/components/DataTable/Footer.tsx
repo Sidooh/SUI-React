@@ -82,8 +82,7 @@ const Footer = ({
                             <span className="mx-2 border-end">&nbsp;</span>
                             <b>{currentServerPage} of {serverPageCount}</b>
                             <span className="mx-1 border-end">&nbsp;</span>
-                            <FormSelect size="sm" className="w-auto border-0"
-                                        value={serverPageSize}
+                            <FormSelect size="sm" className="w-auto border-0" value={serverPageSize}
                                         onChange={(e: ChangeEvent<HTMLSelectElement>) => onSetServerPageSize && onSetServerPageSize(Number(e.target.value))}>
                                 {[50, 100, 200, 500, 1000].map(pageSize => (
                                     <option key={pageSize} value={pageSize}>{pageSize}</option>
