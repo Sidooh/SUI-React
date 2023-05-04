@@ -98,7 +98,7 @@ const Footer = ({
                                            const page = Number(e.target.value)
                                            setServerPage(page)
 
-                                           if (!isNaN(page) || page < 1 || page > serverPageCount) onGoToServerPage(Number(e.target.value))
+                                           if (!isNaN(page)) onGoToServerPage(page)
                                        }}
                                        className="form-control form-control-sm w-auto border-3 ms-2"/>
                             </>
