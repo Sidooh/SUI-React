@@ -34,6 +34,7 @@ export interface DataTableProps {
     onRefetch?: () => void;
     onViewAll?: MouseEventHandler<HTMLButtonElement>;
     serverTotal?: number,
+    serverPageSize?: number,
     serverPageCount?: number,
     currentServerPage?: number,
     onPreviousServerPage?: () => void,
@@ -62,6 +63,7 @@ const DataTable = ({
     onViewAll,
     onRefetch,
     serverTotal,
+    serverPageSize,
     serverPageCount,
     currentServerPage,
     onPreviousServerPage,
@@ -201,6 +203,7 @@ const DataTable = ({
                     rowSelection={rowSelection}
                     onViewAll={onViewAll}
                     serverTotal={serverTotal}
+                    serverPageSize={serverPageSize}
                     serverPageCount={serverPageCount}
                     currentServerPage={currentServerPage}
                     onPreviousServerPage={onPreviousServerPage}
