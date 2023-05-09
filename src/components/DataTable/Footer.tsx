@@ -120,9 +120,9 @@ const Footer = ({
                         <b>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</b>
                         <span className="mx-1 border-end">&nbsp;</span>
                         <span>Total: <b>{table.getCoreRowModel().rows.length.toLocaleString()}</b></span>
-                        <span className="mx-1 border-end">&nbsp;</span>
                         {table.getPageCount() > 3 && (
                             <>
+                                <span className="mx-1 border-end">&nbsp;</span>
                                 <span className="flex items-center gap-1">Go to pg</span>
                                 <input type="number" value={table.getState().pagination.pageIndex + 1}
                                        onChange={(e) => goToPage(e)}
