@@ -117,6 +117,8 @@ const Footer = ({
                 <Col
                     className={`d-flex align-items-center ${hasServerPagination ? 'justify-content-md-end' : 'justify-content-between'} fs--1`}>
                     <div className={'d-flex align-items-center'}>
+                        <b>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</b>
+                        <span className="mx-1 border-end">&nbsp;</span>
                         <span>Total: <b>{table.getCoreRowModel().rows.length.toLocaleString()}</b></span>
                         <span className="mx-1 border-end">&nbsp;</span>
                         {table.getPageCount() > 3 && (
@@ -126,10 +128,8 @@ const Footer = ({
                                        onChange={(e) => goToPage(e)}
                                        step="1" min="1" max={table.getPageCount()}
                                        className="form-control form-control-sm w-auto ms-1"/>
-                                <span className="mx-1 border-end"> &nbsp;</span>
                             </>
                         )}
-                        <b>{table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</b>
                     </div>
                     <div className={'d-flex align-items-center'}>
                         <span className="mx-1 border-end">&nbsp;</span>
