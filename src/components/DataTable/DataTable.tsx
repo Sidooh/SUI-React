@@ -1,215 +1,223 @@
-import { MouseEventHandler, useMemo, useState } from 'react';
 import {
     ColumnDef,
     ColumnFiltersState,
     FilterFn,
     flexRender,
     getCoreRowModel,
-    getFacetedMinMaxValues,
     getFacetedRowModel,
     getFacetedUniqueValues,
     getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
+    RowSelectionState,
     SortingState,
-    useReactTable
+    useReactTable,
 } from '@tanstack/react-table';
-import { Col, Row, Table } from 'react-bootstrap';
-import DebouncedInput from './DebouncedInput';
+import { DataTableDefaultProps, FacetedFilterType } from '@/lib/types';
+import { useMemo, useState } from 'react';
 import { rankItem } from '@tanstack/match-sorter-utils';
-import Filter from './Filter';
-import IndeterminateCheckbox from './IndeterminateCheckbox';
-import Header from './Header';
-import Footer from './Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
-import { ThreeDots } from "../../utils/svg-loaders";
+import { Card, CardTitle } from '@/components/ui/card';
+import DataTableToolbar from './DataTableToolbar';
+import { Input } from '@/components/ui/input';
+import { ThreeDots } from '@/lib/svgs';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { CaretDownIcon, CaretSortIcon, CaretUpIcon } from '@radix-ui/react-icons';
+import DataTableColumnFilter from '@/components/DataTable/DataTableColumnFilter';
+import { DataTablePagination } from '@/components/DataTable/DataTablePagination';
 
-export interface DataTableProps {
-    title: string;
-    data: any[];
-    columns: ColumnDef<any>[];
-    reFetching?: boolean;
-    onCreateRow?: () => void;
-    onRefetch?: () => void;
-    onViewAll?: MouseEventHandler<HTMLButtonElement>;
-    serverTotal?: number,
-    serverPageSize?: number,
-    serverPageCount?: number,
-    currentServerPage?: number,
-    onPreviousServerPage?: () => void,
-    onNextServerPage?: () => void,
-    onGoToServerPage?: (page: number) => void
-    onSetServerPageSize?: (page: number) => void
+export interface DataTableProps<TData, TValue> extends DataTableDefaultProps {
+    columns: ColumnDef<TData, TValue>[];
+    currentServerPage?: number;
+    data: TData[];
+    facetedFilters?: FacetedFilterType[];
+    title?: string;
 }
 
-const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-    // Rank the item
-    const itemRank = rankItem(row.getValue(columnId), value);
-
-    // Store the ranking info
-    addMeta(itemRank);
-
-    // Return if the item should be filtered in/out
-    return itemRank.passed;
-};
-
-const DataTable = ({
+const DataTable = <TData, TValue>({
     title,
-    data = [],
-    columns = [],
-    reFetching = false,
-    onCreateRow,
-    onViewAll,
-    onRefetch,
-    serverTotal,
-    serverPageSize,
-    serverPageCount,
-    currentServerPage,
-    onPreviousServerPage,
-    onNextServerPage,
-    onGoToServerPage,
-    onSetServerPageSize
-}: DataTableProps) => {
-    const [columnVisibility, setColumnVisibility] = useState({});
-    const [rowSelection, setRowSelection] = useState({});
-    const [globalFilter, setGlobalFilter] = useState('');
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+    columns,
+    data,
+    facetedFilters,
+    isRefreshing = false,
+    onRefresh,
+}: DataTableProps<TData, TValue>) => {
     const [sorting, setSorting] = useState<SortingState>([]);
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+    const [globalFilter, setGlobalFilter] = useState('');
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
     const [filtering, setFiltering] = useState<boolean>(false);
 
+    const fuzzyFilter: FilterFn<TData> = (row, columnId, value, addMeta) => {
+        // Rank the item
+        const itemRank = rankItem(row.getValue(columnId), value);
+
+        // Store the ranking info
+        addMeta(itemRank);
+
+        // Return if the item should be filtered in/out
+        return itemRank.passed;
+    };
+
     const table = useReactTable({
-        data,
-        columns: useMemo(() => [
-            {
-                id: 'select',
-                header: ({ table }) => (
-                    <IndeterminateCheckbox {...{
-                        checked: table.getIsAllRowsSelected(),
-                        indeterminate: table.getIsSomeRowsSelected(),
-                        onChange: table.getToggleAllRowsSelectedHandler(),
-                    }}/>
-                ),
-                cell: ({ row }) => (
-                    <div className="px-1">
-                        <IndeterminateCheckbox {...{
-                            checked: row.getIsSelected(),
-                            indeterminate: row.getIsSomeSelected(),
-                            onChange: row.getToggleSelectedHandler(),
-                        }}/>
-                    </div>
-                ),
-            },
-            ...columns,
-        ], []),
         state: {
-            columnVisibility,
-            globalFilter,
-            columnFilters,
             sorting,
-            rowSelection
+            columnFilters,
+            globalFilter,
+            rowSelection,
         },
+
+        data,
+        columns: useMemo(
+            () => [
+                {
+                    id: 'select',
+                    header: ({ table }) => (
+                        <Checkbox
+                            className={'border-0 hover:border hover:border-gray-200'}
+                            checked={table.getIsSomeRowsSelected() ? 'indeterminate' : table.getIsAllRowsSelected()}
+                            onCheckedChange={(v) => table.toggleAllRowsSelected(!!v)}
+                        />
+                    ),
+                    cell: ({ row }) => (
+                        <div className="px-1">
+                            <Checkbox
+                                className={'border-0 hover:border hover:border-gray-200'}
+                                checked={row.getIsSomeSelected() ? 'indeterminate' : row.getIsSelected()}
+                                onCheckedChange={row.getToggleSelectedHandler()}
+                            />
+                        </div>
+                    ),
+                },
+                ...columns,
+            ],
+            [columns]
+        ),
+
+        enableRowSelection: true,
+        globalFilterFn: fuzzyFilter,
+
         onSortingChange: setSorting,
         onRowSelectionChange: setRowSelection,
-        onColumnVisibilityChange: setColumnVisibility,
         onGlobalFilterChange: setGlobalFilter,
         onColumnFiltersChange: setColumnFilters,
-        globalFilterFn: fuzzyFilter,
+
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
         getFacetedRowModel: getFacetedRowModel(),
         getFacetedUniqueValues: getFacetedUniqueValues(),
-        getFacetedMinMaxValues: getFacetedMinMaxValues(),
-        getCoreRowModel: getCoreRowModel(),
     });
 
     return (
-        <>
-            <Header table={table} rowSelection={rowSelection} filtering={filtering} setFiltering={setFiltering}
-                    title={title} onCreateRow={onCreateRow} reFetching={reFetching} onRefetch={onRefetch}/>
-            <Row>
-                <Col xs="auto" sm={6} lg={4}>
-                    <div className="search-box me-2 mb-2 d-inline-block">
-                        <div className="position-relative">
-                            <DebouncedInput type={'search'} value={globalFilter ?? ''}
-                                            onChange={value => setGlobalFilter(String(value))} placeholder="Search..."
-                                            label={'Search all columns...'}/>
-                            <i className="bx bx-search-alt search-icon"/>
-                        </div>
-                    </div>
-                </Col>
-            </Row>
-            <div className={'position-relative'}>
-                <div style={{
-                    zIndex: 2,
-                    backdropFilter: 'blur(10px)',
-                    opacity: reFetching ? 1 : 0,
-                    visibility: reFetching ? 'visible' : 'hidden',
-                    transition: 'opacity 1s, visibility 1s'
-                }}
-                     className={'position-absolute start-0 top-0 end-0 bottom-0 d-flex justify-content-center align-items-center'}>
-                    <div className={'text-center text-200'} style={{ fontFamily: 'Pacifico, cursive' }}>
-                        <p className={'fs-9 mb-0'}>One moment!</p>
-                        <ThreeDots fill={'#0F1B4C'}/>
-                        <p className={'fs-7'}>Please</p>
+        <Card className="rounded-md border-0 p-3 lg:p-6 space-y-3">
+            {title && (
+                <CardTitle className={'flex items-end flex-col'}>
+                    <p className="text-xs lg:text-base lg:px-3">{title}</p>
+                    <hr className={'w-1/2 lg:w-1/5 mt-1'} />
+                </CardTitle>
+            )}
+
+            <DataTableToolbar
+                table={table}
+                facetedFilters={facetedFilters}
+                filtering={filtering}
+                setFiltering={setFiltering}
+                onRefresh={onRefresh}
+                isRefreshing={isRefreshing}
+                globalFilter={
+                    <Input
+                        type={'search'}
+                        placeholder={'Filter columns...'}
+                        value={globalFilter ?? ''}
+                        onChange={(e) => setGlobalFilter(e.target.value)}
+                        className="h-8 w-[150px] lg:w-[250px]"
+                    />
+                }
+            />
+
+            <div className="relative">
+                <div
+                    style={{
+                        zIndex: 2,
+                        backdropFilter: 'blur(10px)',
+                        opacity: isRefreshing ? 1 : 0,
+                        visibility: isRefreshing ? 'visible' : 'hidden',
+                        transition: 'opacity 1s, visibility 1s',
+                    }}
+                    className={'absolute start-0 top-0 end-0 bottom-0 flex justify-center items-center'}
+                >
+                    <div className={'text-center text-muted-foreground'} style={{ fontFamily: 'Pacifico, cursive' }}>
+                        <ThreeDots fill={'#0F1B4C'} />
                     </div>
                 </div>
+
                 <Table>
-                    <thead>
-                    {table.getHeaderGroups().map((headerGroup, i) => (
-                        <tr key={`thead-tr-${i}`}>
-                            {headerGroup.headers.map((header, j) => (
-                                <th key={`thead-th-${j}`} colSpan={header.colSpan}>
-                                    {!header.isPlaceholder && (
-                                        <>
-                                            <div {...{
-                                                className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
-                                                onClick: header.column.getToggleSortingHandler(),
-                                            }}>
-                                                {flexRender(header.column.columnDef.header, header.getContext())}
-                                                {header.column.getCanSort() && (
-                                                    {
-                                                        asc: <FontAwesomeIcon className={'ms-2'} icon={faSortUp}/>,
-                                                        desc: <FontAwesomeIcon className={'ms-2'} icon={faSortDown}/>
-                                                    }[header.column.getIsSorted() as string] ??
-                                                    <FontAwesomeIcon className={'ms-2'} icon={faSort}/>
+                    <TableHeader>
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <TableRow key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <TableHead key={header.id}>
+                                        {!header.isPlaceholder && (
+                                            <>
+                                                <div
+                                                    className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80 cursor-pointer"
+                                                    onClick={header.column.getToggleSortingHandler()}
+                                                >
+                                                    <span className={'font-bold text-xs md:text-sm'}>
+                                                        {flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext()
+                                                        )}
+                                                    </span>
+                                                    {header.column.getCanSort() &&
+                                                        ({
+                                                            asc: <CaretUpIcon className="ml-2 h-4 w-4" />,
+                                                            desc: <CaretDownIcon className="ml-2 h-4 w-4" />,
+                                                        }[header.column.getIsSorted() as string] ?? (
+                                                            <CaretSortIcon className="ml-2 h-4 w-4" />
+                                                        ))}
+                                                </div>
+
+                                                {filtering && header.column.getCanFilter() && (
+                                                    <DataTableColumnFilter table={table} column={header.column} />
                                                 )}
-                                            </div>
-                                            {filtering && header.column.getCanFilter() && (
-                                                <div><Filter column={header.column} table={table}/></div>
-                                            )}
-                                        </>
-                                    )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                    </thead>
-                    <tbody>
-                    {table.getRowModel().rows.map((row, i) => (
-                        <tr key={`tbody-tr-${i}`}>
-                            {row.getVisibleCells().map((cell, j) => (
-                                <td key={`tbody-td-${j}`} className={'py-1'}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                    </tbody>
+                                            </>
+                                        )}
+                                    </TableHead>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableHeader>
+                    <TableBody>
+                        {table.getRowModel().rows?.length ? (
+                            table.getRowModel().rows.map((row) => (
+                                <TableRow
+                                    key={row.id}
+                                    data-state={row.getIsSelected() && 'selected'}
+                                    className={'border-muted'}
+                                >
+                                    {row.getVisibleCells().map((cell) => (
+                                        <TableCell key={cell.id} className={'text-xs md:text-sm'}>
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
+                                    No results.
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
                 </Table>
             </div>
-            <Footer table={table}
-                    onViewAll={onViewAll}
-                    serverTotal={serverTotal}
-                    serverPageSize={serverPageSize}
-                    serverPageCount={serverPageCount}
-                    currentServerPage={currentServerPage}
-                    onPreviousServerPage={onPreviousServerPage}
-                    onNextServerPage={onNextServerPage}
-                    onGoToServerPage={onGoToServerPage}
-                    onSetServerPageSize={onSetServerPageSize}/>
-        </>
+
+            <DataTablePagination table={table} />
+        </Card>
     );
 };
 

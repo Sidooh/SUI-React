@@ -1,40 +1,40 @@
-import { memo } from 'react';
-import classNames from 'classnames';
+import { cn } from '@/lib/utils';
 
 type LogoType = {
-    src: string,
-    serviceName?: string,
-    at?: 'navbar-vertical' | 'navbar-top' | 'auth',
-    width?: number
-    className?: string,
-    textClass?: string
-}
+    src: string;
+    serviceName?: string;
+    at?: 'navbar-vertical' | 'navbar-top' | 'auth';
+    width?: number;
+    className?: string;
+};
 
-const Logo = ({ src, at = 'auth', width = 78, className, textClass, serviceName, ...rest }: LogoType) => {
+const Logo = ({ src, at = 'auth', width = 78, className, serviceName }: LogoType) => {
     return (
-        <a href="/" className={classNames(
-            'text-decoration-none',
-            { 'navbar-brand text-left': ['navbar-vertical', 'navbar-top'].includes(at) }
-        )} {...rest}>
-            <div className={classNames(
-                'd-flex', {
-                    'align-items-center py-3': at === 'navbar-vertical',
-                    'align-items-center': at === 'navbar-top',
-                    'flex-center fw-bolder fs-5 mb-4': at === 'auth',
-                    'flex-column': serviceName
+        <div
+            className={cn(
+                'flex',
+                {
+                    'items-center py-3': at === 'navbar-vertical',
+                    'items-center': at === 'navbar-top',
+                    'flex-col': serviceName,
                 },
                 className
-            )}>
-                <img className="me-2" src={src} alt="Logo" width={width}/>
-                {serviceName && <h6 style={{
-                    fontFamily: "'Avenir Regular', sans-serif",
-                    fontWeight: 'bolder',
-                    margin: `-.${width * .4}rem 0 0`,
-                    fontSize: `${width * .1}pt`
-                }}>{serviceName}</h6>}
-            </div>
-        </a>
+            )}
+        >
+            <img className="me-2" src={src} alt="Logo" width={width} />
+            {serviceName && (
+                <h6
+                    className={`font-extrabold text-[${width * 0.1}pt]`}
+                    style={{
+                        fontFamily: "'Avenir Regular', sans-serif",
+                        margin: `-.${width * 0.4}rem 0 0`,
+                    }}
+                >
+                    {serviceName}
+                </h6>
+            )}
+        </div>
     );
 };
 
-export default memo(Logo);
+export default Logo;

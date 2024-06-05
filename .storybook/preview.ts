@@ -1,19 +1,16 @@
 import type { Preview } from "@storybook/react";
 
-import '../src/assets/css/theme.css';
-import '../src/assets/css/sidooh-theme.css';
-import '../src/assets/css/user.css';
+import '../src/assets/css/global.css';
 
 const preview: Preview = {
-    parameters: {
-        actions: { argTypesRegex: "^on[A-Z].*" },
-        controls: {
-            matchers: {
-                color: /(background|color)$/i,
-                date: /Date$/,
-            },
-        },
+  parameters: {
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
     },
+  },
 };
 
 export default preview;

@@ -1,17 +1,15 @@
 import {
     Component,
     ComponentType,
-    ErrorInfo,
     FunctionComponent,
     isValidElement,
     PropsWithChildren,
     PropsWithRef,
-    ReactElement
-} from "react";
-
+    ReactElement,
+} from 'react';
 
 const changedArray = (a: Array<unknown> = [], b: Array<unknown> = []) =>
-    a.length !== b.length || a.some((item, index) => !Object.is(item, b[index]))
+    a.length !== b.length || a.some((item, index) => !Object.is(item, b[index]));
 
 interface FallbackProps {
     error: Error;
@@ -19,10 +17,7 @@ interface FallbackProps {
 }
 
 interface ErrorBoundaryPropsWithComponent {
-    onResetKeysChange?: (
-        prevResetKeys: Array<unknown> | undefined,
-        resetKeys: Array<unknown> | undefined,
-    ) => void;
+    onResetKeysChange?: (prevResetKeys: Array<unknown> | undefined, resetKeys: Array<unknown> | undefined) => void;
     onReset?: (...args: Array<unknown>) => void;
     onError?: (error: Error, info: { componentStack: string }) => void;
     resetKeys?: Array<unknown>;
@@ -32,15 +27,11 @@ interface ErrorBoundaryPropsWithComponent {
 }
 
 declare function FallbackRender(
-    props: FallbackProps,
-): ReactElement<unknown,
-    string | FunctionComponent | typeof Component> | null
+    props: FallbackProps
+): ReactElement<unknown, string | FunctionComponent | typeof Component> | null;
 
 interface ErrorBoundaryPropsWithRender {
-    onResetKeysChange?: (
-        prevResetKeys: Array<unknown> | undefined,
-        resetKeys: Array<unknown> | undefined,
-    ) => void;
+    onResetKeysChange?: (prevResetKeys: Array<unknown> | undefined, resetKeys: Array<unknown> | undefined) => void;
     onReset?: (...args: Array<unknown>) => void;
     onError?: (error: Error, info: { componentStack: string }) => void;
     resetKeys?: Array<unknown>;
@@ -50,15 +41,11 @@ interface ErrorBoundaryPropsWithRender {
 }
 
 interface ErrorBoundaryPropsWithFallback {
-    onResetKeysChange?: (
-        prevResetKeys: Array<unknown> | undefined,
-        resetKeys: Array<unknown> | undefined,
-    ) => void;
+    onResetKeysChange?: (prevResetKeys: Array<unknown> | undefined, resetKeys: Array<unknown> | undefined) => void;
     onReset?: (...args: Array<unknown>) => void;
     onError?: (error: Error, info: { componentStack: string }) => void;
     resetKeys?: Array<unknown>;
-    fallback: ReactElement<unknown,
-        string | FunctionComponent | typeof Component> | null;
+    fallback: ReactElement<unknown, string | FunctionComponent | typeof Component> | null;
     FallbackComponent?: never;
     fallbackRender?: never;
 }
@@ -66,16 +53,18 @@ interface ErrorBoundaryPropsWithFallback {
 type ErrorBoundaryProps =
     | ErrorBoundaryPropsWithFallback
     | ErrorBoundaryPropsWithComponent
-    | ErrorBoundaryPropsWithRender
+    | ErrorBoundaryPropsWithRender;
 
-type ErrorBoundaryState = { error: Error | null }
+type ErrorBoundaryState = { error: Error | null };
 
-const initialState: ErrorBoundaryState = {error: null}
+const initialState: ErrorBoundaryState = { error: null };
 
-export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<ErrorBoundaryProps>>,
-    ErrorBoundaryState> {
+export default class ErrorBoundary extends Component<
+    PropsWithRef<PropsWithChildren<ErrorBoundaryProps>>,
+    ErrorBoundaryState
+> {
     static getDerivedStateFromError(error: Error) {
-        return {error};
+        return { error };
     }
 
     state = initialState;
@@ -88,16 +77,13 @@ export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<Erro
         this.setState(initialState);
     }
 
-    componentDidCatch(error: Error, info: ErrorInfo) {
+    componentDidCatch(error: Error, info: { componentStack: string }) {
         this.props.onError?.(error, info);
     }
 
-    componentDidUpdate(
-        prevProps: ErrorBoundaryProps,
-        prevState: ErrorBoundaryState,
-    ) {
-        const {error} = this.state;
-        const {resetKeys} = this.props;
+    componentDidUpdate(prevProps: ErrorBoundaryProps, prevState: ErrorBoundaryState) {
+        const { error } = this.state;
+        const { resetKeys } = this.props;
 
         // There's an edge case where if the thing that triggered the error
         // happens to *also* be in the resetKeys array, we'd end up resetting
@@ -106,20 +92,16 @@ export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<Erro
         // So we make sure that we don't check the resetKeys on the first call
         // of cDU after the error is set
 
-        if (
-            error !== null &&
-            prevState.error !== null &&
-            changedArray(prevProps.resetKeys, resetKeys)
-        ) {
+        if (error !== null && prevState.error !== null && changedArray(prevProps.resetKeys, resetKeys)) {
             this.props.onResetKeysChange?.(prevProps.resetKeys, resetKeys);
             this.reset();
         }
     }
 
     render() {
-        const {error} = this.state;
+        const { error } = this.state;
 
-        const {fallbackRender, FallbackComponent, fallback} = this.props;
+        const { fallbackRender, FallbackComponent, fallback } = this.props;
 
         if (error !== null) {
             const props = {
@@ -134,7 +116,7 @@ export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<Erro
                 return <FallbackComponent {...props} />;
             } else {
                 throw new Error(
-                    'react-error-boundary requires either a fallback, fallbackRender, or FallbackComponent prop',
+                    'react-error-boundary requires either a fallback, fallbackRender, or FallbackComponent prop'
                 );
             }
         }
@@ -149,4 +131,4 @@ export type {
     ErrorBoundaryPropsWithRender,
     ErrorBoundaryPropsWithFallback,
     ErrorBoundaryProps,
-}
+};

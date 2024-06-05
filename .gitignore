@@ -114,3 +114,4 @@ dist
 .pnp.*
 
 y.hide
+*storybook.log

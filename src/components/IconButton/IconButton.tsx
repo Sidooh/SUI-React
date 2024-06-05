@@ -1,105 +1,42 @@
-import styled, { css } from 'styled-components';
-import { Color } from 'react-bootstrap/types';
-import { CSSProperties, forwardRef, MouseEventHandler, ReactNode } from "react";
-import { Spinner } from "react-bootstrap";
+import { forwardRef, ReactNode } from 'react';
+import { Button, ButtonProps } from '@/components/ui/button';
+import { IconType } from 'react-icons';
+import { cn } from '@/lib';
+import * as React from 'react';
+import { IconProps } from '@radix-ui/react-icons/dist/types';
 
-export interface IconButtonProps {
-    type?: "button" | "submit" | "reset";
-    className?: string;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    disabled?: boolean;
-    children: ReactNode;
-    size?: "sm" | 'md' | "lg";
-    color?: Color;
-    style?: CSSProperties;
-    loading?: boolean;
-    shadow?: 'none' | 'sm' | 'lg'
+interface IconButtonProps extends ButtonProps {
+    icon?: IconType | React.ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
+    iconSize?: string | number;
+    dimensions?: string | number;
+    children?: ReactNode;
 }
 
-type IconButtonRootProps = {
-    ref: any
-    color: Color
-    size: "sm" | 'md' | "lg"
-    loading?: string;
-}
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+    (
+        {
+            icon: Icon,
 
-const IconButtonRoot = styled.button<IconButtonRootProps>`
-  background-color: transparent;
-  color: var(--sidooh-${({ color }) => color}) !important;
-  flex: 0 0 auto;
-  text-align: center;
-  border-radius: 50%;
-  overflow: visible;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  border: none;
-  outline: none;
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  margin: 0;
-  cursor: pointer;
-  vertical-align: middle;
+            className,
+            iconSize,
+            dimensions,
+            children,
+            ...props
+        },
+        ref
+    ) => (
+        <Button
+            ref={ref}
+            size={'icon'}
+            className={cn(`rounded-full`, className)}
+            style={{ width: dimensions, height: dimensions }}
+            {...props}
+        >
+            {Icon ? <Icon size={iconSize} /> : children}
+        </Button>
+    )
+);
 
-  &:hover {
-    background-color: rgba(var(--sidooh-${({ color }) => color}-rgb), .2);
-  }
-
-  ${({ size }) => {
-    switch (size) {
-      case 'sm':
-        return css`
-          padding: 7px;
-          font-size: .9rem;
-        `;
-      case 'lg':
-        return css`
-          padding: 12px;
-          font-size: 1.5rem;
-        `;
-      default:
-        return css`
-          padding: 7px;
-          font-size: 1.125rem;
-        `;
-    }
-  }}
-
-  ${({ loading }) => loading === 'true' && `
-    position: relative;
-
-    & > span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  `}
-`;
-
-const IconButton = forwardRef(function IconButton({
-    type,
-    size = 'md',
-    className,
-    onClick,
-    disabled = false,
-    children,
-    color = 'primary',
-    loading = false,
-    style,
-    shadow = 'none'
-}: IconButtonProps, ref) {
-    return (
-        <IconButtonRoot ref={ref} type={type} className={`btn ${className}`}
-                        onClick={onClick} disabled={disabled} style={style} color={color} size={size}
-                        loading={loading.toString()}>
-            {loading ? (
-                <Spinner animation="border" size="sm" variant={color}/>
-            ) : children}
-        </IconButtonRoot>
-    );
-});
+IconButton.displayName = 'IconButton';
 
 export default IconButton;

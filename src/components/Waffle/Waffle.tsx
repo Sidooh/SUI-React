@@ -1,92 +1,52 @@
-import { useEffect, useState } from 'react';
-import classNames from 'classnames';
-import { Card, Col, Dropdown, Row } from 'react-bootstrap';
-import SimpleBarReact from 'simplebar-react';
-// import 'simplebar/dist/simplebar.min.css';
-import Avatar from '../Avatar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import waffle from '@/assets/images/waffle.svg';
 
-export type WaffleLink = {
-    avatar?: string
-    avatarText?: string
-    title?: string
-    link?: string
-    img?: string
-    hr?: boolean
-    contentClass?: string
-    enabled?: boolean
-}
-
-export interface WaffleProps {
-    links: WaffleLink[];
+interface WaffleProps {
+    links: { avatarText: string; title: string; link: string; className?: string; disabled?: boolean }[];
 }
 
 const Waffle = ({ links }: WaffleProps) => {
-    const [show, setShow] = useState<boolean>(false);
-
-    useEffect(() => {
-        window.addEventListener('scroll', () => window.innerWidth < 1200 && setShow(false));
-    }, []);
-
     return (
-        <Dropdown navbar={true} as="li" show={show} onToggle={() => setShow(!show)}>
-            <Dropdown.Toggle bsPrefix="toggle" as={'a'} className="nav-link fa-icon-wait nine-dots p-1 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="37" viewBox="0 0 16 16" fill="none">
-                    <circle cx="2" cy="2" r="2" fill="#6C6E71"/>
-                    <circle cx="2" cy="8" r="2" fill="#6C6E71"/>
-                    <circle cx="2" cy="14" r="2" fill="#6C6E71"/>
-                    <circle cx="8" cy="8" r="2" fill="#6C6E71"/>
-                    <circle cx="8" cy="14" r="2" fill="#6C6E71"/>
-                    <circle cx="14" cy="8" r="2" fill="#6C6E71"/>
-                    <circle cx="14" cy="14" r="2" fill="#6C6E71"/>
-                    <circle cx="8" cy="2" r="2" fill="#6C6E71"/>
-                    <circle cx="14" cy="2" r="2" fill="#6C6E71"/>
-                </svg>
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu className="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-caret-bg" show={show}>
-                <Card className="shadow-none">
-                    <SimpleBarReact className="nine-dots-dropdown">
-                        <Card.Body className={'px-3'}>
-                            <Row className="text-center g-0">
-                                {links.map((item, index) => (
-                                    <WaffleLinkItem key={index} {...item} />
-                                ))}
-                                <Col xs={12}>
-                                    <a href="#" className="btn btn-outline-primary btn-sm mt-4">Show more</a>
-                                </Col>
-                            </Row>
-                        </Card.Body>
-                    </SimpleBarReact>
-                </Card>
-            </Dropdown.Menu>
-        </Dropdown>
-    );
-};
-
-const WaffleLinkItem = ({ avatar, avatarText, img, title, link, hr, enabled = false }: WaffleLink) => {
-    return (
-        <>
-            {hr ? (
-                <Col xs={12}>
-                    <hr className="my-3 mx-n3 bg-200"/>
-                </Col>
-            ) : (
-                 <Col xs={4}>
-                     <a href={enabled ? link : undefined} target={'_blank'} rel="noopener noreferrer"
-                        className={`d-block ${!enabled ? 'bg-100 ' : 'hover-bg-200 cursor-pointer rounded-3'} px-2 py-3 text-center text-decoration-none`}>
-                         {avatar && <Avatar src={avatar} size="2xl"/>}
-                         {avatarText && (
-                             <Avatar isExact name={avatarText} size="2xl"
-                                     mediaClass={`fs-2 ${enabled ? 'bg-soft-primary text-800' : 'bg-soft-secondary text-400'}`}/>
-                         )}
-                         {img && <img src={img} width={40} height={40} alt={''}/>}
-                         <p className={classNames(`mb-0 fw-medium text-${enabled ? '800' : '400'} text-truncate fs--2`, { 'pt-1': img })}>
-                             {title}
-                         </p>
-                     </a>
-                 </Col>
-             )}
-        </>
+        <Popover>
+            <PopoverTrigger asChild>
+                <Button size="icon" variant={'ghost'} className={'rounded-full'}>
+                    <img src={waffle} alt="" width={15} height={15} />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-72">
+                <ScrollArea>
+                    <div className="grid grid-cols-3 gap-y-3">
+                        {links.map((l) => (
+                            <a
+                                key={l.title}
+                                href={l.link}
+                                className={cn('space-y-2 py-2 rounded-lg', {
+                                    'hover:bg-primary/10': !l.disabled,
+                                })}
+                                target={'_blank'}
+                                rel="noreferrer"
+                            >
+                                <Avatar className={'mx-auto'}>
+                                    <AvatarFallback className={cn(l.className)}>{l.avatarText}</AvatarFallback>
+                                </Avatar>
+                                <p
+                                    className={cn(`mb-0 font-medium text-truncate text-xs text-center`, {
+                                        'text-gray-800': !l.disabled,
+                                        'text-gray-400': l.disabled,
+                                    })}
+                                >
+                                    {l.title}
+                                </p>
+                            </a>
+                        ))}
+                    </div>
+                </ScrollArea>
+            </PopoverContent>
+        </Popover>
     );
 };
 
