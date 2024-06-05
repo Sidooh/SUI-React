@@ -236,3 +236,18 @@ export const getErrorMsg = (e: FetchBaseQueryError | SerializedError) => {
 
     return 'Something went wrong';
 };
+
+export const colors = [
+    '#2c7be5',
+    '#00d97e',
+    '#e63757',
+    '#39afd1',
+    '#fd7e14',
+    '#02a8b5',
+    '#727cf5',
+    '#6b5eae',
+    '#ff679b',
+    '#f6c343',
+];
+
+export const rgbaColor = (color = colors[0], alpha = 0.5) => `rgba(${hexToRgb(color)},${alpha})`;
