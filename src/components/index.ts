@@ -1,5 +1,6 @@
 export { default as DataTable } from './DataTable';
 export { default as SubmitButton } from './SubmitButton';
+export { default as IconButton } from './IconButton';
 export { default as Logo } from './Logo';
 export { default as TableDate } from './TableDate';
 export { default as Tooltip } from './Tooltip';
