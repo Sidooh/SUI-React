@@ -7,6 +7,8 @@ import moment from 'moment';
 import withReactContent from 'sweetalert2-react-content';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 import pluralize from 'pluralize';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -203,4 +205,34 @@ export const chartGradient = (rgbColor: number[]) => {
     gradient?.addColorStop(1, `rgba(${rgb}, 0)`);
 
     return gradient;
+};
+
+/**
+ * Type predicate to narrow an unknown error to `FetchBaseQueryError`
+ */
+export function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
+    return typeof error === 'object' && error != null && 'status' in error;
+}
+/**
+ * Type predicate to narrow an unknown error to an object with a string 'message' property
+ */
+export function isErrorWithMessage(error: unknown): error is { message: string } {
+    return typeof error === 'object' && error != null && 'message' in error && typeof error.message === 'string';
+}
+
+export const getErrorMsg = (e: FetchBaseQueryError | SerializedError) => {
+    if (isFetchBaseQueryError(e)) {
+        if ('data' in e) {
+            if ('message' in (e.data as object)) {
+                return (e as { data: { message: string } }).data.message;
+            }
+        }
+        if (e.status === 'FETCH_ERROR') {
+            return 'It seems the server is down😞 please try again later.';
+        }
+    } else if (isErrorWithMessage(e)) {
+        return e.message;
+    }
+
+    return 'Something went wrong';
 };
