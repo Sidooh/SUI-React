@@ -5,7 +5,7 @@ export { default as TableDate } from './TableDate';
 export { default as Tooltip } from './Tooltip';
 export { default as Waffle } from './Waffle';
 export { default as PageLoader } from './PageLoader';
-export * from './Phone';
+export { default as Phone } from './Phone';
 export { default as ThemeProvider } from './ThemeProvider';
 
 export { ErrorBoundary, ErrorFallback } from './Error';
