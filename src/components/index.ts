@@ -6,6 +6,6 @@ export { default as Tooltip } from './Tooltip';
 export { default as Waffle } from './Waffle';
 export { default as PageLoader } from './PageLoader';
 export * from './Phone';
-export * from './ThemeProvider';
+export { default as ThemeProvider } from './ThemeProvider';
 
 export { ErrorBoundary, ErrorFallback } from './Error';
