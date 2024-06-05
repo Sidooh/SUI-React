@@ -1927,6 +1927,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@hookform/resolvers@npm:3.5.0"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 10/7a9a6534f345d51582489067cd6e4d94578da501190c37fa299104b5d4bb4351e88f30cdea82d51de45da1bfcdc8f5272bbfb61ff30942d0d70747373cbe8e29
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -2032,6 +2041,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": "npm:^6.2.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.2.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@hookform/resolvers": "npm:^3.5.0"
     "@radix-ui/react-avatar": "npm:^1.0.4"
     "@radix-ui/react-checkbox": "npm:^1.0.4"
     "@radix-ui/react-dialog": "npm:^1.0.5"
@@ -2064,14 +2074,18 @@ __metadata:
     clsx: "npm:^2.1.1"
     cmdk: "npm:^1.0.0"
     dequal: "npm:^2.0.3"
+    input-otp: "npm:^1.2.4"
     moment: "npm:^2.29.4"
+    next-themes: "npm:^0.3.0"
     pluralize: "npm:^8.0.0"
     postcss: "npm:^8.4.38"
     prettier: "npm:3.3.0"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-hook-form: "npm:^7.51.5"
     react-icons: "npm:^4.8.0"
+    sonner: "npm:^1.4.41"
     storybook: "npm:^8.1.5"
     sweetalert2: "npm:^11.7.3"
     sweetalert2-react-content: "npm:^5.0.7"
@@ -2080,6 +2094,7 @@ __metadata:
     tailwindcss-animate: "npm:^1.0.7"
     typescript: "npm:^5.0.4"
     vite: "npm:^4.3.1"
+    zod: "npm:^3.23.8"
   peerDependencies:
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -6654,6 +6669,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"input-otp@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "input-otp@npm:1.2.4"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  checksum: 10/dde21c35334864f0add026f6a66e87eac572278c24edb72c97ba9541e5133f3d6750a4230b9a9c6093f4bd84633e4e417c8849ef844a565834392b9119b4110f
+  languageName: node
+  linkType: hard
+
 "internal-slot@npm:^1.0.4":
   version: 1.0.7
   resolution: "internal-slot@npm:1.0.7"
@@ -7689,6 +7714,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"next-themes@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "next-themes@npm:0.3.0"
+  peerDependencies:
+    react: ^16.8 || ^17 || ^18
+    react-dom: ^16.8 || ^17 || ^18
+  checksum: 10/4285c4969eac517ad7addd773bcb71e7d14bc6c6e3b24eb97b80a6e06ac03fb6cb345e75dfb448156d14430d06289948eb8cfdeb52402ca7ce786093d01d2878
+  languageName: node
+  linkType: hard
+
 "node-dir@npm:^0.1.17":
   version: 0.1.17
   resolution: "node-dir@npm:0.1.17"
@@ -8551,6 +8586,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.51.5":
+  version: 7.51.5
+  resolution: "react-hook-form@npm:7.51.5"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 10/f4ff77989202b1faf2dede7a7730210635a6225189dcaeaeb191cea12422bcb97d2adfef0712c50d13bf5c5e14b8debc00fbba16491f86a6d24945a52cacfa59
+  languageName: node
+  linkType: hard
+
 "react-icons@npm:^4.8.0":
   version: 4.12.0
   resolution: "react-icons@npm:4.12.0"
@@ -9153,6 +9197,16 @@ __metadata:
     ip-address: "npm:^9.0.5"
     smart-buffer: "npm:^4.2.0"
   checksum: 10/ffcb622c22481dfcd7589aae71fbfd71ca34334064d181df64bf8b7feaeee19706aba4cffd1de35cc7bbaeeaa0af96be2d7f40fcbc7bc0ab69533a7ae9ffc4fb
+  languageName: node
+  linkType: hard
+
+"sonner@npm:^1.4.41":
+  version: 1.4.41
+  resolution: "sonner@npm:1.4.41"
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 10/f300db8b2603e72fad94d895935c17f13c93b91396333a7f77f028c1d0f605d9929ea0c36ead1df0b4ded66dfaa7a20c58cd9bd31b70f6efcd0fbcce91e4487f
   languageName: node
   linkType: hard
 
@@ -10256,5 +10310,12 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: 10/f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.23.8":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 10/846fd73e1af0def79c19d510ea9e4a795544a67d5b34b7e1c4d0425bf6bfd1c719446d94cdfa1721c1987d891321d61f779e8236fde517dc0e524aa851a6eff1
   languageName: node
   linkType: hard
