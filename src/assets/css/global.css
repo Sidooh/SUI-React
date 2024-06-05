@@ -82,20 +82,6 @@
   box-sizing: border-box;
 }
 
-.divider-content-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  transform: translate(-50%) translateY(-50%);
-  padding-left: .5rem;
-  padding-right: .5rem;
-  background-color: #edf2f9;
-  font-size: .8333333333rem;
-  color: #9da9bb;
-  white-space: nowrap;
-}
-
 .bg-card-holder {
   background-size: contain;
   background-position: right;
