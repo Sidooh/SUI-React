@@ -8,4 +8,6 @@ export { default as PageLoader } from './PageLoader';
 export { default as Phone } from './Phone';
 export { default as ThemeProvider } from './ThemeProvider';
 
+export * from './ui';
+
 export { ErrorBoundary, ErrorFallback } from './Error';
