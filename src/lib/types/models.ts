@@ -261,3 +261,19 @@ export type ProductAccount = Model & {
     priority: number;
     account: Account;
 };
+
+export type SubscriptionType = Model & {
+    title: string;
+    price: number;
+    duration: number;
+    period: string;
+};
+
+export type Subscription = Model & {
+    amount: number;
+    start_date: string;
+    end_date: string;
+    account: Account;
+    status: Status;
+    subscription_type: SubscriptionType;
+};
