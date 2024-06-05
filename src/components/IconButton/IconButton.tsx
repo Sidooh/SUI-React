@@ -1,8 +1,8 @@
+import * as React from 'react';
 import { forwardRef, ReactNode } from 'react';
-import { Button, ButtonProps } from '@/components/ui/button';
+import { Button, ButtonProps } from '../ui/button';
 import { IconType } from 'react-icons';
 import { cn } from '@/lib';
-import * as React from 'react';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 
 interface IconButtonProps extends ButtonProps {
