@@ -213,3 +213,44 @@ export type MpesaB2BResponse = Model & {
     debit_party_public_name?: string;
     credit_party_public_name?: string;
 };
+
+export type TandaRequest = Model & {
+    request_id: number;
+    receipt_number: number;
+    amount: number;
+    provider: string;
+    message: string;
+    destination: string;
+    last_modified: string;
+    status: number;
+};
+
+export type SavingsTransaction = Model & {
+    savings_id: number;
+    amount: number;
+    description: string;
+    type: string;
+    status: Status;
+    transaction: ProductsTransaction;
+};
+
+export type ProductsTransaction = Model & {
+    status: Status;
+    description: string;
+    destination: string;
+    product_id: 1 | 2 | 3 | 4 | 5 | 6;
+    type: string;
+    amount: number;
+    charge: number;
+    payment?: Payment;
+    tanda_requests?: TandaRequest[];
+    savings_transaction?: SavingsTransaction;
+    account: Account;
+};
+
+export type Cashback = Model & {
+    amount: number;
+    type: string;
+    transaction?: ProductsTransaction;
+    account?: Account;
+};
