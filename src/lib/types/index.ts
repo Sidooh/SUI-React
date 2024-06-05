@@ -54,3 +54,8 @@ export type LoginRequest = {
     email: string;
     password: string;
 };
+
+export interface ApiResponse<T> {
+    status: string;
+    data: T;
+}
