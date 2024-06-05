@@ -254,3 +254,10 @@ export type Cashback = Model & {
     transaction?: ProductsTransaction;
     account?: Account;
 };
+
+export type ProductAccount = Model & {
+    provider: string;
+    account_number: number;
+    priority: number;
+    account: Account;
+};
