@@ -11,7 +11,7 @@ interface IconButtonProps extends ButtonProps {
     iconSize?: string | number;
     dimensions?: string | number;
     children?: ReactNode;
-    isLoading: boolean;
+    isLoading?: boolean;
 }
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
