@@ -1,7 +1,7 @@
 import Phone from '@/components/Phone/Phone';
 import { Account } from '@/lib/types/models';
 
-type UserAccountProps = { account?: Account,url?: string }
+type UserAccountProps = { account?: Account; url?: string };
 
 const SidoohAccount = ({ account, url }: UserAccountProps) => {
     if (!account) return <>-</>;

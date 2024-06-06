@@ -4,6 +4,7 @@ export { default as Logo } from './Logo';
 export { default as ModeToggle } from './ModeToggle';
 export { default as PageLoader } from './PageLoader';
 export { default as Phone } from './Phone';
+export { default as SidoohAccount } from './SidoohAccount';
 export { default as StatusBadge } from './StatusBadge';
 export { default as SubmitButton } from './SubmitButton';
 export { default as TableDate } from './TableDate';
