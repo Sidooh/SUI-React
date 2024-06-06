@@ -6,7 +6,7 @@ import TableDate from '@/components/TableDate';
 import Tooltip from '@/components/Tooltip';
 import IconButton from '@/components/IconButton/IconButton';
 import { MdReadMore } from 'react-icons/md';
-import UserAccount from '@/components/UserAccount/UserAccount';
+import SidoohAccount from '@/components/SidoohAccount/SidoohAccount';
 import { Account, User } from '@/lib/types/models';
 import { getRelativeDateAndTime } from '@/lib';
 
@@ -16,7 +16,7 @@ const columns: ColumnDef<TableData>[] = [
     {
         accessorKey: 'account',
         header: 'Account',
-        cell: ({ row: { original } }) => <UserAccount account={original.account} />,
+        cell: ({ row: { original } }) => <SidoohAccount account={original.account} />,
     },
     { header: 'Name', accessorKey: 'name' },
     { header: 'Age', accessorKey: 'age' },

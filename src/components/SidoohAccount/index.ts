@@ -1,1 +1,1 @@
-export { default } from './UserAccount';
+export { default } from './SidoohAccount';
