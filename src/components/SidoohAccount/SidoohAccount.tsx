@@ -9,7 +9,7 @@ const SidoohAccount = ({ account, url }: UserAccountProps) => {
     return (
         <p>
             {account?.user?.name} {account?.user?.name && <br />}
-            <a href={url} target={'_blank'} className={'text-sm'}>
+            <a href={url} target={'_blank'} className={'text-xs'}>
                 <Phone phone={account.phone} />
             </a>
         </p>
