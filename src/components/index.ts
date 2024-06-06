@@ -1,5 +1,6 @@
 export { default as DataTable } from './DataTable';
 export { default as IconButton } from './IconButton';
+export { default as Latency } from './Latency';
 export { default as Logo } from './Logo';
 export { default as ModeToggle } from './ModeToggle';
 export { default as PageLoader } from './PageLoader';
