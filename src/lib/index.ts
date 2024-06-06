@@ -1,3 +1,5 @@
+import './moment';
+
 export * from './utils';
 export * from './enums';
 export * from './chart-aid';
