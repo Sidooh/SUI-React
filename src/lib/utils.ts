@@ -9,6 +9,7 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
 import pluralize from 'pluralize';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
+import secureLocalStorage from 'react-secure-storage';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -251,3 +252,12 @@ export const colors = [
 ];
 
 export const rgbaColor = (color = colors[0], alpha = 0.5) => `rgba(${hexToRgb(color)},${alpha})`;
+
+export const getItemFromStore = (key: string, defaultValue?: string | boolean, store = secureLocalStorage) => {
+    try {
+        return JSON.parse(String(store.getItem(key))) || defaultValue;
+    } catch {
+        return store.getItem(key) || defaultValue;
+    }
+};
+export const setItemToStore = (key: string, payload: string, store = secureLocalStorage) => store.setItem(key, payload);
