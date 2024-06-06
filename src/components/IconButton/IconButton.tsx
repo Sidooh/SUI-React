@@ -4,7 +4,7 @@ import { Button, ButtonProps } from '../ui/button';
 import { IconType } from 'react-icons';
 import { cn } from '@/lib';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
-import { ReloadIcon } from '@radix-ui/react-icons';
+import { IoReload } from 'react-icons/io5';
 
 interface IconButtonProps extends ButtonProps {
     icon?: IconType | React.ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
@@ -23,7 +23,11 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             style={{ width: dimensions, height: dimensions }}
             {...props}
         >
-            {isLoading ? <ReloadIcon fontSize={iconSize} /> : <>{Icon ? <Icon size={iconSize} /> : children}</>}
+            {isLoading ? (
+                <IoReload size={iconSize} className={'animate-spin'} />
+            ) : (
+                <>{Icon ? <Icon size={iconSize} /> : children}</>
+            )}
         </Button>
     )
 );
