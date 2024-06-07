@@ -6,9 +6,9 @@ import TableDate from '@/components/TableDate';
 import Tooltip from '@/components/Tooltip';
 import IconButton from '@/components/IconButton/IconButton';
 import { MdReadMore } from 'react-icons/md';
-import SidoohAccount from '@/components/SidoohAccount/SidoohAccount';
 import { Account, User } from '@/lib/types/models';
 import { getRelativeDateAndTime } from '@/lib';
+import Phone from '../Phone';
 
 type TableData = { id: number; name: string; age: number; created_at: Date; updated_at: Date; account: Account };
 
@@ -16,7 +16,18 @@ const columns: ColumnDef<TableData>[] = [
     {
         accessorKey: 'account',
         header: 'Account',
-        cell: ({ row: { original } }) => <SidoohAccount account={original.account} />,
+        cell: ({
+            row: {
+                original: { account },
+            },
+        }) => (
+            <p>
+                {account?.user?.name} {account?.user?.name && <br />}
+                <a target={'_blank'} className={'text-xs'}>
+                    <Phone phone={account.phone} />
+                </a>
+            </p>
+        ),
     },
     { header: 'Name', accessorKey: 'name' },
     { header: 'Age', accessorKey: 'age' },
