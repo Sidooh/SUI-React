@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { cn } from '../../lib/utils';
+import { cn } from '@/lib/utils';
 
 type LatencyProps = {
     from: Date;
@@ -13,13 +13,16 @@ const Latency = ({ from, to }: LatencyProps) => {
         latInSec = calcLatency(from, to),
         latency = latInSec;
 
-    if (latency > 86400) {
+    if (latInSec > 2628288) {
+        unit = 'mo';
+        latency = latency / 2628288;
+    } else if (latInSec > 86400) {
         unit = 'd';
         latency = latency / 86400;
-    } else if (latency > 3600) {
+    } else if (latInSec >= 3600) {
         unit = 'hrs';
         latency = latency / 3600;
-    } else if (latency > 120) {
+    } else if (latInSec >= 60) {
         unit = 'min';
         latency = latency / 60;
     }
@@ -32,7 +35,7 @@ const Latency = ({ from, to }: LatencyProps) => {
                 'text-[#1f7503]': latInSec <= 7,
             })}
         >
-            {Math.round(latency)}
+            {Math.floor(latency)}
             {unit}
         </span>
     );

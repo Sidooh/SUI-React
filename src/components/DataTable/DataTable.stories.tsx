@@ -9,6 +9,8 @@ import { MdReadMore } from 'react-icons/md';
 import { Account, User } from '@/lib/types/models';
 import { getRelativeDateAndTime } from '@/lib';
 import Phone from '../Phone';
+import Latency from '@/components/Latency';
+import moment from 'moment';
 
 type TableData = { id: number; name: string; age: number; created_at: Date; updated_at: Date; account: Account };
 
@@ -36,6 +38,16 @@ const columns: ColumnDef<TableData>[] = [
         accessorFn: (row: any) => getRelativeDateAndTime(row.created_at).toString(),
         header: 'Created',
         cell: ({ row }) => <TableDate date={row.original.created_at} />,
+    },
+    {
+        header: 'Latency',
+        accessorKey: 'latency',
+        cell: ({ row }) => (
+            <Latency
+                from={row.original.created_at}
+                to={moment(row.original.created_at).add(faker.datatype.number(50), 's').toDate()}
+            />
+        ),
     },
     {
         id: 'actions',
