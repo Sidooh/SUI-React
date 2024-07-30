@@ -4,6 +4,7 @@ import {
     FilterFn,
     flexRender,
     getCoreRowModel,
+    getFacetedMinMaxValues,
     getFacetedRowModel,
     getFacetedUniqueValues,
     getFilteredRowModel,
@@ -41,12 +42,21 @@ const DataTable = <TData, TValue>({
     facetedFilters,
     isRefreshing = false,
     onRefresh,
+    serverTotal,
+    serverPageSize = 100,
+    serverPageCount,
+    currentServerPage,
+    onPreviousServerPage,
+    onNextServerPage,
+    onGoToServerPage,
+    onSetServerPageSize,
 }: DataTableProps<TData, TValue>) => {
-    const [sorting, setSorting] = useState<SortingState>([]);
+    const [columnVisibility, setColumnVisibility] = useState({});
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+    const [filtering, setFiltering] = useState<boolean>(false);
     const [globalFilter, setGlobalFilter] = useState('');
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-    const [filtering, setFiltering] = useState<boolean>(false);
+    const [sorting, setSorting] = useState<SortingState>([]);
 
     const fuzzyFilter: FilterFn<TData> = (row, columnId, value, addMeta) => {
         // Rank the item
@@ -61,10 +71,11 @@ const DataTable = <TData, TValue>({
 
     const table = useReactTable({
         state: {
-            sorting,
             columnFilters,
+            columnVisibility,
             globalFilter,
             rowSelection,
+            sorting,
         },
 
         data,
@@ -101,6 +112,7 @@ const DataTable = <TData, TValue>({
         onRowSelectionChange: setRowSelection,
         onGlobalFilterChange: setGlobalFilter,
         onColumnFiltersChange: setColumnFilters,
+        onColumnVisibilityChange: setColumnVisibility,
 
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
@@ -108,6 +120,7 @@ const DataTable = <TData, TValue>({
         getFilteredRowModel: getFilteredRowModel(),
         getFacetedRowModel: getFacetedRowModel(),
         getFacetedUniqueValues: getFacetedUniqueValues(),
+        getFacetedMinMaxValues: getFacetedMinMaxValues(),
     });
 
     return (
@@ -216,7 +229,17 @@ const DataTable = <TData, TValue>({
                 </Table>
             </div>
 
-            <DataTablePagination table={table} />
+            <DataTablePagination
+                table={table}
+                serverTotal={serverTotal}
+                serverPageSize={serverPageSize}
+                serverPageCount={serverPageCount}
+                currentServerPage={currentServerPage}
+                onPreviousServerPage={onPreviousServerPage}
+                onNextServerPage={onNextServerPage}
+                onGoToServerPage={onGoToServerPage}
+                onSetServerPageSize={onSetServerPageSize}
+            />
         </Card>
     );
 };

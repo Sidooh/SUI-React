@@ -89,7 +89,7 @@ const meta: Meta<typeof DataTable> = {
         columns: columns as ColumnDef<unknown>[],
         isRefreshing: false,
         onRefresh: () => console.log('Handle Refresh'),
-        serverTotal: data.length,
+        serverTotal: data.length * 7,
         serverPageCount: 5,
         currentServerPage: 1,
         onPreviousServerPage: () => console.log('Handle Go to Previous Server Page'),

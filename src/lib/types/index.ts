@@ -4,6 +4,7 @@ import { IconType } from 'react-icons';
 export type DataTableDefaultProps = {
     currentServerPage?: number;
     isRefreshing?: boolean;
+    onCreateRow?: () => void;
     onGoToServerPage?: (page: number) => void;
     onNextServerPage?: () => void;
     onPreviousServerPage?: () => void;
