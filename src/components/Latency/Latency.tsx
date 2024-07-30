@@ -30,7 +30,7 @@ const Latency = ({ from, to }: LatencyProps) => {
     return (
         <span
             className={cn(`font-bold`, {
-                'text-red-600': latInSec > 30,
+                'text-[#dc2626]': latInSec > 30,
                 'text-yellow-500': latInSec > 7 && latInSec <= 30,
                 'text-[#1f7503]': latInSec <= 7,
             })}
