@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { cn } from '@/lib/utils';
 
 type LatencyProps = {
     from: Date;
@@ -27,14 +26,12 @@ const Latency = ({ from, to }: LatencyProps) => {
         latency = latency / 60;
     }
 
+    let color = '#1f7503';
+    if (latInSec > 30) color = '#dc2626';
+    if (latInSec > 7 && latInSec <= 30) color = '#eab308';
+
     return (
-        <span
-            className={cn(`font-bold`, {
-                'text-[#dc2626]': latInSec > 30,
-                'text-yellow-500': latInSec > 7 && latInSec <= 30,
-                'text-[#1f7503]': latInSec <= 7,
-            })}
-        >
+        <span style={{ color }} className={'font-bold'}>
             {Math.floor(latency)}
             {unit}
         </span>
