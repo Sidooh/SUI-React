@@ -92,10 +92,10 @@ const meta: Meta<typeof DataTable> = {
         serverTotal: data.length * 7,
         serverPageCount: 5,
         currentServerPage: 1,
-        onPreviousServerPage: () => console.log('Handle Go to Previous Server Page'),
-        onNextServerPage: () => console.log('Handle Go to Next Server Page'),
-        onGoToServerPage: (p) => console.log(`Handle Go to Server Page: ${p}`),
-        onSetServerPageSize: (n) => console.log(`Handle Set Server Page Size: ${n}`),
+        // onPreviousServerPage: () => console.log('Handle Go to Previous Server Page'),
+        // onNextServerPage: () => console.log('Handle Go to Next Server Page'),
+        // onGoToServerPage: (p) => console.log(`Handle Go to Server Page: ${p}`),
+        // onSetServerPageSize: (n) => console.log(`Handle Set Server Page Size: ${n}`),
     },
 };
 

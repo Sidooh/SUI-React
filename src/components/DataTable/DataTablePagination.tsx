@@ -124,7 +124,7 @@ export function DataTablePagination<TData>({
             ) : (
                 <TotalRows table={table} />
             )}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
                 {hasServerPagination && <TotalRows table={table} />}
                 <div className="flex items-center">
                     <Select
